@@ -1,13 +1,10 @@
-# Module 1.1 — Meta Scaffolding (M1.1)
-Summary: Create a living project brain and audit trail with ProjectVision.ts, prompt logging system, and documentation structure.
+# Module 02 — M1.1: Basic Excel Reader
+Summary: Create read-only Excel reader with basic sheet detection
+
+Phase: M1.1
+Status: [To be updated via VisionSync]
 
 Key files:
-- src/context/ProjectVision.ts
-- docs/prompts/README.md
-- docs/prompts/module-01.txt
-- docs/prompts/log.jsonl
-- scripts/prompt_log.py
-- src/logging/prompt_logger.py
-- README.md (updated)
+- [To be filled during development]
 
-[Paste here the exact prompt you used to generate M1.1 with Cursor.]
+[Paste here the exact prompt used to generate M1.1 with Cursor.]

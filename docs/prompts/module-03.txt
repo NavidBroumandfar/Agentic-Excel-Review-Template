@@ -1,5 +1,8 @@
-# Module M1.2 — Meta Automation: VisionSync + Prompt Logs + Hook
+# Module 03 — M1.2: Meta Automation: VisionSync + Prompt Logs + Hook
 Summary: Add automated governance with ProjectVision.ts, prompt logging, and pre-commit hooks
+
+Phase: M1.2
+Status: [To be updated via VisionSync]
 
 Key files:
 - [To be filled during development]

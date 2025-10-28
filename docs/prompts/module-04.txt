@@ -1,0 +1,10 @@
+# Module 04 — M2: AI Review Assistant (RAG + LLM)
+Summary: Suggest standardized Reason-for-Correction with confidence + rationale, using SOP-based RAG.
+
+Phase: M2
+Status: [To be updated via VisionSync]
+
+Key files:
+- [To be filled during development]
+
+[Paste here the exact prompt used to generate M2 with Cursor.]

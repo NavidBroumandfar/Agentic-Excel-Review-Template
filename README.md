@@ -57,9 +57,13 @@ Environment variables can override config values:
 
 - Living roadmap: `src/context/ProjectVision.ts`  
   - Update **after each phase**: set status, add a changelog note.
-- Prompt audit trail:
-  - Paste exact prompts to `docs/prompts/module-XX.txt`
-  - Append a JSONL entry:
+- Prompt audit trail with **sequential numbering**:
+  - `module-01.txt` → M1 (Excel Reader)
+  - `module-02.txt` → M1.1 (Basic Excel Reader)  
+  - `module-03.txt` → M1.2 (Meta Automation)
+  - `module-04.txt` → M2 (AI Review Assistant)
+  - etc.
+- Append a JSONL entry:
     ```
     python scripts/prompt_log.py --module M1 --title "Excel Reader created" --summary "Read-only ingestion + CSV preview" src/excel/mtcr_reader.py src/utils/config_loader.py
     ```
@@ -79,4 +83,5 @@ python scripts/hooks/install_hooks.py
 - update `ProjectVision.ts` **or**
 - log to `docs/prompts/log.jsonl` **and** `docs/prompts/module-XX.txt`.
 - **Auto-creation**: Module files are created automatically when phases become active
+- **Sequential numbering**: M1→01, M1.1→02, M1.2→03, M2→04, etc.
 - **Sub-phases**: Support for M1.1, M1.2, etc. with automatic tracking
