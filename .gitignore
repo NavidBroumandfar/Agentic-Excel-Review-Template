@@ -2,49 +2,74 @@
 # 🧩 MTCR_Agentic_Automation
 # ============================
 
+# === Python build/cache ===
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pkl
+*.egg-info/
+pip-wheel-metadata/
+build/
+dist/
+*.pytest_cache/
+
+# === Virtual environments ===
+.env
+.env.local
+.venv/
+venv/
+env/
+
+# === Jupyter / IDE ===
+.ipynb_checkpoints/
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
 # === Local data & restricted files ===
 /mnt/                    # Mounted SOP data (local only)
 /data/raw/               # Original SOPs / attachments
 /data/embeddings/        # Vector DB (Chroma/Faiss)
 /logs/                   # JSONL inference logs
+/models/                 # Model checkpoints
+/outputs/                # Generated outputs
+/checkpoints/            # Training checkpoints
+
+# === Excel and sensitive data ===
 MTCR Data.xlsm           # Validated Excel workbook (sensitive)
-*.jsonl
+MTCR Data.backup_*.xlsm  # Backup files
+*.xlsx                   # Excel files (except test files)
+*.xlsm                   # Excel macro files (except test files)
+*.xlsb                   # Excel binary files
+~$*                      # Excel temp files
+
+# === Data files ===
+*.csv                    # Local exports (except test files)
+*.jsonl                  # Log files
 *.sqlite
 *.db
-*.csv                    # Local exports (never needed in repo)
-*.bak
-*.tmp
-
-# === Python cache & environments ===
-__pycache__/
-*.pyc
-.venv/
-.env
-.env.local
-*.egg-info/
-pip-wheel-metadata/
-build/
-dist/
-
-# === OS / IDE noise ===
-.DS_Store
-Thumbs.db
-.idea/
-.vscode/
 *.log
 
-# === Tests and notebooks (optional) ===
-*.ipynb_checkpoints/
-.notebooks/
-*.pytest_cache/
-
-# === Model / checkpoint data (if added later) ===
-/models/
+# === Model files ===
 *.bin
 *.pt
 *.ckpt
 *.onnx
+*.h5
+*.pkl
 
-# === Misc ===
+# === OS and backup files ===
 *.bak
+*.swp
+*.tmp
 *.old
+
+# === Safe exceptions for tests/docs ===
+!tests/**/*.xlsx
+!tests/**/*.csv
+!docs/**/*.xlsx
+!docs/**/*.csv
+!**/test_*.xlsx
+!**/sample_*.csv
