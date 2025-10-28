@@ -1,2 +1,2 @@
 month,generated_at_utc,metric_ai_suggestions_total,metric_avg_confidence,metric_distinct_model_versions,metric_errors_inference,metric_log_completeness_pct,metric_confidence_sparkline,metric_write_ops,metric_rows_written_avg,metric_errors_writer,inf_missing_fields,wrt_missing_fields
-202510,2025-10-28T23:33:33.442619Z,3,0.8333333333333334,['llama3-8b-ft-v0.1'],0,100.0,█▁,1,2.0,0,0,0
+202510,2025-10-28T23:41:31.118169Z,3,0.8333333333333334,['llama3-8b-ft-v0.1'],0,100.0,▃█▁,1,2.0,0,0,0
