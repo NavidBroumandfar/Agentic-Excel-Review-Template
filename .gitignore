@@ -1,0 +1,50 @@
+# ============================
+# 🧩 MTCR_Agentic_Automation
+# ============================
+
+# === Local data & restricted files ===
+/mnt/                    # Mounted SOP data (local only)
+/data/raw/               # Original SOPs / attachments
+/data/embeddings/        # Vector DB (Chroma/Faiss)
+/logs/                   # JSONL inference logs
+MTCR Data.xlsm           # Validated Excel workbook (sensitive)
+*.jsonl
+*.sqlite
+*.db
+*.csv                    # Local exports (never needed in repo)
+*.bak
+*.tmp
+
+# === Python cache & environments ===
+__pycache__/
+*.pyc
+.venv/
+.env
+.env.local
+*.egg-info/
+pip-wheel-metadata/
+build/
+dist/
+
+# === OS / IDE noise ===
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.log
+
+# === Tests and notebooks (optional) ===
+*.ipynb_checkpoints/
+.notebooks/
+*.pytest_cache/
+
+# === Model / checkpoint data (if added later) ===
+/models/
+*.bin
+*.pt
+*.ckpt
+*.onnx
+
+# === Misc ===
+*.bak
+*.old
