@@ -1,0 +1,6 @@
+{
+  "input_file": "data/MTCR Data.xlsm",
+  "sheet_name": "Quality Review",
+  "out_dir": "out",
+  "preview_rows": 200
+}

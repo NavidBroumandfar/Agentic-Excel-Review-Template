@@ -1,0 +1,13 @@
+# Module 1.1 — Meta Scaffolding (M1.1)
+Summary: Create a living project brain and audit trail with ProjectVision.ts, prompt logging system, and documentation structure.
+
+Key files:
+- src/context/ProjectVision.ts
+- docs/prompts/README.md
+- docs/prompts/module-01.txt
+- docs/prompts/log.jsonl
+- scripts/prompt_log.py
+- src/logging/prompt_logger.py
+- README.md (updated)
+
+[Paste here the exact prompt you used to generate M1.1 with Cursor.]

@@ -1,0 +1,9 @@
+# Module 1 — Excel Reader (M1)
+Summary: Read-only ingestion for "Quality Review" from `MTCR Data.xlsm`, export CSV preview, and print sheet profile.
+
+Key files:
+- src/utils/config_loader.py
+- src/excel/mtcr_reader.py
+- config.json, requirements.txt, README.md updates
+
+[Paste here the exact prompt used to generate M1 with Cursor.]
