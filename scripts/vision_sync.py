@@ -264,11 +264,11 @@ def update_all_modules():
     """Update all existing module files with current content"""
     ts_code = read(VISION_PATH)
     mapping = get_phase_mapping(ts_code)
-    
+
     for phase_id, info in mapping.items():
         module_num = info["module_num"]
         title = info["title"]
-        
+
         # Only update if module file exists (meaning phase was completed or explicitly created)
         module_file = os.path.join("docs", "prompts", f"module-{module_num:02d}.txt")
         if os.path.exists(module_file):
@@ -277,8 +277,10 @@ def update_all_modules():
                 rf'id:\s*"{re.escape(phase_id)}"[\s\S]*?objective:\s*"([^"]+)"',
                 ts_code,
             )
-            objective = objective_match.group(1) if objective_match else "Phase objective"
-            
+            objective = (
+                objective_match.group(1) if objective_match else "Phase objective"
+            )
+
             # Regenerate module file
             create_module_file(phase_id, title, objective, module_num)
             print(f"Updated module-{module_num:02d}.txt for {phase_id}")
