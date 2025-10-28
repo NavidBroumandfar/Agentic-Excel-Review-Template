@@ -66,9 +66,10 @@ Environment variables can override config values:
 
 ## VisionSync & Hook
 
-- Sync roadmap:
+- Sync roadmap (auto-creates module files):
 ```bash
 python scripts/vision_sync.py --phase M2 --status active --note "Start AI Review Assistant dev"
+python scripts/vision_sync.py --phase M1.2 --status completed --note "Sub-phase done" --create-module
 ```
 - Install pre-commit guard (run once):
 ```bash
@@ -77,3 +78,5 @@ python scripts/hooks/install_hooks.py
 - The guard blocks commits if `/src/**` changed but you didn't:
 - update `ProjectVision.ts` **or**
 - log to `docs/prompts/log.jsonl` **and** `docs/prompts/module-XX.txt`.
+- **Auto-creation**: Module files are created automatically when phases become active
+- **Sub-phases**: Support for M1.1, M1.2, etc. with automatic tracking

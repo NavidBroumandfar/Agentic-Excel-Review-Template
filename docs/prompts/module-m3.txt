@@ -1,0 +1,7 @@
+# Module M3 — Excel Writer (Safe AI_ Columns)
+Summary: Append AI_ReasonSuggestion, AI_Confidence, etc., without touching validated ranges.
+
+Key files:
+- [To be filled during development]
+
+[Paste here the exact prompt used to generate M3 with Cursor.]

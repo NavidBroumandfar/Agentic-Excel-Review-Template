@@ -6,6 +6,7 @@ Usage:
 """
 import argparse, json, os, sys, datetime
 
+
 def main():
     p = argparse.ArgumentParser()
     p.add_argument("--module", required=True)
@@ -19,13 +20,14 @@ def main():
         "module": args.module,
         "title": args.title,
         "summary": args.summary,
-        "files": args.files
+        "files": args.files,
     }
     log_path = os.path.join("docs", "prompts", "log.jsonl")
     os.makedirs(os.path.dirname(log_path), exist_ok=True)
     with open(log_path, "a", encoding="utf-8") as f:
         f.write(json.dumps(entry, ensure_ascii=False) + "\n")
     print("[OK] Logged:", entry)
+
 
 if __name__ == "__main__":
     sys.exit(main())

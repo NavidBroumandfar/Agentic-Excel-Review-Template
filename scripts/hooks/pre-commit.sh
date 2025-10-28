@@ -13,6 +13,8 @@ if [ "$needs_guard" = true ]; then
     echo "   → Add an entry to docs/prompts/log.jsonl AND paste prompt to docs/prompts/module-XX.txt"
     echo "   → If you changed phase status, run VisionSync, e.g.:"
     echo "      python scripts/vision_sync.py --phase M2 --status active --note 'Start M2 dev'"
+    echo "      python scripts/vision_sync.py --phase M1.2 --status completed --note 'Sub-phase done'"
+    echo "   → Auto-create module files with: --create-module flag"
     exit 1
   }
 fi

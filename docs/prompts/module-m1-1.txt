@@ -1,0 +1,7 @@
+# Module M1.1 — Basic Excel Reader
+Summary: Create read-only Excel reader with basic sheet detection
+
+Key files:
+- [To be filled during development]
+
+[Paste here the exact prompt used to generate M1.1 with Cursor.]

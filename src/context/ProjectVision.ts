@@ -11,6 +11,14 @@ export interface Phase {
   objective: string;
   outputs: string[];
   status: PhaseStatus;
+  subPhases?: SubPhase[];
+}
+
+export interface SubPhase {
+  id: string;
+  title: string;
+  objective: string;
+  status: PhaseStatus;
 }
 
 export interface ProjectVision {
@@ -46,7 +54,21 @@ export const Project: ProjectVision = {
       folder: "/src/excel/",
       objective: "Read-only ingestion of 'Quality Review' sheet with profiling + CSV preview.",
       outputs: ["mtcr_reader.py", "quality_review_preview.csv", "sheet profile"],
-      status: "completed"
+      status: "completed",
+      subPhases: [
+        {
+          id: "M1.1",
+          title: "Basic Excel Reader",
+          objective: "Create read-only Excel reader with basic sheet detection",
+          status: "completed"
+        },
+        {
+          id: "M1.2",
+          title: "Meta Automation: VisionSync + Prompt Logs + Hook",
+          objective: "Add automated governance with ProjectVision.ts, prompt logging, and pre-commit hooks",
+          status: "completed"
+        }
+      ]
     },
     {
       id: "M2",
@@ -115,9 +137,9 @@ export const Project: ProjectVision = {
       status: "planned"
     }
   ],
-  lastUpdatedISO: "2025-10-28T12:56:00.870497Z",
+  lastUpdatedISO: "2025-10-28T13:01:28.687648Z",
   changelog: [
-    { dateISO: "2025-10-28T12:56:00.871124Z", note: "Kick off AI Review Assistant" }, {
+    { dateISO: "2025-10-28T13:01:28.688212Z", note: "Regenerate snapshot with sub-phases" }, { dateISO: "2025-10-28T13:00:21.018833Z", note: "M3 planned for Excel Writer" }, { dateISO: "2025-10-28T13:00:18.596023Z", note: "Meta Automation system completed" }, { dateISO: "2025-10-28T13:00:13.185267Z", note: "Basic Excel Reader completed" }, { dateISO: "2025-10-28T12:56:00.871124Z", note: "Kick off AI Review Assistant" }, {
       dateISO: new Date().toISOString(),
       note: "Initialized ProjectVision.ts; marked M1 as completed and defined roadmap M1→M9."
     }
