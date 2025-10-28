@@ -149,54 +149,50 @@ def get_next_module_number(ts_code: str) -> int:
 def detect_phase_files(phase_id: str) -> list:
     """Detect actual files created for a phase based on common patterns"""
     files = []
-    
+
     # Define file patterns for each phase
     phase_patterns = {
         "M1": [
             "src/excel/mtcr_reader.py",
-            "src/utils/config_loader.py", 
+            "src/utils/config_loader.py",
             "config.json",
             "requirements.txt",
             "docs/Project_Structure.md",
-            "README.md"
+            "README.md",
         ],
         "M1.1": [
             "src/excel/mtcr_reader.py",
             "src/utils/config_loader.py",
             "config.json",
-            "requirements.txt"
+            "requirements.txt",
         ],
         "M1.2": [
             "src/context/ProjectVision.ts",
             "scripts/vision_sync.py",
-            "scripts/prompt_log.py", 
+            "scripts/prompt_log.py",
             "src/logging/prompt_logger.py",
             "scripts/hooks/pre-commit.sh",
             "scripts/hooks/install_hooks.py",
             "docs/prompts/README.md",
-            "docs/prompts/log.jsonl"
+            "docs/prompts/log.jsonl",
         ],
-        "M2": [
-            "src/ai/review_assistant.py",
-            "src/ai/prompts/review_prompt.txt"
-        ],
-        "M3": [
-            "src/excel/mtcr_writer.py"
-        ]
+        "M2": ["src/ai/review_assistant.py", "src/ai/prompts/review_prompt.txt"],
+        "M3": ["src/excel/mtcr_writer.py"],
     }
-    
+
     if phase_id in phase_patterns:
         # Check which files actually exist
         for file_path in phase_patterns[phase_id]:
             if os.path.exists(file_path):
                 files.append(file_path)
-    
+
     return files
+
 
 def generate_phase_summary(phase_id: str, title: str, status: str) -> str:
     """Generate a comprehensive summary based on phase content"""
     files = detect_phase_files(phase_id)
-    
+
     if status == "completed":
         if phase_id == "M1":
             return "Complete Excel reader with profiling, CSV preview, and robust error handling. Includes configuration management and comprehensive documentation."
@@ -211,6 +207,7 @@ def generate_phase_summary(phase_id: str, title: str, status: str) -> str:
     else:
         return f"Development phase for {title} - {len(files)} files created"
 
+
 def create_module_file(
     phase_id: str, title: str, objective: str, module_num: int = None
 ):
@@ -223,13 +220,15 @@ def create_module_file(
             module_num = mapping[phase_id]["module_num"]
         else:
             module_num = get_next_module_number(ts_code)
-    
+
     # Get actual files created for this phase
     actual_files = detect_phase_files(phase_id)
-    
+
     # Generate comprehensive summary
-    summary = generate_phase_summary(phase_id, title, "completed" if actual_files else "planned")
-    
+    summary = generate_phase_summary(
+        phase_id, title, "completed" if actual_files else "planned"
+    )
+
     module_file = os.path.join("docs", "prompts", f"module-{module_num:02d}.txt")
     content = f"""# Module {module_num:02d} — {phase_id}: {title}
 Summary: {summary}
@@ -270,29 +269,39 @@ def update_all_modules():
         module_num = info["module_num"]
         title = info["title"]
         
-        # Extract objective from ProjectVision.ts
-        objective_match = re.search(
-            rf'id:\s*"{re.escape(phase_id)}"[\s\S]*?objective:\s*"([^"]+)"',
-            ts_code,
-        )
-        objective = objective_match.group(1) if objective_match else "Phase objective"
-        
-        # Regenerate module file
-        create_module_file(phase_id, title, objective, module_num)
-        print(f"Updated module-{module_num:02d}.txt for {phase_id}")
+        # Only update if module file exists (meaning phase was completed or explicitly created)
+        module_file = os.path.join("docs", "prompts", f"module-{module_num:02d}.txt")
+        if os.path.exists(module_file):
+            # Extract objective from ProjectVision.ts
+            objective_match = re.search(
+                rf'id:\s*"{re.escape(phase_id)}"[\s\S]*?objective:\s*"([^"]+)"',
+                ts_code,
+            )
+            objective = objective_match.group(1) if objective_match else "Phase objective"
+            
+            # Regenerate module file
+            create_module_file(phase_id, title, objective, module_num)
+            print(f"Updated module-{module_num:02d}.txt for {phase_id}")
+        else:
+            print(f"Skipped {phase_id} - no module file exists (phase not completed)")
+
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--phase", required=False)
     ap.add_argument(
-        "--status", required=False, choices=["planned", "active", "completed", "blocked"]
+        "--status",
+        required=False,
+        choices=["planned", "active", "completed", "blocked"],
     )
     ap.add_argument("--note", required=False)
     ap.add_argument(
         "--create-module", action="store_true", help="Auto-create module file"
     )
     ap.add_argument(
-        "--update-all", action="store_true", help="Update all module files with current content"
+        "--update-all",
+        action="store_true",
+        help="Update all module files with current content",
     )
     args = ap.parse_args()
 
@@ -318,8 +327,8 @@ def main():
     write(VISION_PATH, ts)
     write(SNAPSHOT_MD, extract_snapshot(ts))
 
-    # Auto-create module file if requested or if phase becomes active
-    if args.create_module or args.status == "active":
+    # Auto-create module file only if explicitly requested or if phase becomes completed
+    if args.create_module or args.status == "completed":
         # Extract title and objective from the phase
         phase_match = re.search(
             rf'id:\s*"{re.escape(args.phase)}"[\s\S]*?title:\s*"([^"]+)"[\s\S]*?objective:\s*"([^"]+)"',

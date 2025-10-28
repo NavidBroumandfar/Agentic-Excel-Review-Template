@@ -83,8 +83,8 @@ python scripts/hooks/install_hooks.py
 - The guard blocks commits if `/src/**` changed but you didn't:
 - update `ProjectVision.ts` **or**
 - log to `docs/prompts/log.jsonl` **and** `docs/prompts/module-XX.txt`.
-- **Auto-creation**: Module files are created automatically when phases become active
+- **Smart creation**: Module files are created only when phases are completed or explicitly requested
 - **Real content**: Module files are automatically populated with actual files created and development status
 - **Sequential numbering**: M1→01, M1.1→02, M1.2→03, M2→04, etc.
 - **Sub-phases**: Support for M1.1, M1.2, etc. with automatic tracking
-- **No more placeholders**: All module files show real development progress and file lists
+- **No premature files**: Only completed phases get module files (no module-04.txt for M2 until it's done)
