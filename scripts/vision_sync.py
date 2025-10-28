@@ -81,7 +81,25 @@ def extract_snapshot(ts_code: str) -> str:
 def get_phase_mapping(ts_code: str) -> dict:
     """Extract all phases and sub-phases, return mapping to sequential module numbers"""
     mapping = {}
-    module_num = 1
+
+    # Define the correct sequential mapping based on actual development order
+    # This prevents the automation from incorrectly assigning module numbers
+    correct_mapping = {
+        "M1": 1,  # Excel Reader
+        "M1.1": 2,  # Basic Excel Reader
+        "M1.2": 3,  # Meta Automation
+        "M2": 4,  # AI Review Assistant
+        "M2.1": 5,  # SOP Indexer (RAG)
+        "M2.2": 6,  # AI Review Assistant
+        "M2.3": 7,  # Test Suite
+        "M3": 8,  # Excel Writer
+        "M4": 9,  # Log Manager
+        "M5": 10,  # Taxonomy Manager
+        "M6": 11,  # SOP Indexer (RAG) - if separate from M2.1
+        "M7": 12,  # Model Card Generator
+        "M8": 13,  # Correction Tracker Agent
+        "M9": 14,  # Publisher Agent
+    }
 
     # Extract all phases (main and sub) in order
     all_phases = re.findall(
@@ -89,51 +107,26 @@ def get_phase_mapping(ts_code: str) -> dict:
         ts_code,
     )
 
-    # Create a flat list with proper ordering: M1, M1.1, M1.2, M2, M2.1, etc.
-    phase_list = []
-
-    # Group phases by main phase
-    main_phases = {}
-    sub_phases = {}
-
+    # Create mapping using the correct sequential numbers
     for phase_id, title, status in all_phases:
-        if "." not in phase_id:  # Main phase
-            main_phases[phase_id] = (phase_id, title, status)
-        else:  # Sub-phase
-            parent = phase_id.split(".")[0]
-            if parent not in sub_phases:
-                sub_phases[parent] = []
-            sub_phases[parent].append((phase_id, title, status))
-
-    # Sort main phases by number
-    sorted_main = sorted(
-        main_phases.items(), key=lambda x: int(x[0][1:]) if x[0][1:].isdigit() else 999
-    )
-
-    # Build final ordered list
-    for main_id, (phase_id, title, status) in sorted_main:
-        # Add main phase
-        phase_list.append((phase_id, title, status))
-
-        # Add its sub-phases if any
-        if main_id in sub_phases:
-            sorted_subs = sorted(
-                sub_phases[main_id],
-                key=lambda x: (
-                    int(x[0].split(".")[1]) if x[0].split(".")[1].isdigit() else 999
-                ),
-            )
-            phase_list.extend(sorted_subs)
-
-    # Create mapping
-    for phase_id, title, status in phase_list:
-        mapping[phase_id] = {
-            "module_num": module_num,
-            "title": title,
-            "status": status,
-            "type": "main" if "." not in phase_id else "sub",
-        }
-        module_num += 1
+        if phase_id in correct_mapping:
+            mapping[phase_id] = {
+                "module_num": correct_mapping[phase_id],
+                "title": title,
+                "status": status,
+                "type": "main" if "." not in phase_id else "sub",
+            }
+        else:
+            # For any new phases not in the predefined mapping, assign next available number
+            max_num = max(correct_mapping.values()) if correct_mapping else 0
+            next_num = max_num + 1
+            correct_mapping[phase_id] = next_num
+            mapping[phase_id] = {
+                "module_num": next_num,
+                "title": title,
+                "status": status,
+                "type": "main" if "." not in phase_id else "sub",
+            }
 
     return mapping
 
@@ -176,7 +169,12 @@ def detect_phase_files(phase_id: str) -> list:
             "docs/prompts/README.md",
             "docs/prompts/log.jsonl",
         ],
-        "M2": ["src/ai/review_assistant.py", "src/ai/prompts/review_prompt.txt"],
+        "M2": [
+            "src/ai/review_assistant.py",
+            "src/utils/sop_indexer.py",
+            "ai/prompts/review_prompt.txt",
+            "tests/test_review_assistant.py",
+        ],
         "M3": ["src/excel/mtcr_writer.py"],
     }
 
@@ -201,7 +199,7 @@ def generate_phase_summary(phase_id: str, title: str, status: str) -> str:
         elif phase_id == "M1.2":
             return "Meta automation system with ProjectVision.ts roadmap, VisionSync CLI, prompt logging, and pre-commit governance hooks."
         elif phase_id == "M2":
-            return "AI Review Assistant with RAG-based SOP retrieval and LLM-powered suggestion generation for standardized corrections."
+            return "AI Review Assistant with RAG-based SOP retrieval and LLM-powered suggestion generation for standardized corrections. Includes ChromaDB indexing, LM Studio integration, and comprehensive test suite."
         elif phase_id == "M3":
             return "Safe Excel writer that appends AI_ columns without modifying validated data ranges."
     else:

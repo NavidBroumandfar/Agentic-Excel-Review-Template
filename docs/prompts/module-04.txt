@@ -1,0 +1,19 @@
+# Module 04 — M2: AI Review Assistant
+Summary: AI Review Assistant with RAG-based SOP retrieval and LLM-powered suggestion generation for standardized corrections. Includes ChromaDB indexing, LM Studio integration, and comprehensive test suite.
+
+Phase: M2
+Status: completed
+Objective: Test objective
+
+Key files created:
+- src/ai/review_assistant.py
+- src/utils/sop_indexer.py
+- ai/prompts/review_prompt.txt
+- tests/test_review_assistant.py
+
+Development notes:
+- Phase M2 completed successfully
+- All core functionality implemented
+- Ready for production use
+
+[Paste here the exact prompt used to generate M2 with Cursor.]

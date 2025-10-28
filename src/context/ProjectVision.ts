@@ -76,8 +76,28 @@ export const Project: ProjectVision = {
       folder: "/src/ai/",
       objective:
         "Suggest standardized Reason-for-Correction with confidence + rationale, using SOP-based RAG.",
-      outputs: ["review_assistant.py", "ai/prompts/review_prompt.txt"],
-      status: "active"
+      outputs: ["review_assistant.py", "ai/prompts/review_prompt.txt", "sop_indexer.py", "test_review_assistant.py"],
+      status: "completed",
+      subPhases: [
+        {
+          id: "M2.1",
+          title: "SOP Indexer (RAG)",
+          objective: "Build ChromaDB index from SOP documents for context retrieval",
+          status: "completed"
+        },
+        {
+          id: "M2.2",
+          title: "AI Review Assistant",
+          objective: "Implement RAG + LM Studio integration for comment analysis",
+          status: "completed"
+        },
+        {
+          id: "M2.3",
+          title: "Test Suite",
+          objective: "Create comprehensive test suite with mock data",
+          status: "completed"
+        }
+      ]
     },
     {
       id: "M3",
@@ -86,7 +106,7 @@ export const Project: ProjectVision = {
       objective:
         "Append AI_ReasonSuggestion, AI_Confidence, etc., without touching validated ranges.",
       outputs: ["mtcr_writer.py"],
-      status: "planned"
+      status: "active"
     },
     {
       id: "M4",
@@ -137,9 +157,9 @@ export const Project: ProjectVision = {
       status: "planned"
     }
   ],
-  lastUpdatedISO: "2025-10-28T14:18:31.001496Z",
+  lastUpdatedISO: "2025-10-28T15:45:00.000000Z",
   changelog: [
-    { dateISO: "2025-10-28T14:18:31.001672Z", note: "Begin development of AI Review Assistant" }, { dateISO: "2025-10-28T13:18:13.956345Z", note: "Update M2 status - development in progress" }, { dateISO: "2025-10-28T13:18:00.677210Z", note: "Regenerate M1.2 with actual content" }, { dateISO: "2025-10-28T13:17:55.754787Z", note: "Regenerate M1.1 with actual content" }, { dateISO: "2025-10-28T13:17:47.584359Z", note: "Regenerate M1 with actual content" }, { dateISO: "2025-10-28T13:11:23.094564Z", note: "Test sequential numbering for M2" }, { dateISO: "2025-10-28T13:10:33.557677Z", note: "Create module-03 for M1.2" }, { dateISO: "2025-10-28T13:10:00.452413Z", note: "Create module-02 for M1.1" }, { dateISO: "2025-10-28T13:08:49.050817Z", note: "Create module-02 for M1.1" }, { dateISO: "2025-10-28T13:01:28.688212Z", note: "Regenerate snapshot with sub-phases" }, { dateISO: "2025-10-28T13:00:21.018833Z", note: "M3 planned for Excel Writer" }, { dateISO: "2025-10-28T13:00:18.596023Z", note: "Meta Automation system completed" }, { dateISO: "2025-10-28T13:00:13.185267Z", note: "Basic Excel Reader completed" }, { dateISO: "2025-10-28T12:56:00.871124Z", note: "Kick off AI Review Assistant" }, {
+    { dateISO: "2025-10-28T15:45:00.000000Z", note: "M2 AI Review Assistant completed - RAG + LLM integration with ChromaDB, LM Studio, and comprehensive test suite" }, { dateISO: "2025-10-28T14:18:31.001672Z", note: "Begin development of AI Review Assistant" }, { dateISO: "2025-10-28T13:18:13.956345Z", note: "Update M2 status - development in progress" }, { dateISO: "2025-10-28T13:18:00.677210Z", note: "Regenerate M1.2 with actual content" }, { dateISO: "2025-10-28T13:17:55.754787Z", note: "Regenerate M1.1 with actual content" }, { dateISO: "2025-10-28T13:17:47.584359Z", note: "Regenerate M1 with actual content" }, { dateISO: "2025-10-28T13:11:23.094564Z", note: "Test sequential numbering for M2" }, { dateISO: "2025-10-28T13:10:33.557677Z", note: "Create module-03 for M1.2" }, { dateISO: "2025-10-28T13:10:00.452413Z", note: "Create module-02 for M1.1" }, { dateISO: "2025-10-28T13:08:49.050817Z", note: "Create module-02 for M1.1" }, { dateISO: "2025-10-28T13:01:28.688212Z", note: "Regenerate snapshot with sub-phases" }, { dateISO: "2025-10-28T13:00:21.018833Z", note: "M3 planned for Excel Writer" }, { dateISO: "2025-10-28T13:00:18.596023Z", note: "Meta Automation system completed" }, { dateISO: "2025-10-28T13:00:13.185267Z", note: "Basic Excel Reader completed" }, { dateISO: "2025-10-28T12:56:00.871124Z", note: "Kick off AI Review Assistant" }, {
       dateISO: new Date().toISOString(),
       note: "Initialized ProjectVision.ts; marked M1 as completed and defined roadmap M1→M9."
     }
