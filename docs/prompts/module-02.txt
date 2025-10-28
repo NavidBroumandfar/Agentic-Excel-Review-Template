@@ -1,19 +1,19 @@
-# Module 02 — M1.1: Basic Excel Reader
-Summary: Basic Excel reader with sheet detection, data profiling, and CSV export functionality.
+# Module 02 — M2: AI Review Assistant
+Summary: AI Review Assistant with RAG-based SOP retrieval and LLM-powered suggestion generation for standardized corrections. Includes ChromaDB indexing, LM Studio integration, and comprehensive test suite.
 
-Phase: M1.1
+Phase: M2
 Status: completed
-Objective: Create read-only Excel reader with basic sheet detection
+Objective: Suggest standardized Reason-for-Correction with confidence + rationale, using SOP-based RAG.
 
 Key files created:
-- src/excel/mtcr_reader.py
-- src/utils/config_loader.py
-- config.json
-- requirements.txt
+- src/ai/review_assistant.py
+- src/utils/sop_indexer.py
+- ai/prompts/review_prompt.txt
+- tests/test_review_assistant.py
 
 Development notes:
-- Phase M1.1 completed successfully
-- Basic Excel reading functionality implemented
-- Ready for M1.2 integration
+- Phase M2 completed successfully
+- RAG + LLM integration with ChromaDB, LM Studio, and comprehensive test suite
+- Ready for production use
 
-[Paste here the exact prompt used to generate M1.1 with Cursor.]
+[Paste here the exact prompt used to generate M2 with Cursor.]

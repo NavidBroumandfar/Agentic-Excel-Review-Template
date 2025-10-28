@@ -1,19 +1,17 @@
-# Module 04 — M2: AI Review Assistant
-Summary: AI Review Assistant with RAG-based SOP retrieval and LLM-powered suggestion generation for standardized corrections. Includes ChromaDB indexing, LM Studio integration, and comprehensive test suite.
+# Module 04 — M4: Log Manager
+Summary: Structured JSONL logging for each inference/action with monthly metrics summary and audit trail management.
 
-Phase: M2
-Status: completed
-Objective: Test objective
+Phase: M4
+Status: planned
+Objective: Structured JSONL logging for each inference/action.
 
-Key files created:
-- src/ai/review_assistant.py
-- src/utils/sop_indexer.py
-- ai/prompts/review_prompt.txt
-- tests/test_review_assistant.py
+Key files to create:
+- src/logging/log_manager.py
+- logs/monthly_metrics_summary.csv
 
 Development notes:
-- Phase M2 completed successfully
-- All core functionality implemented
-- Ready for production use
+- Phase M4 planned
+- Will build on existing JSONL logging from M2 and M3
+- Will provide centralized log management and metrics
 
-[Paste here the exact prompt used to generate M2 with Cursor.]
+[Paste here the exact prompt used to generate M4 with Cursor when ready.]
