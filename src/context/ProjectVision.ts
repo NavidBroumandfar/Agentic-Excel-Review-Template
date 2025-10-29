@@ -122,7 +122,7 @@ export const Project: ProjectVision = {
       folder: "/src/utils/",
       objective: "Dictionary + validation for Reason-for-Correction taxonomy.",
       outputs: ["taxonomy_manager.py"],
-      status: "planned"
+      status: "completed"
     },
     {
       id: "M6",
@@ -157,8 +157,9 @@ export const Project: ProjectVision = {
       status: "planned"
     }
   ],
-  lastUpdatedISO: "2025-10-28T17:00:00.000000Z",
+  lastUpdatedISO: "2025-10-29T10:00:00.000000Z",
   changelog: [
+    { dateISO: "2025-10-29T10:00:00.000000Z", note: "M5 Taxonomy Manager completed — fuzzy clustering, versioned YAML, drift CSV, JSONL changes, comprehensive test suite." },
     { dateISO: "2025-10-28T17:00:00.000000Z", note: "M4 Log Manager & QA Traceability completed - Centralized JSONL ingestion, monthly roll-up with CSV appender mode, confidence sparklines, and integrity tracking" },
     { dateISO: "2025-10-28T16:30:00.000000Z", note: "M3 Excel Writer completed - Safe AI_ sheet creation with backup, JSONL logging, win32com/openpyxl support, and comprehensive test suite" },
     { dateISO: "2025-10-28T15:45:00.000000Z", note: "M2 AI Review Assistant completed - RAG + LLM integration with ChromaDB, LM Studio, and comprehensive test suite" }, { dateISO: "2025-10-28T14:18:31.001672Z", note: "Begin development of AI Review Assistant" }, { dateISO: "2025-10-28T13:18:13.956345Z", note: "Update M2 status - development in progress" }, { dateISO: "2025-10-28T13:18:00.677210Z", note: "Regenerate M1.2 with actual content" }, { dateISO: "2025-10-28T13:17:55.754787Z", note: "Regenerate M1.1 with actual content" }, { dateISO: "2025-10-28T13:17:47.584359Z", note: "Regenerate M1 with actual content" }, { dateISO: "2025-10-28T13:11:23.094564Z", note: "Test sequential numbering for M2" }, { dateISO: "2025-10-28T13:10:33.557677Z", note: "Create module-03 for M1.2" }, { dateISO: "2025-10-28T13:10:00.452413Z", note: "Create module-02 for M1.1" }, { dateISO: "2025-10-28T13:08:49.050817Z", note: "Create module-02 for M1.1" }, { dateISO: "2025-10-28T13:01:28.688212Z", note: "Regenerate snapshot with sub-phases" }, { dateISO: "2025-10-28T13:00:21.018833Z", note: "M3 planned for Excel Writer" }, { dateISO: "2025-10-28T13:00:18.596023Z", note: "Meta Automation system completed" }, { dateISO: "2025-10-28T13:00:13.185267Z", note: "Basic Excel Reader completed" }, { dateISO: "2025-10-28T12:56:00.871124Z", note: "Kick off AI Review Assistant" }, {
