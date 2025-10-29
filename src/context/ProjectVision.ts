@@ -126,11 +126,11 @@ export const Project: ProjectVision = {
     },
     {
       id: "M6",
-      title: "SOP Indexer (RAG)",
+      title: "SOP Indexer (RAG + Guidance Mapping)",
       folder: "/src/utils/",
-      objective: "Embed SOPs and guides for retrieval.",
-      outputs: ["sop_indexer.py", "data/embeddings/*"],
-      status: "planned"
+      objective: "Build local RAG index over SOP 029014 and attachments, then expose function that maps each standardized 'Reason for Correction' to best SOP clause(s) with similarity score, excerpt, and traceability.",
+      outputs: ["sop_indexer.py", "data/embeddings/sop_index/", "data/mappings/reason_to_sop.yml", "logs/rag_mapping_YYYYMM.jsonl", "test_sop_indexer.py", "module-06.txt"],
+      status: "completed"
     },
     {
       id: "M7",
@@ -157,8 +157,9 @@ export const Project: ProjectVision = {
       status: "planned"
     }
   ],
-  lastUpdatedISO: "2025-10-29T10:00:00.000000Z",
+  lastUpdatedISO: "2025-10-29T01:15:00.000000Z",
   changelog: [
+    { dateISO: "2025-10-29T01:15:00.000000Z", note: "M6 SOP Indexer (RAG + Guidance Mapping) completed — local vector index built, reason→clause mapping exposed, comprehensive test suite with mock corpus, ChromaDB/FAISS support, JSONL audit logs." },
     { dateISO: "2025-10-29T10:00:00.000000Z", note: "M5 Taxonomy Manager completed — fuzzy clustering, versioned YAML, drift CSV, JSONL changes, comprehensive test suite." },
     { dateISO: "2025-10-28T17:00:00.000000Z", note: "M4 Log Manager & QA Traceability completed - Centralized JSONL ingestion, monthly roll-up with CSV appender mode, confidence sparklines, and integrity tracking" },
     { dateISO: "2025-10-28T16:30:00.000000Z", note: "M3 Excel Writer completed - Safe AI_ sheet creation with backup, JSONL logging, win32com/openpyxl support, and comprehensive test suite" },
