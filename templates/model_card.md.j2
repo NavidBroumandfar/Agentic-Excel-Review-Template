@@ -1,0 +1,64 @@
+# MTCR AI Model Card — {{ created_at[:7] }}
+
+**Project:** MTCR_Agentic_Automation  
+**Version:** {{ project_version }}  
+**Commit:** {{ commit_hash }}
+
+---
+
+## Model Overview
+| Component | Model | Version | Provider |
+|------------|--------|---------|-----------|
+| AI Review Assistant | {{ model_name }} | local | Meta |
+| Embedding Model | {{ embedding_model }} | 3.0 | SBERT |
+| Taxonomy Version | {{ taxonomy_version }} |  |  |
+
+---
+
+## Performance Summary
+| Metric | Value |
+|--------|--------|
+| Accuracy (QA validated) | {{ accuracy }} |
+| Confidence avg | {{ avg_confidence }} |
+
+---
+
+## File Integrity
+{% for c in checksums %}
+- **{{ c.file }}**: {{ c.checksum }} ({{ c.size_bytes }} bytes, modified: {{ c.modified[:10] }})
+{% endfor %}
+
+---
+
+## Compliance & Governance
+- **Standard**: {{ compliance_standard }}
+- **Mode**: {{ "Assistive-only" if assistive_mode else "Autonomous" }}
+- **Data Privacy**: {{ data_privacy }}
+- **Human Validation**: {{ "Required" if human_validation_required else "Not required" }}
+
+---
+
+## Limitations / Ethical Notes
+- Assistive mode only (no autonomous decisions)  
+- Human QA validation required for each Reason for Correction  
+- No PII or customer data used for training  
+- Local models only (no external API calls)
+
+---
+
+## Change Log
+- 2025-10-29 — Model Card Generator (M7) implemented
+- 2025-10-29 — Integrated SOP RAG index (M6)  
+- 2025-10-27 — Added Taxonomy standardization (M5)
+- 2025-10-28 — Log Manager & QA Traceability (M4)
+- 2025-10-28 — Excel Writer with AI_ columns (M3)
+- 2025-10-28 — AI Review Assistant with RAG (M2)
+- 2025-10-28 — Excel Reader foundation (M1)
+
+---
+
+## Technical Details
+- **Generated**: {{ created_at }}
+- **Git Commit**: {{ commit_hash }}
+- **Files Verified**: {{ checksums|length }}
+- **Compliance**: {{ compliance_standard }}

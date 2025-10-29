@@ -1,0 +1,144 @@
+# 🚀 **Cursor Development Prompt — M7 · Model Card Generator**
+
+📘 **Objective:**
+Implement a *compliance-grade documentation generator* that builds a versioned **Model Card** summarizing all models and data artifacts used across MTCR Agentic Automation (M1 → M6).
+This ensures QA traceability in line with SOP 029014 Rev 15.A and attachments.
+
+---
+
+## 📂 **Files Created / Updated**
+
+| Path                                     | Purpose                                                                                       |
+| ---------------------------------------- | --------------------------------------------------------------------------------------------- |
+| `src/compliance/model_card_generator.py` | Core builder – collect metadata, compute checksums, render Jinja2 template to Markdown + JSON |
+| `templates/model_card.md.j2`             | Jinja2 template for human-readable model card generation                                      |
+| `data/metadata/model_summary.json`       | Machine-readable model snapshot                                                               |
+| `compliance/model_card_<YYYYMM>.md`      | Human-readable model card (official QA artifact)                                              |
+| `logs/modelcard_build_<YYYYMM>.jsonl`    | Append-mode trace log for each generation                                                     |
+| `tests/test_model_card_generator.py`     | Unit tests (mock metadata inputs + schema validation)                                         |
+| `requirements.txt`                       | Added `jinja2`, `markdown2`, `jsonschema`                                                     |
+
+---
+
+## 🧠 **Implementation Details**
+
+### Core Functionality
+- **Metadata Collection**: Automatically gathers model information, file checksums, and performance metrics
+- **Template Rendering**: Uses Jinja2 to generate professional markdown documentation
+- **Schema Validation**: Ensures metadata integrity with JSON schema validation
+- **File Integrity**: Computes SHA256 checksums for all critical project files
+- **Compliance Tracking**: Maintains audit trail with JSONL logging
+
+### Key Features
+- **Assistive-Only Mode**: Generates documentation without altering QA-validated data
+- **Version Control**: Tracks git commit hashes and project versions
+- **Performance Metrics**: Extracts accuracy and confidence data from existing logs
+- **File Verification**: Validates integrity of all critical project components
+- **Compliance Standards**: Adheres to SOP 029014 Rev 15.A requirements
+
+### Generated Outputs
+1. **Model Card Markdown**: Professional documentation with model overview, performance metrics, and compliance details
+2. **JSON Metadata**: Machine-readable summary for integration with other tools
+3. **Audit Logs**: JSONL entries for QA traceability and change tracking
+
+---
+
+## 🧪 **Testing Strategy**
+
+### Unit Tests Coverage
+- SHA256 checksum calculation for existing and non-existent files
+- Git commit hash retrieval (success and failure scenarios)
+- Metadata collection with mocked file system
+- JSON schema validation for valid and invalid metadata
+- Markdown template rendering with various data inputs
+- File output generation and directory creation
+- Integration testing for complete workflow
+
+### Test Data
+- Mock file system with various file types and sizes
+- Sample log data for confidence metric extraction
+- Valid and invalid metadata schemas
+- Temporary directories for safe file operations
+
+---
+
+## ✅ **Acceptance Criteria Met**
+
+- [x] Markdown + JSON created successfully
+- [x] JSON schema validation passes
+- [x] All files exist and checksums computed
+- [x] Log line appended (no overwrite)
+- [x] Conforms to assistive-mode & SOP 029014 Rev 15.A compliance rules
+- [x] Comprehensive unit test coverage
+- [x] Professional documentation template
+- [x] Integration with existing project structure
+
+---
+
+## 🔧 **Technical Implementation**
+
+### Dependencies Added
+```
+jinja2>=3.1      # Template rendering
+markdown2>=2.5   # Markdown processing
+jsonschema>=4.22 # Schema validation
+```
+
+### File Structure
+```
+src/compliance/
+├── model_card_generator.py    # Core implementation
+templates/
+├── model_card.md.j2          # Jinja2 template
+tests/
+├── test_model_card_generator.py  # Unit tests
+compliance/
+├── model_card_<YYYYMM>.md    # Generated model cards
+data/metadata/
+├── model_summary.json        # JSON metadata
+logs/
+├── modelcard_build_<YYYYMM>.jsonl  # Audit logs
+```
+
+### Key Functions
+- `collect_metadata()`: Gathers model and file information
+- `sha256sum()`: Computes file integrity checksums
+- `render_markdown()`: Generates markdown using Jinja2 template
+- `validate_metadata_schema()`: Ensures data integrity
+- `save_outputs()`: Writes all output files
+
+---
+
+## 🧭 **Next Phase (M8)**
+
+**Correction Tracker Agent →** Cross-compare CRM/Excel corrections vs. AI recommendations and produce follow-up summaries.
+
+---
+
+## 📊 **Compliance Notes**
+
+- **Standard**: SOP 029014 Rev 15.A
+- **Mode**: Assistive-only (no autonomous decisions)
+- **Data Privacy**: No PII or customer data used for training
+- **Human Validation**: Required for all AI recommendations
+- **Audit Trail**: Complete JSONL logging for QA traceability
+
+---
+
+## 🎯 **Usage Example**
+
+```python
+from src.compliance.model_card_generator import main
+
+# Generate model card
+main()
+```
+
+**Output:**
+- `compliance/model_card_202510.md` - Human-readable documentation
+- `data/metadata/model_summary.json` - Machine-readable metadata
+- `logs/modelcard_build_202510.jsonl` - Audit trail entry
+
+---
+
+*Generated: 2025-10-29 | Module: M7 | Status: ✅ Completed*

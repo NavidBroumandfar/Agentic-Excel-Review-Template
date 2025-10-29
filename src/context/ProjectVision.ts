@@ -137,8 +137,8 @@ export const Project: ProjectVision = {
       title: "Model Card Generator",
       folder: "/src/compliance/",
       objective: "Record model metadata, accuracy, and governance details.",
-      outputs: ["model_card_generator.py", "docs/AI_Model_Card.md"],
-      status: "planned"
+      outputs: ["model_card_generator.py", "templates/model_card.md.j2", "compliance/model_card_<YYYYMM>.md", "data/metadata/model_summary.json", "logs/modelcard_build_<YYYYMM>.jsonl", "test_model_card_generator.py", "module-07.txt"],
+      status: "completed"
     },
     {
       id: "M8",
@@ -157,8 +157,9 @@ export const Project: ProjectVision = {
       status: "planned"
     }
   ],
-  lastUpdatedISO: "2025-10-29T01:15:00.000000Z",
+  lastUpdatedISO: "2025-10-29T11:45:00.000000Z",
   changelog: [
+    { dateISO: "2025-10-29T11:45:00.000000Z", note: "M7 Model Card Generator completed — compliance-grade documentation generator with metadata collection, Jinja2 templates, JSON schema validation, file integrity checksums, and comprehensive test suite." },
     { dateISO: "2025-10-29T01:15:00.000000Z", note: "M6 SOP Indexer (RAG + Guidance Mapping) completed — local vector index built, reason→clause mapping exposed, comprehensive test suite with mock corpus, ChromaDB/FAISS support, JSONL audit logs." },
     { dateISO: "2025-10-29T10:00:00.000000Z", note: "M5 Taxonomy Manager completed — fuzzy clustering, versioned YAML, drift CSV, JSONL changes, comprehensive test suite." },
     { dateISO: "2025-10-28T17:00:00.000000Z", note: "M4 Log Manager & QA Traceability completed - Centralized JSONL ingestion, monthly roll-up with CSV appender mode, confidence sparklines, and integrity tracking" },
