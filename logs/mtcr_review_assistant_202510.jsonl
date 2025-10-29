@@ -1,3 +1,5 @@
-{"ts": "2025-10-01T10:00:00Z", "model_version": "llama3-8b-ft-v0.1", "confidence": 0.82, "reason": "Wrong Error Code", "run_id": "r1", "row_id": 1}
-{"ts": "2025-10-02T10:00:00Z", "model_version": "llama3-8b-ft-v0.1", "confidence": 0.91, "reason": "Catalog Profile mismatch", "run_id": "r1", "row_id": 2}
-{"ts": "2025-10-03T10:00:00Z", "model_version": "llama3-8b-ft-v0.1", "confidence": 0.77, "reason": "Incomplete fields", "run_id": "r2", "row_id": 3}
+{"timestamp": "2025-10-01T10:00:00Z", "row_id": "case_001", "response": {"reason": "Missing calibration certificate", "confidence": 0.85, "model_version": "MTCR-Llama3-v0.1"}, "original_comment": "No calibration cert found for temperature sensor"}
+{"timestamp": "2025-10-01T10:01:00Z", "row_id": "case_002", "response": {"reason": "Documentation incomplete", "confidence": 0.92, "model_version": "MTCR-Llama3-v0.1"}, "original_comment": "Missing batch number in documentation"}
+{"timestamp": "2025-10-01T10:02:00Z", "row_id": "case_003", "response": {"reason": "Equipment not properly maintained", "confidence": 0.78, "model_version": "MTCR-Llama3-v0.1"}, "original_comment": "Equipment maintenance overdue"}
+{"timestamp": "2025-10-01T10:03:00Z", "row_id": "case_004", "response": {"reason": "Training records missing", "confidence": 0.88, "model_version": "MTCR-Llama3-v0.1"}, "original_comment": "No training records for operator"}
+{"timestamp": "2025-10-01T10:04:00Z", "row_id": "case_005", "response": {"reason": "Sampling plan not followed", "confidence": 0.95, "model_version": "MTCR-Llama3-v0.1"}, "original_comment": "Sampling frequency not according to SOP"}
