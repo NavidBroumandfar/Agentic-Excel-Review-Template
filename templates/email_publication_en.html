@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>{{ subject_en }}</title>
+  </head>
+  <body style="font-family: Arial, Helvetica, sans-serif; color:#111; line-height:1.4;">
+    <p>Dear all,</p>
+    <p>Please find below the MTCR follow-up summary for <strong>{{ month_en }}</strong>.</p>
+
+    <table cellpadding="6" cellspacing="0" border="0" style="border-collapse:collapse; font-size:14px;">
+      <tr>
+        <td><strong>Match rate</strong></td>
+        <td>{{ match_rate }} <span style="color:#666;">({{ delta_match }})</span></td>
+      </tr>
+      <tr>
+        <td><strong>Avg. AI Confidence</strong></td>
+        <td>{{ avg_ai_confidence }}</td>
+      </tr>
+      <tr>
+        <td><strong>Overrides</strong></td>
+        <td>{{ overrides_pct }} <span style="color:#666;">({{ delta_overrides }})</span></td>
+      </tr>
+      <tr>
+        <td><strong>Reviewed / Correct</strong></td>
+        <td>{{ total_reviewed }} / {{ total_correct }}</td>
+      </tr>
+    </table>
+
+    <h3 style="margin-top:18px;">Subsidiary breakdown</h3>
+    <table cellpadding="6" cellspacing="0" border="1" style="border-collapse:collapse; font-size:13px; border-color:#ddd;">
+      <tr style="background:#f5f5f5;">
+        <th align="left">Subsidiary</th>
+        <th align="right">Reviewed</th>
+        <th align="right">Correct</th>
+        <th align="right">Match</th>
+        <th align="right">Overrides</th>
+        <th align="right">Avg Conf.</th>
+      </tr>
+      {% for r in subsidiary_rows %}
+      <tr>
+        <td>{{ r.subsidiary }}</td>
+        <td align="right">{{ r.total_reviewed }}</td>
+        <td align="right">{{ r.total_correct }}</td>
+        <td align="right">{{ r.match_rate }}</td>
+        <td align="right">{{ r.overrides_pct }}</td>
+        <td align="right">{{ r.avg_ai_confidence }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+
+    <p style="margin-top:16px;">
+      Attachments/paths:<br/>
+      • Current CSV: <code>{{ attachment_csv }}</code><br/>
+      {% if attachment_prev_csv %}• Previous CSV: <code>{{ attachment_prev_csv }}</code><br/>{% endif %}
+    </p>
+
+    <p>Regards,<br/><em>CHP Governance Team</em></p>
+  </body>
+</html>

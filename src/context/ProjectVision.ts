@@ -150,15 +150,16 @@ export const Project: ProjectVision = {
     },
     {
       id: "M9",
-      title: "Publisher Agent",
+      title: "Publication Agent",
       folder: "/src/ai/",
-      objective: "Assemble KPI email packs (FR/EN) from Dashboard & Quality Review.",
-      outputs: ["publisher_agent.py"],
-      status: "planned"
+      objective: "M9 – Publication Agent: Generates bilingual Outlook-ready HTML drafts with KPI deltas and JSONL logs. Assistive only.",
+      outputs: ["publication_agent.py", "templates/email_publication_en.html", "templates/email_publication_fr.html", "outputs/publication/", "logs/publication_agent_YYYYMM.jsonl"],
+      status: "active"
     }
   ],
-  lastUpdatedISO: "2025-10-29T12:05:00.000000Z",
+  lastUpdatedISO: "2025-10-29T14:30:00.000000Z",
   changelog: [
+    { dateISO: "2025-10-29T14:30:00.000000Z", note: "M9 Publication Agent activated — Bilingual HTML email generator with KPI tables, month-over-month deltas, Outlook compatibility, and assistive-only mode with JSONL audit logs." },
     { dateISO: "2025-10-29T12:05:00.000000Z", note: "M8 Correction Tracker Agent completed — AI vs human correction comparison system with discrepancy detection, confidence correlation analysis, Excel/CSV output generation, comprehensive test suite, and GitHub deployment." },
     { dateISO: "2025-10-29T11:45:00.000000Z", note: "M7 Model Card Generator completed — compliance-grade documentation generator with metadata collection, Jinja2 templates, JSON schema validation, file integrity checksums, and comprehensive test suite." },
     { dateISO: "2025-10-29T01:15:00.000000Z", note: "M6 SOP Indexer (RAG + Guidance Mapping) completed — local vector index built, reason→clause mapping exposed, comprehensive test suite with mock corpus, ChromaDB/FAISS support, JSONL audit logs." },

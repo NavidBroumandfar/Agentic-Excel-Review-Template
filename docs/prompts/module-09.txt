@@ -1,0 +1,58 @@
+📘 M9 — Publication Agent
+────────────────────────────────────────────────────────────────────────────
+
+📘 Objective:
+Build M9 — Publication Agent that compiles M8 outputs (correction tracker CSV/JSONL) and generates a bilingual (FR/EN) Outlook-compatible HTML email draft with KPI tables, month-over-month deltas, and full QA trace logs. Assistive only (no sending). Save drafts + JSONL logs locally.
+
+📂 File paths (create/update):
+- /src/ai/publication_agent.py
+- /templates/email_publication_en.html
+- /templates/email_publication_fr.html
+- /docs/prompts/module-09.txt          (save this prompt)
+- /src/context/ProjectVision.ts        (mark M9 Active)
+- /data/examples/m9_demo_current.csv   (test)
+- /data/examples/m9_demo_previous.csv  (test)
+- Outputs written to: /outputs/publication/  (html)
+- Logs written to:     /logs/publication_agent_YYYYMM.jsonl
+
+🔗 Inputs (expected from M8):
+CSV: correction_summary_YYYYMM.csv  (default search paths: /outputs/m8/, /outputs/, /data/exports/, fallback: explicit --csv)
+JSONL: /logs/correction_tracker_YYYYMM.jsonl (optional; enrich metadata if present)
+
+🧠 KPI Columns expected (auto-map tolerant):
+- subsidiary | total_reviewed | total_correct | match_rate | overrides_pct | avg_ai_confidence
+Header aliases handled (e.g., ai_confidence_avg, match%, override_rate, etc.).
+
+🔧 Dependencies (append to requirements.txt if missing):
+pandas==2.2.2
+python-dateutil==2.9.0.post0
+jinja2==3.1.4
+
+🧠 Key Functions (to implement in publication_agent.py):
+- discover_inputs(month) → resolve CSV + prev-month CSV + optional JSONL
+- load_kpis(csv_path) → DataFrame with normalized column names
+- summarize(df) → overall KPIs + per-subsidiary rows
+- compare(prev, curr) → deltas with ▲▼ symbols
+- render_email(locale, context) → HTML via Jinja2 templates
+- write_outputs(...) → save en.html, fr.html, bilingual.html
+- log_jsonl(...) → publication_agent_YYYYMM.jsonl with checksum + reviewer + timestamps
+- CLI: python -m src.ai.publication_agent --month 2025-10 --reviewer "Name" [--csv path] [--prev-csv path]
+
+🧪 Test Case:
+Use provided demo CSVs:
+- /data/examples/m9_demo_previous.csv → 2025-09
+- /data/examples/m9_demo_current.csv  → 2025-10
+Then run:
+python -m src.ai.publication_agent --month 2025-10 --reviewer "CHP Governance" --csv ./data/examples/m9_demo_current.csv --prev-csv ./data/examples/m9_demo_previous.csv
+
+⚠️ Compliance Notice:
+# Assistive mode only. Prepare and log draft emails; do NOT send.
+# Preserve validated Excel macros; do NOT modify MTCR Data.xlsm.
+# All outputs saved locally with reviewer, timestamp, checksum.
+
+✅ Acceptance Checklist:
+- [ ] EN/FR HTML drafts render with KPI and per-subsidiary tables
+- [ ] Δ% arrows & values correct vs previous month
+- [ ] JSONL metadata appended with checksum + reviewer + timestamp
+- [ ] No send action performed (assistive only)
+- [ ] Paths to CSV files present in the email footers
