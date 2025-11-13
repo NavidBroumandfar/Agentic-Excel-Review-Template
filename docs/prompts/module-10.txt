@@ -405,6 +405,16 @@ docs/prompts/module-10.txt
 - ❌ → ✅ Fixed: Duplicate AI columns in output CSV
 - ❌ → ✅ Fixed: Confidence always 0 (now generating real scores)
 
+### **Enhancements Added:**
+
+**MTCR-Aware Chat Interface (2025-11-13):**
+- ✅ Created `src/utils/lmstudio_chat.py` - Interactive terminal chat with MTCR context
+- ✅ Added MTCR system prompt for full agentic workflow awareness
+- ✅ Integrated RAG context retrieval for MTCR-related questions
+- ✅ LLM now understands SOP 029014, Quality Review processes, and MTCR terminology
+- ✅ Prevents hallucination about MTCR topics
+- ✅ Created `docs/CHAT_GUIDE.md` - User guide for chat interfaces
+
 ### **Next Steps:**
 
 - Phase M11: MCP Integration (planned)
