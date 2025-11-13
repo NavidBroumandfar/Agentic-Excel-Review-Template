@@ -1,0 +1,413 @@
+ 🚀 **Cursor-Ready Prompt — Phase M10: LLM Integration + Demo Orchestrator**
+
+
+
+**📘 Objective:**
+
+Implement Phase M10 for MTCR_Agentic_Automation:
+
+
+
+* Add a local LLM smoke test (`lmstudio_smoketest.py`).
+
+* Add an orchestrator that chains M1 → M2 → M3 → M4 steps with clear step logs.
+
+* Add a runnable demo pipeline (`run_mtcr_demo.py`) to process N sample rows from the Quality Review sheet.
+
+* Update ProjectVision.ts to include Phase M10.
+
+* Save this prompt to `docs/prompts/module-10.txt`.
+
+
+
+---
+
+
+
+## 📂 **Files to Create / Modify**
+
+
+
+1. `src/utils/lmstudio_smoketest.py`
+
+2. `src/ai/orchestrator.py`
+
+3. `src/run_mtcr_demo.py`
+
+4. `src/context/ProjectVision.ts` (append Phase M10 entry at the bottom of "Completed Modules")
+
+5. `docs/prompts/module-10.txt` (save this prompt)
+
+
+
+---
+
+
+
+## 🔗 **Dependencies**
+
+
+
+* Existing modules:
+
+
+
+  * `src/excel/mtcr_reader.py`
+
+  * `src/ai/review_assistant.py`
+
+  * `src/excel/mtcr_writer.py`
+
+  * `src/logging/log_manager.py`
+
+  * `src/utils/config_loader.py`
+
+  * `src/utils/sop_indexer.py` (optional RAG)
+
+  * `config.json` (LM Studio endpoint)
+
+* Python: pandas, requests, openpyxl
+
+
+
+---
+
+
+
+## 🧠 **Key Components to Implement**
+
+
+
+### **1. LM Studio Smoke Test**
+
+
+
+`src/utils/lmstudio_smoketest.py`:
+
+
+
+* Read LM Studio endpoint from `config.json`
+
+* POST a basic chat completion request:
+
+  "Say hello, you are connected to MTCR Agentic Pipeline."
+
+* Print raw response + error handling
+
+* Show clear message: "✔ Connected to LM Studio" or "❌ Connection failed"
+
+
+
+---
+
+
+
+### **2. Orchestrator**
+
+
+
+`src/ai/orchestrator.py`:
+
+
+
+A clean agent-style orchestrator with step logs:
+
+
+
+Steps:
+
+
+
+1. `[STEP 1] Load config`
+
+2. `[STEP 2] Load sample from Quality Review`
+
+3. `[STEP 3] Build context (optional RAG)`
+
+4. `[STEP 4] Call LLM for reasoning`
+
+5. `[STEP 5] Write AI_ columns to demo CSV`
+
+6. `[STEP 6] Log each inference`
+
+7. `[DONE] Summary: X rows processed, avg confidence Y`
+
+
+
+Orchestrator should expose:
+
+
+
+```python
+
+def run_demo(sample_size: int = 10):
+
+    ...
+
+```
+
+
+
+No changes to validated Excel files. Only work with DataFrame copies and write to `/out/mtcr_ai_demo.csv`.
+
+
+
+---
+
+
+
+### **3. Demo Pipeline**
+
+
+
+`src/run_mtcr_demo.py`:
+
+
+
+* CLI runner:
+
+
+
+```bash
+
+python src/run_mtcr_demo.py --n 10
+
+```
+
+
+
+* Calls orchestrator.run_demo(n)
+
+* Prints:
+
+
+
+  * total processed rows
+
+  * average confidence
+
+  * output file path
+
+  * log file path
+
+
+
+**This is the script you will demo tomorrow.**
+
+
+
+---
+
+
+
+### **4. ProjectVision.ts Update**
+
+
+
+Append under "Completed Modules":
+
+
+
+```
+
+M10 — LLM Integration + Demo Orchestrator
+
+Status: Completed
+
+Summary:
+
+- Added lmstudio_smoketest.py
+
+- Added orchestrator with agentic step logs
+
+- Added run_mtcr_demo.py for end-to-end demonstration
+
+- Prepared architecture for MCP integration (Phase M11)
+
+```
+
+
+
+---
+
+
+
+### ⚠️ Compliance Note (add at top of all new files)
+
+
+
+```python
+
+# ⚠️ Compliance Notice:
+
+# Assistive mode only. No modifications to validated Excel ranges.
+
+# All AI outputs must be written to new files or new columns prefixed with "AI_".
+
+# This module is for local prototype demonstration only.
+
+```
+
+
+
+---
+
+
+
+## 🧪 **Test Cases**
+
+
+
+### **1. Test LM Studio connection**
+
+
+
+```
+
+python src/utils/lmstudio_smoketest.py
+
+```
+
+
+
+Expect:
+
+
+
+* Printed "✔ Connected to LM Studio"
+
+* Visible request in LM Studio server logs
+
+
+
+### **2. Test demo pipeline**
+
+
+
+```
+
+python src/run_mtcr_demo.py --n 5
+
+```
+
+
+
+Expect:
+
+
+
+* Orchestrator step logs
+
+* Output CSV: `out/mtcr_ai_demo.csv`
+
+* JSONL logs written to `/logs`
+
+
+
+### **3. Manual review**
+
+
+
+Open CSV → see columns:
+
+
+
+* `AI_ReasonSuggestion`
+
+* `AI_Confidence`
+
+* `AI_RationaleShort`
+
+
+
+---
+
+
+
+## 🧭 Notes
+
+
+
+* DO NOT modify Excel macros or validated fields.
+
+* Focus on getting **one clean end-to-end run**.
+
+* Keep this lightweight; MCP integration comes in M11.
+
+* This is demo-ready for tomorrow's meeting.
+
+
+
+---
+
+
+
+## 📥 **Save Prompt**
+
+
+
+Save this entire Cursor prompt into:
+
+
+
+```
+
+docs/prompts/module-10.txt
+
+```
+
+---
+
+## ✅ **Implementation Summary**
+
+**Status:** ✅ **COMPLETED**
+
+**Date:** 2025-11-13
+
+### **Files Created:**
+
+1. ✅ `src/utils/lmstudio_smoketest.py` - LM Studio connection smoke test
+2. ✅ `src/ai/orchestrator.py` - Demo orchestrator chaining M1→M2→M3→M4
+3. ✅ `src/run_mtcr_demo.py` - CLI runner for end-to-end demo pipeline
+4. ✅ `docs/prompts/module-10.txt` - This prompt file
+5. ✅ `docs/LM_STUDIO_SETUP.md` - Setup guide for LM Studio
+6. ✅ `test_lmstudio_interactive.py` - Interactive test script
+
+### **Files Modified:**
+
+1. ✅ `src/context/ProjectVision.ts` - Added M10 entry (status: completed)
+2. ✅ `src/ai/review_assistant.py` - Fixed column name detection ("Site Review" vs "Comment")
+3. ✅ `src/ai/review_assistant.py` - Fixed prompt template formatting issue (KeyError with JSON braces)
+4. ✅ `src/ai/review_assistant.py` - Fixed SOPIndexer method call (retrieve_context → vector_store.search)
+5. ✅ `src/ai/orchestrator.py` - Fixed duplicate column mapping issue
+
+### **Key Fixes Applied:**
+
+1. **Column Name Detection:** Updated to check multiple column names: "Site Review", "Comment", "Review Comment", "ReviewComment"
+2. **Prompt Template:** Changed from `.format()` to `.replace()` to avoid KeyError with JSON example braces
+3. **SOP Indexer:** Fixed method call from `retrieve_context()` to `vector_store.search()`
+4. **Import Paths:** Added project root to sys.path for proper module imports
+5. **Error Handling:** Enhanced JSON parsing with multiple fallback methods
+6. **Duplicate Columns:** Fixed column mapping to remove old columns after renaming
+
+### **Test Results:**
+
+✅ LM Studio smoke test: **PASSING**
+✅ Demo pipeline: **WORKING**
+✅ AI suggestions: **GENERATING** (confidence scores > 0)
+✅ CSV output: **CREATED** at `out/mtcr_ai_demo.csv`
+
+### **Known Issues Resolved:**
+
+- ❌ → ✅ Fixed: "SOPIndexer object has no attribute 'retrieve_context'"
+- ❌ → ✅ Fixed: "KeyError: '\n \"reason\"'" (prompt template formatting)
+- ❌ → ✅ Fixed: "No comment provided" (column name detection)
+- ❌ → ✅ Fixed: Duplicate AI columns in output CSV
+- ❌ → ✅ Fixed: Confidence always 0 (now generating real scores)
+
+### **Next Steps:**
+
+- Phase M11: MCP Integration (planned)
+- Production deployment considerations
+- Performance optimization for larger datasets
+

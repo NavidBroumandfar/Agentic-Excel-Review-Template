@@ -52,7 +52,7 @@ class ReviewAssistant:
         self.log_file = log_file
 
         # Initialize SOP indexer
-        self.sop_indexer = SOPIndexer(index_dir=sop_index_dir)
+        self.sop_indexer = SOPIndexer(embeddings_dir=sop_index_dir)
 
         # Load prompt template
         self.prompt_template = self._load_prompt_template()
@@ -108,7 +108,9 @@ Context: {context}"""
 
     def _generate_prompt(self, comment: str, context: str) -> str:
         """Generate the full prompt with comment and context."""
-        return self.prompt_template.format(comment=comment, context=context)
+        # Use replace instead of format to avoid issues with curly braces in JSON examples
+        prompt = self.prompt_template.replace("{comment}", comment).replace("{context}", context)
+        return prompt
 
     def _call_lm_studio(self, prompt: str) -> Optional[str]:
         """Call LM Studio API for inference."""
@@ -143,34 +145,59 @@ Context: {context}"""
 
     def _parse_json_response(self, response: str) -> Optional[Dict[str, Any]]:
         """Parse JSON response from LLM, handling potential formatting issues."""
+        if not response or not isinstance(response, str):
+            logger.error(f"Invalid response type: {type(response)}")
+            return None
+        
+        # Clean the response - remove leading/trailing whitespace
+        response = response.strip()
+        
         try:
             # Try direct JSON parsing first
             return json.loads(response)
-        except json.JSONDecodeError:
-            # Try to extract JSON from response
-            try:
-                # Look for JSON between curly braces
-                start = response.find("{")
-                end = response.rfind("}") + 1
-                if start != -1 and end > start:
-                    json_str = response[start:end]
+        except json.JSONDecodeError as e:
+            logger.debug(f"Direct JSON parse failed: {e}. Trying extraction methods...")
+            
+        # Try to extract JSON from response
+        try:
+            # Look for JSON between curly braces
+            start = response.find("{")
+            end = response.rfind("}") + 1
+            if start != -1 and end > start:
+                json_str = response[start:end].strip()
+                try:
                     return json.loads(json_str)
-            except json.JSONDecodeError:
-                pass
+                except json.JSONDecodeError as e:
+                    logger.debug(f"Extracted JSON parse failed: {e}")
+        except Exception as e:
+            logger.debug(f"JSON extraction failed: {e}")
 
-            # Try to find JSON in code blocks
-            try:
-                if "```json" in response:
-                    json_start = response.find("```json") + 7
-                    json_end = response.find("```", json_start)
-                    if json_end > json_start:
-                        json_str = response[json_start:json_end].strip()
+        # Try to find JSON in code blocks
+        try:
+            if "```json" in response:
+                json_start = response.find("```json") + 7
+                json_end = response.find("```", json_start)
+                if json_end > json_start:
+                    json_str = response[json_start:json_end].strip()
+                    try:
                         return json.loads(json_str)
-            except json.JSONDecodeError:
-                pass
+                    except json.JSONDecodeError as e:
+                        logger.debug(f"Code block JSON parse failed: {e}")
+        except Exception as e:
+            logger.debug(f"Code block extraction failed: {e}")
 
-            logger.error(f"Failed to parse JSON from response: {response}")
-            return None
+        # Try to fix common JSON issues (unescape quotes, etc.)
+        try:
+            # Remove any markdown formatting
+            cleaned = response.replace("```json", "").replace("```", "").strip()
+            # Try to fix escaped quotes
+            cleaned = cleaned.replace('\\"', '"')
+            return json.loads(cleaned)
+        except Exception as e:
+            logger.debug(f"Cleaned JSON parse failed: {e}")
+
+        logger.error(f"Failed to parse JSON from response. First 500 chars: {response[:500]}")
+        return None
 
     def _validate_response(self, response: Dict[str, Any]) -> bool:
         """Validate the LLM response structure."""
@@ -237,7 +264,14 @@ Context: {context}"""
         Returns:
             Dictionary with AI inference results
         """
-        comment = str(row.get("Comment", "")).strip()
+        # Try multiple possible column names for comments
+        comment = ""
+        for col_name in ["Site Review", "Comment", "Review Comment", "ReviewComment"]:
+            if col_name in row.index:
+                val = str(row.get(col_name, "")).strip()
+                if val and val.lower() not in ["nan", "none", ""]:
+                    comment = val
+                    break
 
         if not comment or comment.lower() in ["nan", "none", ""]:
             logger.warning(f"Empty comment for row {row.name}")
@@ -250,9 +284,9 @@ Context: {context}"""
             }
 
         try:
-            # Retrieve relevant context
-            context_chunks = self.sop_indexer.retrieve_context(comment, k=4)
-            context_text = "\n\n".join([chunk["text"] for chunk in context_chunks])
+            # Retrieve relevant context using vector store search
+            context_chunks = self.sop_indexer.vector_store.search(comment, top_k=4)
+            context_text = "\n\n".join([chunk.get("content", chunk.get("text", "")) for chunk in context_chunks])
 
             # Generate prompt
             prompt = self._generate_prompt(comment, context_text)
@@ -275,12 +309,55 @@ Context: {context}"""
             # Parse and validate response
             parsed_response = self._parse_json_response(llm_response)
 
-            if parsed_response is None or not self._validate_response(parsed_response):
-                error_msg = "Invalid JSON response from LLM"
-                logger.error(f"{error_msg}: {llm_response}")
-                self._log_inference(row.to_dict(), context_chunks, None, error_msg)
+            if parsed_response is None:
+                error_msg = "Failed to parse JSON from LLM response"
+                logger.error(f"{error_msg}. Raw response: {llm_response[:500]}")
+                self._log_inference(row.to_dict(), context_chunks if isinstance(context_chunks, list) else list(context_chunks), None, error_msg)
                 return {
-                    "AI_reason": "Error: Invalid LLM response",
+                    "AI_reason": "Error: Failed to parse JSON",
+                    "AI_confidence": 0.0,
+                    "AI_comment_standardized": comment,
+                    "AI_rationale_short": error_msg,
+                    "AI_model_version": "MTCR-Llama3-v0.1",
+                }
+
+            if not isinstance(parsed_response, dict):
+                error_msg = f"Parsed response is not a dictionary: {type(parsed_response)}"
+                logger.error(f"{error_msg}. Value: {parsed_response}")
+                self._log_inference(row.to_dict(), context_chunks if isinstance(context_chunks, list) else list(context_chunks), None, error_msg)
+                return {
+                    "AI_reason": "Error: Invalid response type",
+                    "AI_confidence": 0.0,
+                    "AI_comment_standardized": comment,
+                    "AI_rationale_short": error_msg,
+                    "AI_model_version": "MTCR-Llama3-v0.1",
+                }
+
+            if not self._validate_response(parsed_response):
+                error_msg = f"Invalid JSON structure from LLM. Available keys: {list(parsed_response.keys())}"
+                logger.error(f"{error_msg}. Parsed response: {parsed_response}")
+                self._log_inference(row.to_dict(), context_chunks if isinstance(context_chunks, list) else list(context_chunks), parsed_response, error_msg)
+                return {
+                    "AI_reason": "Error: Invalid response structure",
+                    "AI_confidence": 0.0,
+                    "AI_comment_standardized": comment,
+                    "AI_rationale_short": error_msg,
+                    "AI_model_version": "MTCR-Llama3-v0.1",
+                }
+
+            # Safely extract values with defaults
+            try:
+                ai_reason = str(parsed_response.get("reason", "Unknown reason"))
+                ai_confidence = float(parsed_response.get("confidence", 0.0))
+                ai_comment_std = str(parsed_response.get("comment_standardized", comment))
+                ai_rationale = str(parsed_response.get("rationale_short", "No rationale provided"))
+                ai_model_ver = str(parsed_response.get("model_version", "MTCR-Llama3-v0.1"))
+            except (ValueError, TypeError) as e:
+                error_msg = f"Error extracting values from response: {str(e)}"
+                logger.error(f"{error_msg}. Parsed response: {parsed_response}")
+                self._log_inference(row.to_dict(), context_chunks if isinstance(context_chunks, list) else list(context_chunks), parsed_response, error_msg)
+                return {
+                    "AI_reason": f"Error: {str(e)}",
                     "AI_confidence": 0.0,
                     "AI_comment_standardized": comment,
                     "AI_rationale_short": error_msg,
@@ -288,20 +365,35 @@ Context: {context}"""
                 }
 
             # Log successful inference
-            self._log_inference(row.to_dict(), context_chunks, parsed_response)
+            self._log_inference(row.to_dict(), context_chunks if isinstance(context_chunks, list) else list(context_chunks), parsed_response)
 
             # Return formatted result
             return {
-                "AI_reason": parsed_response["reason"],
-                "AI_confidence": parsed_response["confidence"],
-                "AI_comment_standardized": parsed_response["comment_standardized"],
-                "AI_rationale_short": parsed_response["rationale_short"],
-                "AI_model_version": parsed_response["model_version"],
+                "AI_reason": ai_reason,
+                "AI_confidence": ai_confidence,
+                "AI_comment_standardized": ai_comment_std,
+                "AI_rationale_short": ai_rationale,
+                "AI_model_version": ai_model_ver,
             }
 
+        except KeyError as e:
+            error_msg = f"KeyError accessing response: {str(e)}. This usually means the LLM response doesn't have the expected JSON structure."
+            logger.error(f"{error_msg} Comment: {comment[:100]}")
+            import traceback
+            logger.error(f"Traceback: {traceback.format_exc()}")
+            self._log_inference(row.to_dict(), [], None, error_msg)
+            return {
+                "AI_reason": f"Error: Missing key in response",
+                "AI_confidence": 0.0,
+                "AI_comment_standardized": comment,
+                "AI_rationale_short": error_msg,
+                "AI_model_version": "MTCR-Llama3-v0.1",
+            }
         except Exception as e:
             error_msg = f"Unexpected error: {str(e)}"
-            logger.error(error_msg)
+            logger.error(f"{error_msg}. Comment: {comment[:100]}")
+            import traceback
+            logger.error(f"Traceback: {traceback.format_exc()}")
             self._log_inference(row.to_dict(), [], None, error_msg)
             return {
                 "AI_reason": f"Error: {str(e)}",

@@ -163,10 +163,19 @@ export const Project: ProjectVision = {
           status: "active"
         }
       ]
+    },
+    {
+      id: "M10",
+      title: "LLM Integration + Demo Orchestrator",
+      folder: "/src/ai/",
+      objective: "Add local LLM smoke test, orchestrator that chains M1 → M2 → M3 → M4 steps with clear step logs, and runnable demo pipeline to process N sample rows from the Quality Review sheet.",
+      outputs: ["lmstudio_smoketest.py", "orchestrator.py", "run_mtcr_demo.py", "out/mtcr_ai_demo.csv", "module-10.txt"],
+      status: "completed"
     }
   ],
-  lastUpdatedISO: "2025-10-29T15:00:00.000000Z",
+  lastUpdatedISO: "2025-10-29T16:00:00.000000Z",
   changelog: [
+    { dateISO: "2025-10-29T16:00:00.000000Z", note: "M10 — LLM Integration + Demo Orchestrator completed — Added lmstudio_smoketest.py, orchestrator with agentic step logs, run_mtcr_demo.py for end-to-end demonstration, prepared architecture for MCP integration (Phase M11)" },
     { dateISO: "2025-10-29T15:00:00.000000Z", note: "M9.1 Outlook Draft Export Helper activated — Creates .msg (Windows) or .eml (cross-platform) email drafts from M9 HTML outputs with attachments. Assistive-only mode with JSONL logging." },
     { dateISO: "2025-10-29T14:30:00.000000Z", note: "M9 Publication Agent activated — Bilingual HTML email generator with KPI tables, month-over-month deltas, Outlook compatibility, and assistive-only mode with JSONL audit logs." },
     { dateISO: "2025-10-29T12:05:00.000000Z", note: "M8 Correction Tracker Agent completed — AI vs human correction comparison system with discrepancy detection, confidence correlation analysis, Excel/CSV output generation, comprehensive test suite, and GitHub deployment." },
