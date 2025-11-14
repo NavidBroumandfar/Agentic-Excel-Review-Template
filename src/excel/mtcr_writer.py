@@ -5,6 +5,15 @@
 # Keep a timestamped backup copy before any write.
 # Log every write action (JSONL) for QA traceability.
 
+"""
+MTCR Excel Writer - Module 3 (M3)
+
+Safe Excel writer that creates new worksheets with AI_ prefixed columns.
+Never modifies validated sheets or macros.
+
+Created by: Navid Broumandfar (Service Analytics, CHP, bioMérieux)
+"""
+
 from __future__ import annotations
 
 import argparse

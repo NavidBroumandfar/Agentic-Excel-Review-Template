@@ -2,6 +2,14 @@
 
 A modular AI automation system for the Monthly Technical Complaints Review (MTCR) process at bioMérieux. This system operates in assistive mode only, ensuring no modification of validated Excel cells or macros.
 
+## Author
+
+**Navid Broumandfar**  
+Service Analytics, CHP  
+bioMérieux
+
+This system was developed as a local prototype for demonstration purposes. For official deployment, governance and validation are required.
+
 ## Module 1 — Excel Reader
 
 ### Purpose

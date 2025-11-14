@@ -1,0 +1,15 @@
+Module: M11-Notebook-Simplify
+Purpose: Make MTCR_Demo.ipynb more human-readable and presentation-friendly.
+
+Changes:
+- Removed all custom diagram helpers (draw_flowchart / draw_graph / render_mermaid) and associated cells.
+- Replaced flow diagrams with simple pandas tables:
+  * mtcr_process: current MTCR manual process (Step, Actor / Tool, What happens).
+  * agent_pipeline: agentic automation architecture (Step, Component, What it does).
+  * roadmap: modules M1–M13 with Status and Focus.
+- Kept LM Studio smoke test, orchestrator demo, and reason distribution bar chart.
+- Simplified visualization code and removed any pip-install logic from the notebook.
+
+Notes:
+- The notebook now reads like a guided walkthrough with live code, not a generated diagram laboratory.
+

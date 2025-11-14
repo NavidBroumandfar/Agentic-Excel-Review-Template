@@ -126,7 +126,8 @@ def render_markdown(meta: Dict[str, Any]) -> str:
 
 **Project:** MTCR_Agentic_Automation  
 **Version:** {{ project_version }}  
-**Commit:** {{ commit_hash }}
+**Commit:** {{ commit_hash }}  
+**Creator:** Navid Broumandfar (Service Analytics, CHP, bioMérieux)
 
 ---
 

@@ -95,9 +95,21 @@ def test_lm_studio_connection(lm_studio_url: str = None) -> bool:
         return False
 
 
+def test_lmstudio_connection() -> bool:
+    """
+    Programmatic smoke test for LM Studio connection.
+    
+    Returns:
+        True if the test request succeeds and a response is returned.
+        False if the request fails or the server is not reachable.
+    """
+    return test_lm_studio_connection()
+
+
 def main():
     """Main entry point for smoke test."""
-    success = test_lm_studio_connection()
+    success = test_lmstudio_connection()
+    print("LM Studio connection OK" if success else "LM Studio connection FAILED")
     sys.exit(0 if success else 1)
 
 

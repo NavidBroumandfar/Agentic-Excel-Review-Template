@@ -1,0 +1,150 @@
+Module: M10-Diagrams
+Purpose: Replace Mermaid-like visualizations with Python-native diagrams in MTCR_Demo.ipynb.
+
+================================================================================
+🚀 Cursor-ready prompt — Replace Mermaid with Python diagrams in `MTCR_Demo.ipynb`
+================================================================================
+
+Objective:
+
+Replace any Mermaid-based visuals with **Python-native, Jupyter-friendly diagrams** using 
+**NetworkX + Matplotlib**, and embed them into `MTCR_Demo.ipynb` to explain:
+
+1. Current MTCR process
+2. Agentic automation architecture
+3. Roadmap (M1–M10 + M11+)
+
+================================================================================
+Changes Made:
+================================================================================
+
+1. **Updated requirements.txt:**
+   - Added `matplotlib>=3.5` for plotting capabilities
+   - Added `networkx>=3.0` for graph visualization
+   - These dependencies enable Python-native diagram rendering
+
+2. **Added draw_graph() helper in MTCR_Demo.ipynb:**
+   - Location: Cell 6 (after main imports)
+   - Uses NetworkX for graph structure
+   - Uses Matplotlib for visualization
+   - Features:
+     * Supports both simple node lists and (id, label) tuples
+     * Creates directed graphs with labeled nodes
+     * Configurable node size and title
+     * Deterministic spring layout (seed=42)
+     * Blue nodes (#D0E1FF) with gray arrows
+     * Clean axis-off presentation
+
+3. **Inserted three interactive Python diagrams:**
+
+   **Diagram 1: Current MTCR Process (Cell 5)**
+   - Replaces ASCII art diagram
+   - Shows: CRM → MTCR Data.xlsm → Manual Review → KPIs/Tableau/Emails
+   - Visual representation of manual workflow before automation
+   
+   **Diagram 2: Agentic Automation Architecture (Cell 8)**
+   - Replaces ASCII art diagram
+   - Shows: Sample → RAG + LLM → AI Review → CSV + Logs
+   - Illustrates how AI layer integrates with existing MTCR process
+   - Highlights RAG context flow and output paths
+   
+   **Diagram 3: Roadmap M1–M13 (Cell 16)**
+   - Replaces text-based roadmap
+   - Linear flow showing all 13 modules
+   - M1–M10: Completed (local prototype)
+   - M11–M13: Future phases
+   - "YOU ARE HERE" marker on M10
+
+4. **Removed/Cleaned Up:**
+   - Removed old Mermaid helper functions (if any existed)
+   - Removed ASCII art diagrams
+   - Removed Mermaid-related imports and documentation
+   - Simplified setup instructions
+
+================================================================================
+Technical Details:
+================================================================================
+
+**Graph Visualization Approach:**
+- **Library**: NetworkX (network graph library)
+- **Rendering**: Matplotlib (Python's standard plotting library)
+- **Layout**: Spring layout algorithm (force-directed, deterministic with seed)
+- **Style**: 
+  * Node color: Light blue (#D0E1FF)
+  * Edge color: Gray (#555555)
+  * Arrow style: Standard with 20pt arrowheads
+  * Font size: 9pt for labels
+  * Figure size: 10x6 inches
+
+**Advantages over Mermaid:**
+1. ✅ Pure Python - no JavaScript dependencies
+2. ✅ Works in all notebook environments (Jupyter, VS Code, JupyterLab)
+3. ✅ Fully customizable with Python code
+4. ✅ Can be exported as images programmatically
+5. ✅ Interactive during execution
+6. ✅ No external CDN dependencies
+
+**Function Signature:**
+```python
+def draw_graph(nodes, edges, title=None, node_size=3000):
+    """
+    Args:
+        nodes: list of node IDs or (id, label) tuples
+        edges: list of (source, target) tuples
+        title: optional diagram title
+        node_size: size of nodes in plot
+    """
+```
+
+================================================================================
+Usage:
+================================================================================
+
+**To view the diagrams:**
+1. Open MTCR_Demo.ipynb in Jupyter or VS Code
+2. Run "Cell → Run All" or "Kernel → Restart & Run All"
+3. Diagrams will render inline as matplotlib figures
+4. Each diagram is interactive and can be zoomed/saved
+
+**To customize diagrams:**
+- Edit the `nodes` list to change labels
+- Edit the `edges` list to change connections
+- Modify `node_size` parameter for larger/smaller nodes
+- Change colors in `draw_graph()` function
+
+**To export diagrams:**
+Add after any `draw_graph()` call:
+```python
+plt.savefig('diagram.png', dpi=300, bbox_inches='tight')
+```
+
+================================================================================
+Files Modified:
+================================================================================
+
+1. **requirements.txt**
+   - Added matplotlib>=3.5
+   - Added networkx>=3.0
+
+2. **MTCR_Demo.ipynb**
+   - Cell 6: Added draw_graph() helper function
+   - Cell 5: Current MTCR process diagram
+   - Cell 8: Agentic automation architecture diagram
+   - Cell 16: Roadmap diagram (M1–M13)
+
+3. **docs/prompts/module-10-diagrams.txt**
+   - This file (documentation and traceability)
+
+================================================================================
+Notes:
+================================================================================
+
+- All diagrams are now generated with pure Python code
+- No changes to Excel logic, orchestrator, or core modules
+- Diagrams execute during notebook run - suitable for live demos
+- Compatible with presentation mode in Jupyter
+- Can be easily modified for different audiences
+- No internet connection required (unlike Mermaid CDN)
+
+================================================================================
+

@@ -1,0 +1,14 @@
+Module: M12-Roadmap-Viz
+Purpose: Add a clear roadmap visualization to MTCR_Demo.ipynb.
+
+Changes:
+- Kept the existing roadmap DataFrame (Module, Status, Focus).
+- Added a Matplotlib horizontal bar chart:
+  * Y-axis: modules (M1–M13).
+  * Each bar: constant width, color-coded by Status (Done, Prototype, Planned).
+  * Legend explains the colors.
+- No new dependencies; reused matplotlib already present in the notebook.
+
+Notes:
+- This chart is meant to visually reinforce the roadmap table during the demo, not to encode numeric values.
+

@@ -10,6 +10,8 @@ Key Features:
 - Reason-to-SOP clause mapping with similarity scores
 - Support for both ChromaDB and FAISS vector stores
 - Comprehensive logging and audit trails
+
+Created by: Navid Broumandfar (Service Analytics, CHP, bioMérieux)
 """
 
 import os

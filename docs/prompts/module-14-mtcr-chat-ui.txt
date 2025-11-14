@@ -1,0 +1,23 @@
+Module: M14-MTCR-Chat-UI
+Purpose: Add an interactive MTCR-specialized chat UI to the demo notebook.
+
+Changes:
+
+- Created src/utils/mtcr_chat.py:
+  * mtcr_chat(user_message: str) wraps the existing LM Studio HTTP endpoint.
+  * Uses config.json (lm_studio_url, with fallback to http://127.0.0.1:1234/v1).
+  * Applies a system prompt that specializes the agent on MTCR and the MTCR_Agentic_Automation pipeline.
+
+- Updated MTCR_Demo.ipynb:
+  * Added optional imports for ipywidgets and mtcr_chat with graceful fallback.
+  * Added section "10. Interactive MTCR Chat (local LLM)" with a simple chat box (text input + Send button).
+  * Messages are rendered in a scrollable VBox with clear "You" / "Agent" labels.
+
+- No changes to orchestrator, Excel reader/writer, or core pipeline logic.
+
+Notes:
+
+- This UI is for exploratory Q&A and explanations.
+
+- All interactions remain local and read-only; no validated Excel sheets are modified.
+

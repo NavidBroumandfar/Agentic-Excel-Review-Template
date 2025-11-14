@@ -3,6 +3,14 @@
 # Do NOT overwrite validated Excel cells or macros in `MTCR Data.xlsm`.
 # AI outputs must be written only to new columns prefixed with "AI_".
 
+"""
+MTCR Excel Reader - Module 1 (M1)
+
+Safe, read-only Excel reader for MTCR Data.xlsm with sheet profiling and CSV preview.
+
+Created by: Navid Broumandfar (Service Analytics, CHP, bioMérieux)
+"""
+
 from __future__ import annotations
 import sys
 from dataclasses import dataclass
