@@ -9,8 +9,11 @@ MTCR_Agentic_Automation/
 ├── src/
 │   ├── excel/
 │   │   └── mtcr_reader.py          # M1: Excel reader and sheet profiler
+│   ├── ui/
+│   │   └── mtcr_app.py            # M11: Streamlit UI for MTCR Assistant
 │   └── utils/
-│       └── config_loader.py        # Configuration management
+│       ├── config_loader.py        # Configuration management
+│       └── lmstudio_chat.py       # LM Studio integration
 ├── docs/
 │   └── Project_Structure.md        # This file
 ├── data/                           # Input data directory
@@ -32,6 +35,22 @@ MTCR_Agentic_Automation/
   - Structured sheet profile with metadata
   - CSV preview in `/out/quality_review_preview.csv`
 - **Compliance**: Read-only access, no modification of source workbook
+
+### Module 11 (M11) - Streamlit UI for MTCR Assistant
+- **Purpose**: Professional web interface for MTCR Assistant with KPI overview and chat functionality
+- **Key Components**:
+  - `src/ui/mtcr_app.py`: Main Streamlit application
+  - Integration with existing Excel reader and LM Studio chat
+- **Features**:
+  - KPI dashboard (row counts, comments, AI suggestions)
+  - Interactive chat interface with dataset context
+  - Read-only mode with compliance guardrails
+  - Clean, minimal UI inspired by OpenAI's chat interface
+- **How to Run**:
+  ```bash
+  streamlit run src/ui/mtcr_app.py
+  ```
+- **Compliance**: Read-only access only, all AI outputs are suggestions, no writes to validated Excel file
 
 ## Future Modules (Planned)
 - M2: AI Review Assistant (RAG + LLM integration)

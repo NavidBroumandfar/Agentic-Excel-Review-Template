@@ -61,6 +61,87 @@ Environment variables can override config values:
 - No overwriting of validated Excel cells or macros
 - AI outputs written only to new columns prefixed with "AI_" or to new files in `/out/`
 
+## Module 11 — Streamlit UI for MTCR Assistant
+
+### Purpose
+A professional web interface for the MTCR Assistant providing KPI overview and chat functionality with the local LM Studio model.
+
+### Quick Start
+
+1. **Install Dependencies** (including Streamlit)
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+2. **Ensure LM Studio is Running**
+   - Open LM Studio
+   - Load a model
+   - Go to 'Local Server' tab
+   - Click 'Start Server'
+   - Verify it's running at `http://127.0.0.1:1234/v1`
+
+3. **Run the Streamlit App**
+   
+   **Option A - Using the launcher script (recommended):**
+   - Windows: Double-click `run_ui.bat` or run in terminal: `run_ui.bat`
+   - Mac/Linux: Run in terminal: `bash run_ui.sh`
+   
+   **Option B - Direct command:**
+   ```bash
+   streamlit run src/ui/mtcr_app.py
+   ```
+
+4. **Access the Interface**
+   - The app will automatically open in your browser
+   - Default URL: `http://localhost:8501`
+
+### Features
+
+#### 📊 Vue d'ensemble (Overview Tab)
+- **KPI Dashboard**: Total rows, rows with comments, distinct reviewers, AI suggestions
+- **AI Columns Detection**: Automatically detects and displays AI-generated columns
+- **Top Reasons Chart**: Bar chart of the 5 most common AI reason suggestions
+- **Dataset Preview**: Interactive table showing the first 10 rows
+
+#### 💬 Chat avec l'assistant MTCR (Chat Tab)
+- **Context-Aware Chat**: Ask questions about the current MTCR dataset
+- **Dataset Context**: The LLM receives a summary of the data for accurate answers
+- **Conversation History**: Full chat history with user/assistant messages
+- **Suggested Questions**: Quick-start buttons for common queries
+- **Technical Config**: View LM Studio endpoint and current configuration
+
+### Example Questions
+
+You can ask the assistant questions like:
+- "Quels sont les principaux types de corrections dans cet échantillon?"
+- "Explique-moi le rôle de MTCR dans le process de plaintes techniques."
+- "Combien de suggestions AI ont été générées avec une haute confidence?"
+- "Montre-moi les tendances dans les commentaires de revue."
+
+### Configuration
+
+The UI uses the same `config.json` as other modules:
+- `input_file`: Path to MTCR Data.xlsm
+- `sheet_name`: Target sheet (default: "Quality Review")
+- `lm_studio_url`: LM Studio endpoint (default: http://127.0.0.1:1234/v1)
+
+### Compliance Notes
+- **Read-Only Mode**: The UI never writes to the Excel file
+- **Assistive Only**: All AI outputs are suggestions requiring manual validation
+- **No Overwrites**: Cannot modify validated cells or ranges
+- **Preview Only**: Dataset display is for information purposes only
+
+### Troubleshooting
+
+**Issue**: "Cannot connect to LM Studio"
+- **Solution**: Ensure LM Studio server is running and accessible at the configured URL
+
+**Issue**: "Failed to load Quality Review data"
+- **Solution**: Verify `MTCR Data.xlsm` exists in the `data/` directory and `config.json` is correct
+
+**Issue**: UI is slow or unresponsive
+- **Solution**: Check if the Excel file is very large; consider reducing `preview_rows` in config
+
 ## Project Vision & Prompt Logging
 
 - Living roadmap: `src/context/ProjectVision.ts`  
