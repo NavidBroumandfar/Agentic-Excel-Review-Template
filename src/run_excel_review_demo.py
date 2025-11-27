@@ -29,8 +29,8 @@ def main():
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
-  python src/run_mtcr_demo.py --n 10
-  python src/run_mtcr_demo.py --n 5
+  python src/run_excel_review_demo.py --n 10
+  python src/run_excel_review_demo.py --n 5
         """
     )
     parser.add_argument(

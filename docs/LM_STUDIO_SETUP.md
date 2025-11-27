@@ -45,7 +45,7 @@ Once connected, you can test the full Excel Review pipeline:
 
 ```bash
 # Process 5 sample rows
-python src/run_mtcr_demo.py --n 5
+python src/run_excel_review_demo.py --n 5
 ```
 
 This will:
@@ -84,9 +84,9 @@ This will:
 python -m src.utils.lmstudio_smoketest
 
 # 2. Run small demo (5 rows)
-python src/run_mtcr_demo.py --n 5
+python src/run_excel_review_demo.py --n 5
 
 # 3. Run larger demo (10 rows)
-python src/run_mtcr_demo.py --n 10
+python src/run_excel_review_demo.py --n 10
 ```
 
