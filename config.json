@@ -1,6 +1,6 @@
 {
-  "input_file": "data/MTCR Data.xlsm",
-  "sheet_name": "Quality Review",
+  "input_file": "data/Sample_Review_Workbook.xlsx",
+  "sheet_name": "ReviewSheet",
   "out_dir": "out",
   "preview_rows": 200,
   "lm_studio_url": "http://127.0.0.1:1234/v1"

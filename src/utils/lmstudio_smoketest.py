@@ -55,7 +55,7 @@ def test_lm_studio_connection(lm_studio_url: str = None) -> bool:
             "messages": [
                 {
                     "role": "user",
-                    "content": "Say hello, you are connected to MTCR Agentic Pipeline.",
+                    "content": "Say hello, you are connected to Excel Review Agentic Pipeline.",
                 }
             ],
             "temperature": 0.1,

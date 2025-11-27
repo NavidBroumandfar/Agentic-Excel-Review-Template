@@ -1,179 +1,320 @@
-# MTCR_Agentic_Automation
+# Agentic Excel Review Template
 
-A modular AI automation system for the Monthly Technical Complaints Review (MTCR) process at bioMérieux. This system operates in assistive mode only, ensuring no modification of validated Excel cells or macros.
+A modular agentic AI pipeline that reviews rows in an Excel workbook using RAG + local LLMs, with safe read-only behavior and full logging. This is a generic, open-source template demonstrating how to build an AI-assisted review process for any validated Excel-based workflow.
 
 ## Author
 
 **Navid Broumandfar**  
-Service Analytics, CHP  
-bioMérieux
+*AI Systems & Cognitive Automation Architect | Applied AI Engineer | Data Science MSc*
 
-This system was developed as a local prototype for demonstration purposes. For official deployment, governance and validation are required.
+This system demonstrates production-grade architecture for agentic AI workflows with local LLM integration, RAG, and compliance-focused design.
 
-## Module 1 — Excel Reader
+---
 
-### Purpose
-This module establishes a safe, read-only Excel reader for the validated workbook `MTCR Data.xlsm` and outputs a structured sheet profile with CSV preview for downstream AI processing.
+## 🎯 What This Project Is
 
-### Quick Start
+This is a **modular agentic AI pipeline** designed for Excel-based review processes. It demonstrates:
 
-1. **Install Dependencies**
+- **Safe, read-only Excel ingestion** with automatic header detection
+- **RAG (Retrieval-Augmented Generation)** over SOP-like documents  
+- **Local LLM integration** via LM Studio (no cloud dependencies)
+- **Agentic orchestration** with step-by-step logging
+- **Compliance-focused design**: All AI outputs go to new `AI_*` columns, never modifying validated cells
+
+### Use Cases
+
+This template is ideal for:
+- Monthly review processes (quality, compliance, audit)
+- Excel workbooks with comment fields requiring interpretation
+- Teams needing AI assistance without cloud data sharing
+- Organizations with validated Excel workflows that need AI augmentation
+
+---
+
+## 🚀 Key Features
+
+### ✅ Excel Reader (Module 1)
+- Read-only access to Excel workbooks
+- Automatic header detection and data profiling
+- CSV preview export for downstream processing
+- Zero modification of source files
+
+### 🤖 AI Review Assistant (Module 2)
+- RAG-based context retrieval from local document corpus
+- LM Studio integration for local inference
+- Structured output: suggested actions, confidence scores, rationale
+- JSONL logging for full audit trail
+
+### 📝 Safe Writer (Module 3)
+- Writes AI suggestions to new columns prefixed with `AI_`
+- Never overwrites validated cells
+- Backup creation before any write operation
+
+### 📊 Logging & Traceability (Module 4)
+- Centralized JSONL log management
+- Monthly metrics aggregation
+- Tableau-ready CSV exports
+
+### 🧠 Advanced Modules
+- **Taxonomy Manager (M5)**: Standardized classification with fuzzy matching
+- **SOP Indexer (M6)**: ChromaDB/FAISS vector search over documents
+- **Model Card Generator (M7)**: Compliance documentation automation
+- **Correction Tracker (M8)**: AI vs. human decision comparison
+- **Publication Agent (M9)**: Automated report generation (HTML/email)
+- **Orchestrator (M10)**: End-to-end pipeline execution
+
+### 💬 Streamlit UI (Module 11)
+- Interactive web interface for reviewing results
+- Chat with your Excel data using local LLM
+- KPI dashboard and visualization
+- Zero-write mode for safety
+
+---
+
+## 📁 Architecture
+
+```
+src/
+ ├── ai/
+ │   ├── review_assistant.py       # RAG + LLM inference
+ │   ├── correction_tracker.py     # AI vs human comparison
+ │   ├── publication_agent.py      # Report generation
+ │   └── orchestrator.py           # Pipeline orchestration
+ ├── excel/
+ │   ├── excel_reader.py           # Safe read-only Excel access
+ │   └── excel_writer.py           # AI_ column writer
+ ├── utils/
+ │   ├── sop_indexer.py            # RAG document indexing
+ │   ├── taxonomy_manager.py       # Classification management
+ │   ├── config_loader.py          # Configuration
+ │   └── lmstudio_smoketest.py     # LM Studio connectivity test
+ ├── logging/
+ │   └── log_manager.py            # Centralized JSONL logging
+ ├── compliance/
+ │   └── model_card_generator.py   # Model documentation
+ └── ui/
+     └── excel_review_app.py       # Streamlit UI
+```
+
+---
+
+## 🛠️ Quick Start
+
+### Prerequisites
+
+1. **Python 3.11+**
+2. **LM Studio** (for local LLM inference)
+   - Download from [lmstudio.ai](https://lmstudio.ai)
+   - Load a model (e.g., Llama 3 or Mistral)
+   - Start the local server (default: `http://127.0.0.1:1234/v1`)
+
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/yourusername/agentic-excel-review-template.git
+   cd agentic-excel-review-template
+   ```
+
+2. **Install dependencies**
    ```bash
    pip install -r requirements.txt
    ```
 
-2. **Prepare Data**
-   - Place `MTCR Data.xlsm` in the `data/` directory
-   - Ensure the workbook contains a "Quality Review" sheet
+3. **Prepare your data**
+   - Place your Excel workbook in `./data/` (e.g., `Sample_Review_Workbook.xlsx`)
+   - Place any SOP documents in `./data/docs/` for RAG indexing
+   - Update `config.json` with your file paths
 
-3. **Run Module 1**
-   ```bash
-   python -m src.excel.mtcr_reader
-   ```
-
-### Expected Outputs
-- Console message: `Loaded Quality Review with X rows, Y columns.`
-- CSV preview: `/out/quality_review_preview.csv` (first 200 rows by default)
-
-### Configuration
-Edit `config.json` to customize:
-- `input_file`: Path to the Excel workbook
-- `sheet_name`: Target sheet name (default: "Quality Review")
-- `out_dir`: Output directory for artifacts
-- `preview_rows`: Number of rows in CSV preview
-
-Environment variables can override config values:
-- `MTCR_INPUT_FILE`
-- `MTCR_SHEET_NAME`
-- `MTCR_OUT_DIR`
-- `MTCR_PREVIEW_ROWS`
-
-### Acceptance Criteria
-- ✅ Read-only access to Excel workbook
-- ✅ Automatic header detection
-- ✅ Data cleaning and profiling
-- ✅ CSV preview export
-- ✅ Graceful error handling
-- ✅ No modification of source data
-
-### Compliance
-- All operations are read-only
-- No overwriting of validated Excel cells or macros
-- AI outputs written only to new columns prefixed with "AI_" or to new files in `/out/`
-
-## Module 11 — Streamlit UI for MTCR Assistant
-
-### Purpose
-A professional web interface for the MTCR Assistant providing KPI overview and chat functionality with the local LM Studio model.
-
-### Quick Start
-
-1. **Install Dependencies** (including Streamlit)
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-2. **Ensure LM Studio is Running**
+4. **Start LM Studio**
    - Open LM Studio
    - Load a model
-   - Go to 'Local Server' tab
-   - Click 'Start Server'
+   - Go to 'Local Server' tab and click 'Start Server'
    - Verify it's running at `http://127.0.0.1:1234/v1`
 
-3. **Run the Streamlit App**
-   
-   **Option A - Using the launcher script (recommended):**
-   - Windows: Double-click `run_ui.bat` or run in terminal: `run_ui.bat`
-   - Mac/Linux: Run in terminal: `bash run_ui.sh`
-   
-   **Option B - Direct command:**
-   ```bash
-   streamlit run src/ui/mtcr_app.py
-   ```
+### Run the Demo
 
-4. **Access the Interface**
-   - The app will automatically open in your browser
-   - Default URL: `http://localhost:8501`
-
-### Features
-
-#### 📊 Vue d'ensemble (Overview Tab)
-- **KPI Dashboard**: Total rows, rows with comments, distinct reviewers, AI suggestions
-- **AI Columns Detection**: Automatically detects and displays AI-generated columns
-- **Top Reasons Chart**: Bar chart of the 5 most common AI reason suggestions
-- **Dataset Preview**: Interactive table showing the first 10 rows
-
-#### 💬 Chat avec l'assistant MTCR (Chat Tab)
-- **Context-Aware Chat**: Ask questions about the current MTCR dataset
-- **Dataset Context**: The LLM receives a summary of the data for accurate answers
-- **Conversation History**: Full chat history with user/assistant messages
-- **Suggested Questions**: Quick-start buttons for common queries
-- **Technical Config**: View LM Studio endpoint and current configuration
-
-### Example Questions
-
-You can ask the assistant questions like:
-- "Quels sont les principaux types de corrections dans cet échantillon?"
-- "Explique-moi le rôle de MTCR dans le process de plaintes techniques."
-- "Combien de suggestions AI ont été générées avec une haute confidence?"
-- "Montre-moi les tendances dans les commentaires de revue."
-
-### Configuration
-
-The UI uses the same `config.json` as other modules:
-- `input_file`: Path to MTCR Data.xlsm
-- `sheet_name`: Target sheet (default: "Quality Review")
-- `lm_studio_url`: LM Studio endpoint (default: http://127.0.0.1:1234/v1)
-
-### Compliance Notes
-- **Read-Only Mode**: The UI never writes to the Excel file
-- **Assistive Only**: All AI outputs are suggestions requiring manual validation
-- **No Overwrites**: Cannot modify validated cells or ranges
-- **Preview Only**: Dataset display is for information purposes only
-
-### Troubleshooting
-
-**Issue**: "Cannot connect to LM Studio"
-- **Solution**: Ensure LM Studio server is running and accessible at the configured URL
-
-**Issue**: "Failed to load Quality Review data"
-- **Solution**: Verify `MTCR Data.xlsm` exists in the `data/` directory and `config.json` is correct
-
-**Issue**: UI is slow or unresponsive
-- **Solution**: Check if the Excel file is very large; consider reducing `preview_rows` in config
-
-## Project Vision & Prompt Logging
-
-- Living roadmap: `src/context/ProjectVision.ts`  
-  - Update **after each phase**: set status, add a changelog note.
-- Prompt audit trail with **sequential numbering**:
-  - `module-01.txt` → M1 (Excel Reader)
-  - `module-02.txt` → M1.1 (Basic Excel Reader)  
-  - `module-03.txt` → M1.2 (Meta Automation)
-  - `module-04.txt` → M2 (AI Review Assistant)
-  - etc.
-- Append a JSONL entry:
-    ```
-    python scripts/prompt_log.py --module M1 --title "Excel Reader created" --summary "Read-only ingestion + CSV preview" src/excel/mtcr_reader.py src/utils/config_loader.py
-    ```
-
-## VisionSync & Hook
-
-- Sync roadmap (auto-creates module files with **real content**):
+**Option A: Python Script**
 ```bash
-python scripts/vision_sync.py --phase M2 --status active --note "Start AI Review Assistant dev"
-python scripts/vision_sync.py --phase M1.2 --status completed --note "Sub-phase done" --create-module
-python scripts/vision_sync.py --update-all  # Update all module files with current content
+python Agentic_Excel_Review_Demo.py
 ```
-- Install pre-commit guard (run once):
+
+**Option B: Jupyter Notebook**
 ```bash
-python scripts/hooks/install_hooks.py
+jupyter notebook Agentic_Excel_Review_Demo.ipynb
 ```
-- The guard blocks commits if `/src/**` changed but you didn't:
-- update `ProjectVision.ts` **or**
-- log to `docs/prompts/log.jsonl` **and** `docs/prompts/module-XX.txt`.
-- **Smart creation**: Module files are created only when phases are completed or explicitly requested
-- **Real content**: Module files are automatically populated with actual files created and development status
-- **Sequential numbering**: M1→01, M1.1→02, M1.2→03, M2→04, etc.
-- **Sub-phases**: Support for M1.1, M1.2, etc. with automatic tracking
-- **No premature files**: Only completed phases get module files (no module-04.txt for M2 until it's done)
+
+**Option C: Streamlit UI**
+```bash
+# Windows
+run_ui.bat
+
+# Mac/Linux
+bash run_ui.sh
+```
+
+**Option D: Command Line**
+```bash
+python src/run_excel_review_demo.py --n 10
+```
+
+This will:
+- Test LM Studio connection
+- Load sample rows from your Excel file
+- Retrieve relevant context from SOP documents
+- Call the local LLM for analysis
+- Generate AI suggestions with confidence scores
+- Export results to `./out/excel_review_demo.csv`
+- Log all inferences to `./logs/`
+
+---
+
+## ⚙️ Configuration
+
+Edit `config.json`:
+
+```json
+{
+  "input_file": "data/Sample_Review_Workbook.xlsx",
+  "sheet_name": "ReviewSheet",
+  "out_dir": "out",
+  "preview_rows": 200,
+  "lm_studio_url": "http://127.0.0.1:1234/v1"
+}
+```
+
+You can also use environment variables:
+- `EXCEL_REVIEW_INPUT_FILE`
+- `EXCEL_REVIEW_SHEET_NAME`
+- `EXCEL_REVIEW_OUT_DIR`
+- `EXCEL_REVIEW_PREVIEW_ROWS`
+
+---
+
+## 📊 Example Output
+
+After running the demo, you'll get:
+
+- **CSV with AI suggestions**: `out/excel_review_demo.csv`
+  - Original columns + `AI_SuggestedAction`, `AI_Confidence`, `AI_Rationale`
+- **JSONL audit logs**: `logs/excel_review_assistant.jsonl`
+  - Full trace of every LLM call with input/output/timestamps
+- **Visualizations**: Charts of suggestion distribution and confidence
+
+---
+
+## 🔒 Compliance & Safety
+
+This template is designed with validated workflows in mind:
+
+1. **Read-Only by Default**: Excel reader never modifies source files
+2. **AI_ Column Convention**: All AI outputs use the `AI_` prefix
+3. **Backup Creation**: Writer module creates backups before any modification
+4. **Full Audit Trail**: JSONL logs capture every inference
+5. **Local Inference Only**: No data sent to cloud APIs
+6. **Assistive Mode**: Human review required for all AI suggestions
+
+### Compliance Header
+
+All modules include a compliance notice:
+
+```python
+# ⚠️ Compliance Notice:
+# This is a template for assistive AI on top of a validated Excel process.
+# It must NOT overwrite original validated cells/ranges.
+# All AI outputs must be written to new columns prefixed with "AI_".
+```
+
+---
+
+## 🧪 Testing
+
+Run the test suite:
+
+```bash
+# All tests
+python -m pytest tests/
+
+# Specific module
+python -m pytest tests/test_review_assistant.py -v
+```
+
+---
+
+## 📚 Documentation
+
+- `docs/LM_STUDIO_SETUP.md` - Detailed LM Studio setup guide
+- `docs/Project_Structure.md` - Architecture overview
+- `docs/SOP_Indexer_README.md` - RAG indexing guide
+- `docs/CHAT_GUIDE.md` - Using the Streamlit chat interface
+
+---
+
+## 🗺️ Roadmap
+
+Modules marked with ✅ are complete:
+
+- ✅ **M1**: Excel Reader
+- ✅ **M2**: AI Review Assistant (RAG + LLM)
+- ✅ **M3**: Excel Writer (Safe AI_ Columns)
+- ✅ **M4**: Log Manager & QA Traceability
+- ✅ **M5**: Taxonomy Manager
+- ✅ **M6**: SOP Indexer (RAG)
+- ✅ **M7**: Model Card Generator
+- ✅ **M8**: Correction Tracker Agent
+- ✅ **M9**: Publication Agent
+- ✅ **M10**: LLM Integration + Demo Orchestrator
+- ✅ **M11**: Streamlit UI
+
+**Future Enhancements:**
+- **M12**: QA Dashboards with Tableau integration
+- **M13**: Data Lake integration for historical analysis
+- **M14**: Multi-model comparison and A/B testing
+
+---
+
+## 🙋 Who Is This For?
+
+This template is designed for:
+
+- **Data Scientists** building agentic AI pipelines
+- **AI Engineers** integrating local LLMs into existing workflows
+- **Analytics Teams** working with Excel-based processes
+- **Compliance Teams** needing audit trails and read-only AI assistance
+- **Organizations** exploring AI without cloud dependencies
+
+---
+
+## 🛡️ License
+
+This project is open-source and available under the MIT License. Feel free to use, modify, and distribute as needed.
+
+---
+
+## 🤝 Contributing
+
+Contributions welcome! Please:
+
+1. Fork the repository
+2. Create a feature branch
+3. Submit a pull request with clear description
+
+---
+
+## 📧 Contact
+
+For questions, suggestions, or collaboration opportunities, please open an issue on GitHub.
+
+---
+
+## 🙏 Acknowledgments
+
+Built with:
+- **LM Studio** for local LLM inference
+- **ChromaDB** for vector storage
+- **Streamlit** for the web interface
+- **pandas**, **openpyxl** for Excel handling
+
+---
+
+**Note**: This is a template repository. Replace sample data with your own Excel workbooks and documents. Ensure you comply with your organization's data governance policies before deploying in production.

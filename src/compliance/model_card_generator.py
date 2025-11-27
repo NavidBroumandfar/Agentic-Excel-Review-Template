@@ -105,7 +105,7 @@ def collect_metadata() -> Dict[str, Any]:
         "project_version": "v0.7.0",
         "files_verified": files_to_verify,
         "checksums": checksums,
-        "compliance_standard": "SOP 029014 Rev 15.A",
+        "compliance_standard": "SOP-EXAMPLE-001",
         "assistive_mode": True,
         "data_privacy": "No PII or customer data used for training",
         "human_validation_required": True,
@@ -122,12 +122,12 @@ def render_markdown(meta: Dict[str, Any]) -> str:
 
     if not template_path.exists():
         # Fallback to inline template if file doesn't exist
-        template_content = """# MTCR AI Model Card — {{ created_at[:7] }}
+        template_content = """# Excel Review AI Model Card — {{ created_at[:7] }}
 
-**Project:** MTCR_Agentic_Automation  
+**Project:** Agentic_Excel_Review  
 **Version:** {{ project_version }}  
 **Commit:** {{ commit_hash }}  
-**Creator:** Navid Broumandfar (Service Analytics, CHP, bioMérieux)
+**Creator:** Navid Broumandfar
 
 ---
 
@@ -155,7 +155,7 @@ def render_markdown(meta: Dict[str, Any]) -> str:
 
 ---
 
-### Compliance & Governance
+### Compliance & Documentation
 - **Standard**: {{ compliance_standard }}
 - **Mode**: {{ "Assistive-only" if assistive_mode else "Autonomous" }}
 - **Data Privacy**: {{ data_privacy }}
@@ -269,7 +269,7 @@ def save_outputs(meta: Dict[str, Any]) -> Dict[str, str]:
 
 def main():
     """Main function to generate model card."""
-    print("Generating MTCR Model Card...")
+    print("Generating ExcelReview Model Card...")
 
     # Collect metadata
     meta = collect_metadata()

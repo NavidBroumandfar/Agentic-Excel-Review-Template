@@ -2,16 +2,16 @@
 SOP Indexer (RAG + Guidance Mapping) - Phase 6 (M6)
 
 This module provides RAG (Retrieval-Augmented Generation) functionality for SOP documents,
-including indexing, retrieval, and mapping of standardized correction reasons to relevant SOP clauses.
+including indexing, retrieval, and mapping of standardized actions to relevant SOP clauses.
 
 Key Features:
-- Local vector index over SOP 029014 and attachments
+- Local vector index over SOP documents and attachments
 - Semantic chunking with metadata preservation
-- Reason-to-SOP clause mapping with similarity scores
+- Action-to-SOP clause mapping with similarity scores
 - Support for both ChromaDB and FAISS vector stores
 - Comprehensive logging and audit trails
 
-Created by: Navid Broumandfar (Service Analytics, CHP, bioMérieux)
+Created by: Navid Broumandfar
 """
 
 import os
@@ -423,7 +423,7 @@ class SOPIndexer:
 
         # Regex for identifying section headers
         section_pattern = re.compile(
-            r"^(?:\d+(?:\.\d+)*\s+|Attachment\s+\d+\s+-\s+|Definitions|Scope|Responsibilities|Monthly Technical Complaints Review)",
+            r"^(?:\d+(?:\.\d+)*\s+|Attachment\s+\d+\s+-\s+|Definitions|Scope|Responsibilities|Monthly Quality Reviews Review)",
             re.MULTILINE,
         )
 

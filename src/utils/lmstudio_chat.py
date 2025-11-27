@@ -1,10 +1,10 @@
 # ⚠️ Compliance Notice:
 # Assistive mode only. This is a simple chat interface for testing.
-# Uses the same LM Studio endpoint as the MTCR agent.
+# Uses the same LM Studio endpoint as the Excel Review agent.
 
 """
-Interactive Chat Interface for LM Studio with MTCR Agentic Context
-Chat with the same LLM model used by the MTCR agent, with full MTCR awareness.
+Interactive Chat Interface for LM Studio with Excel Review Context
+Chat with the same LLM model used by the Excel Review agent.
 """
 
 from __future__ import annotations
@@ -23,32 +23,32 @@ from src.utils.config_loader import load_config
 from src.utils.sop_indexer import SOPIndexer
 
 
-def get_mtcr_system_prompt() -> str:
-    """Get the MTCR system prompt to give the LLM context awareness."""
-    return """You are an AI assistant integrated into the MTCR (Monthly Technical Complaints Review) Agentic Automation system at bioMérieux.
+def get_excel_review_system_prompt() -> str:
+    """Get the Excel review system prompt to give the LLM context awareness."""
+    return """You are an AI assistant integrated into an Agentic Excel Review system.
 
 Your role and context:
-- You are part of an agentic AI system that processes Quality Review comments from the MTCR Data.xlsm workbook
-- You follow SOP 029014 (Rev 15.A) for Technical Complaint Reviews
-- You understand MTCR terminology, workflows, and processes
+- You are part of an agentic AI system that processes review comments from Excel workbooks
+- You follow documented SOPs for review processes
+- You understand review terminology, workflows, and processes
 - You can access SOP knowledge through the RAG (Retrieval-Augmented Generation) system
-- You help with Quality Review comment analysis, standardized reason suggestions, and MTCR-related questions
+- You help with review comment analysis, standardized action suggestions, and review-related questions
 
-Key MTCR concepts you understand:
-- Quality Review: Monthly review of technical complaints
-- Reason for Correction: Standardized taxonomy from SOP 029014
-- Site Review: Comments from site reviewers about complaint handling
-- AI_ReasonSuggestion: AI-generated standardized reason suggestions
+Key concepts you understand:
+- Review Sheet: Dataset containing records requiring review
+- Suggested Action: Standardized taxonomy from documented SOPs
+- Review Comments: Analysis and notes from reviewers
+- AI_SuggestedAction: AI-generated standardized action suggestions
 - Confidence scores: 0.0 to 1.0 indicating certainty of suggestions
-- SOP 029014: The governing standard operating procedure
+- SOPs: Standard operating procedures governing the review process
 
 When answering questions:
-- Be accurate and reference SOP 029014 when relevant
+- Be accurate and reference relevant SOPs when available
 - If you don't know something specific, say so rather than hallucinating
 - You can ask for clarification if needed
-- Provide helpful, context-aware responses about MTCR processes
+- Provide helpful, context-aware responses about review processes
 
-You are helpful, accurate, and aware of your role in the MTCR agentic automation workflow."""
+You are helpful, accurate, and aware of your role in the agentic automation workflow."""
 
 
 def get_lm_studio_url() -> str:
@@ -75,7 +75,7 @@ def get_lm_studio_url() -> str:
 
 def get_rag_context(message: str, sop_indexer: SOPIndexer = None) -> str:
     """
-    Get relevant SOP context using RAG if available and if message is MTCR-related.
+    Get relevant SOP context using RAG if available and if message is Review-related.
 
     Args:
         message: User's message
@@ -87,11 +87,11 @@ def get_rag_context(message: str, sop_indexer: SOPIndexer = None) -> str:
     if sop_indexer is None:
         return ""
 
-    # Check if message is MTCR-related
+    # Check if message is Review-related
     mtcr_keywords = [
         "mtcr",
         "sop",
-        "029014",
+        "SOP-EXAMPLE",
         "quality review",
         "reason for correction",
         "complaint",
@@ -130,14 +130,14 @@ def send_message(
     include_rag: bool = True,
 ) -> tuple[str, list]:
     """
-    Send a message to LM Studio and get response with MTCR context.
+    Send a message to LM Studio and get response with review context.
 
     Args:
         lm_studio_url: LM Studio API endpoint
         message: User's message
         conversation_history: Previous messages in the conversation
         sop_indexer: SOPIndexer instance for RAG context (optional)
-        include_rag: Whether to include RAG context for MTCR-related questions
+        include_rag: Whether to include RAG context for review-related questions
 
     Returns:
         Tuple of (response_text, updated_conversation_history)
@@ -145,7 +145,7 @@ def send_message(
     if conversation_history is None:
         conversation_history = []
 
-    # Add RAG context if available and message is MTCR-related
+    # Add RAG context if available and message is review-related
     enhanced_message = message
     if include_rag and sop_indexer:
         rag_context = get_rag_context(message, sop_indexer)
@@ -199,12 +199,12 @@ def send_message(
 
 
 def main():
-    """Main chat loop with MTCR context awareness."""
+    """Main chat loop with Excel Review context awareness."""
     print("=" * 60)
-    print("MTCR Agent - LM Studio Chat Interface (MTCR-Aware)")
+    print("Excel Review Agent - LM Studio Chat Interface")
     print("=" * 60)
-    print("\nThis connects to the same LLM model used by the MTCR agent.")
-    print("The LLM is aware of MTCR workflows, SOP 029014, and agentic processes.")
+    print("\nThis connects to the same LLM model used by the Excel Review agent.")
+    print("The LLM is aware of review workflows, SOPs, and agentic processes.")
     print("\nCommands:")
     print("  'quit' or 'exit' - End conversation")
     print("  'clear' - Clear conversation history")
@@ -224,13 +224,13 @@ def main():
         print(f"[INFO] SOP Indexer not available - RAG disabled ({str(e)[:50]})\n")
 
     # Initialize conversation with system prompt
-    system_prompt = get_mtcr_system_prompt()
+    system_prompt = get_excel_review_system_prompt()
     conversation_history = [{"role": "system", "content": system_prompt}]
 
     # Test connection first
     test_response, _ = send_message(
         lm_studio_url,
-        "Hello, are you connected and aware of your MTCR role?",
+        "Hello, are you connected and aware of your Excel Review role?",
         conversation_history.copy(),
         sop_indexer,
         include_rag=False,
@@ -245,7 +245,7 @@ def main():
         print("  5. Run this script again")
         sys.exit(1)
 
-    print("[OK] Connected to LM Studio with MTCR context!\n")
+    print("[OK] Connected to LM Studio with Excel Review context!\n")
     print("-" * 60)
     print()
 

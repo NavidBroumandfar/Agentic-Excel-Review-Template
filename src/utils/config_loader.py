@@ -1,6 +1,6 @@
 # ⚠️ Compliance Notice:
 # This module operates in assistive mode only.
-# Do NOT overwrite validated Excel cells or macros in `MTCR Data.xlsm`.
+# Do NOT overwrite validated Excel cells or macros in the source workbook.
 # AI outputs must be written only to new columns prefixed with "AI_".
 
 from __future__ import annotations
@@ -12,8 +12,8 @@ from pathlib import Path
 
 @dataclass
 class Config:
-    input_file: str = "data/MTCR Data.xlsm"
-    sheet_name: str = "Quality Review"
+    input_file: str = "data/Sample_Review_Workbook.xlsx"
+    sheet_name: str = "ReviewSheet"
     out_dir: str = "out"
     preview_rows: int = 200
 
@@ -29,10 +29,10 @@ def load_config(path: str | Path = "config.json") -> Config:
 
     # env overrides
     cfg_env = {
-        "input_file": os.getenv("MTCR_INPUT_FILE"),
-        "sheet_name": os.getenv("MTCR_SHEET_NAME"),
-        "out_dir": os.getenv("MTCR_OUT_DIR"),
-        "preview_rows": os.getenv("MTCR_PREVIEW_ROWS"),
+        "input_file": os.getenv("EXCEL_REVIEW_INPUT_FILE"),
+        "sheet_name": os.getenv("EXCEL_REVIEW_SHEET_NAME"),
+        "out_dir": os.getenv("EXCEL_REVIEW_OUT_DIR"),
+        "preview_rows": os.getenv("EXCEL_REVIEW_PREVIEW_ROWS"),
     }
     cfg.update({k: v for k, v in cfg_env.items() if v not in (None, "")})
 

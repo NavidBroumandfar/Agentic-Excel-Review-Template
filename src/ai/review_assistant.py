@@ -1,13 +1,13 @@
 # ⚠️ Compliance Notice:
-# Assistive mode only. Do NOT overwrite validated cells or macros in `MTCR Data.xlsm`.
+# Assistive mode only. Do NOT overwrite validated cells or macros in the source workbook.
 # AI outputs must be written only to new columns prefixed with "AI_".
 # All inferences are logged for traceability and QA review.
 
 """
-AI Review Assistant for MTCR Quality Review comments.
+AI Review Assistant for Excel review comments.
 Uses RAG (Retrieval-Augmented Generation) with LM Studio for local inference.
 
-Created by: Navid Broumandfar (Service Analytics, CHP, bioMérieux)
+Created by: Navid Broumandfar
 """
 
 import json
@@ -39,7 +39,7 @@ class ReviewAssistant:
         self,
         lm_studio_url: str = "http://127.0.0.1:1234/v1",
         sop_index_dir: str = "data/embeddings",
-        log_file: str = "logs/mtcr_review_assistant.jsonl",
+        log_file: str = "logs/review_assistant.jsonl",
     ):
         """
         Initialize the Review Assistant.
@@ -79,16 +79,16 @@ class ReviewAssistant:
     def _get_default_prompt(self) -> str:
         """Fallback prompt template if file not found."""
         return """System:
-You are an expert in Technical Complaint Reviews following SOP 029014 (Rev 15.A). This MTCR Agentic Automation system was created by Navid Broumandfar (Service Analytics, CHP).
+You are an expert AI assistant for analyzing Excel review comments following documented SOPs.
 
 Instruction:
 Given the comment below and relevant SOP context, return a JSON object:
 {
- "reason": "Standardized reason for correction",
+ "reason": "Standardized suggested action",
  "confidence": 0.85,
  "comment_standardized": "Cleaned version of the comment",
  "rationale_short": "Brief explanation",
- "model_version": "MTCR-Llama3-v0.1"
+ "model_version": "ExcelReview-v0.1"
 }
 
 Comment: {comment}
@@ -286,7 +286,7 @@ Context: {context}"""
                 "AI_confidence": 0.0,
                 "AI_comment_standardized": "",
                 "AI_rationale_short": "No comment to analyze",
-                "AI_model_version": "MTCR-Llama3-v0.1",
+                "AI_model_version": "ExcelReview-v0.1",
             }
 
         try:
@@ -314,7 +314,7 @@ Context: {context}"""
                     "AI_confidence": 0.0,
                     "AI_comment_standardized": comment,
                     "AI_rationale_short": error_msg,
-                    "AI_model_version": "MTCR-Llama3-v0.1",
+                    "AI_model_version": "ExcelReview-v0.1",
                 }
 
             # Parse and validate response
@@ -338,7 +338,7 @@ Context: {context}"""
                     "AI_confidence": 0.0,
                     "AI_comment_standardized": comment,
                     "AI_rationale_short": error_msg,
-                    "AI_model_version": "MTCR-Llama3-v0.1",
+                    "AI_model_version": "ExcelReview-v0.1",
                 }
 
             if not isinstance(parsed_response, dict):
@@ -361,7 +361,7 @@ Context: {context}"""
                     "AI_confidence": 0.0,
                     "AI_comment_standardized": comment,
                     "AI_rationale_short": error_msg,
-                    "AI_model_version": "MTCR-Llama3-v0.1",
+                    "AI_model_version": "ExcelReview-v0.1",
                 }
 
             if not self._validate_response(parsed_response):
@@ -382,7 +382,7 @@ Context: {context}"""
                     "AI_confidence": 0.0,
                     "AI_comment_standardized": comment,
                     "AI_rationale_short": error_msg,
-                    "AI_model_version": "MTCR-Llama3-v0.1",
+                    "AI_model_version": "ExcelReview-v0.1",
                 }
 
             # Safely extract values with defaults
@@ -396,7 +396,7 @@ Context: {context}"""
                     parsed_response.get("rationale_short", "No rationale provided")
                 )
                 ai_model_ver = str(
-                    parsed_response.get("model_version", "MTCR-Llama3-v0.1")
+                    parsed_response.get("model_version", "ExcelReview-v0.1")
                 )
             except (ValueError, TypeError) as e:
                 error_msg = f"Error extracting values from response: {str(e)}"
@@ -416,7 +416,7 @@ Context: {context}"""
                     "AI_confidence": 0.0,
                     "AI_comment_standardized": comment,
                     "AI_rationale_short": error_msg,
-                    "AI_model_version": "MTCR-Llama3-v0.1",
+                    "AI_model_version": "ExcelReview-v0.1",
                 }
 
             # Log successful inference
@@ -451,7 +451,7 @@ Context: {context}"""
                 "AI_confidence": 0.0,
                 "AI_comment_standardized": comment,
                 "AI_rationale_short": error_msg,
-                "AI_model_version": "MTCR-Llama3-v0.1",
+                "AI_model_version": "ExcelReview-v0.1",
             }
         except Exception as e:
             error_msg = f"Unexpected error: {str(e)}"
@@ -465,7 +465,7 @@ Context: {context}"""
                 "AI_confidence": 0.0,
                 "AI_comment_standardized": comment,
                 "AI_rationale_short": error_msg,
-                "AI_model_version": "MTCR-Llama3-v0.1",
+                "AI_model_version": "ExcelReview-v0.1",
             }
 
     def process_all(self, df: pd.DataFrame) -> pd.DataFrame:
@@ -504,7 +504,7 @@ def main():
     """Main function for testing the Review Assistant."""
     import argparse
 
-    parser = argparse.ArgumentParser(description="AI Review Assistant for MTCR")
+    parser = argparse.ArgumentParser(description="AI Review Assistant for Excel Reviews")
     parser.add_argument("--test", action="store_true", help="Run test with mock data")
     parser.add_argument("--input", type=str, help="Input CSV file path")
     parser.add_argument("--output", type=str, help="Output CSV file path")

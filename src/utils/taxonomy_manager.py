@@ -1,5 +1,5 @@
 # ⚠️ Compliance Notice:
-# Assistive mode only. Do NOT overwrite validated cells/ranges in `MTCR Data.xlsm`.
+# Assistive mode only. Do NOT overwrite validated cells/ranges in the source workbook.
 # This module reads AI inference logs and writes ONLY new versioned outputs:
 #   /data/taxonomy/reasons.vN.yml, reasons.latest.yml
 #   /logs/taxonomy_drift_YYYYMM.csv
@@ -314,7 +314,7 @@ def append_changes_log(
 def main(argv=None):
     p = argparse.ArgumentParser(
         prog="taxonomy_manager",
-        description="MTCR Reason-for-Correction Taxonomy Manager",
+        description="Excel Review Action Taxonomy Manager",
     )
     p.add_argument("--months", nargs="+", required=True)
     p.add_argument("--fuzzy_threshold", type=int, default=87)

@@ -34,14 +34,14 @@ python -m src.utils.lmstudio_smoketest
 ```
 [SMOKE TEST] Testing connection to: http://127.0.0.1:1234/v1
 [OK] Connected to LM Studio
-  Response: Hello! I am connected to the MTCR Agentic Pipeline...
+  Response: Hello! I am connected to the Excel Review Agentic Pipeline...
 ```
 
 ---
 
 ## Step 3: Run a Full Demo
 
-Once connected, you can test the full MTCR pipeline:
+Once connected, you can test the full Excel Review pipeline:
 
 ```bash
 # Process 5 sample rows

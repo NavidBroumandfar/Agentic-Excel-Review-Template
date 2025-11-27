@@ -1,0 +1,25 @@
+# Ignore all data files by default
+*.xlsx
+*.xlsm
+*.xls
+*.csv
+
+# Ignore SOP documents
+docs/
+
+# Keep the structure
+!.gitignore
+!README.md
+
+# Keep embeddings directory structure but not contents
+embeddings/*
+!embeddings/.gitkeep
+
+# Keep metadata structure but not contents
+metadata/*
+!metadata/.gitkeep
+
+# Keep outputs structure but not contents
+outputs/*
+!outputs/.gitkeep
+

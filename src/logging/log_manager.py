@@ -237,8 +237,8 @@ def compose_monthly_summary(month: str, sparklen: int) -> Dict[str, Any]:
         "metrics": metrics,
         "integrity": integrity,
         "sop_context": {
-            "correctly_filled_target_pct": 80,  # LLDC 029014 §4.3
-            "dashboard_residual_target_pct": 2,  # LLDC 029014 §4.3
+            "correctly_filled_target_pct": 80,  # Target threshold
+            "dashboard_residual_target_pct": 2,  # Target threshold
             "sampling_aql": 1.5,  # Attachment 2
         },
     }
@@ -292,7 +292,7 @@ def save_summary_csv(data: Dict[str, Any], path: str, append: bool = False) -> N
 # ---------- CLI ----------
 def _parse_args(argv=None):
     p = argparse.ArgumentParser(
-        prog="log_manager", description="MTCR Log Manager — monthly metrics"
+        prog="log_manager", description="Excel Review Log Manager — monthly metrics"
     )
     p.add_argument("--month", required=True, help="YYYYMM (e.g., 202510)")
     p.add_argument(

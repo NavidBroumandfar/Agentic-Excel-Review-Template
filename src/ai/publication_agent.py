@@ -373,8 +373,8 @@ def main():
             }
             for _, r in curr_table.iterrows()
         ],
-        "subject_en": f"[MTCR] Monthly Review Summary — {month_en}",
-        "subject_fr": f"[MTCR] Résumé Mensuel — {month_fr}",
+        "subject_en": f"Monthly Review Summary — {month_en}",
+        "subject_fr": f"Résumé Mensuel — {month_fr}",
         "attachment_csv": os.path.relpath(csv_path, ROOT),
         "attachment_prev_csv": os.path.relpath(prev_path, ROOT) if prev_path else None,
     }

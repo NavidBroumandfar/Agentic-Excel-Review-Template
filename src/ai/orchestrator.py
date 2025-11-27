@@ -4,10 +4,10 @@
 # This module is for local prototype demonstration only.
 
 """
-MTCR Demo Orchestrator
+Excel Review Demo Orchestrator
 Chains M1 → M2 → M3 → M4 steps with clear step logs.
 
-Created by: Navid Broumandfar (Service Analytics, CHP, bioMérieux)
+Created by: Navid Broumandfar
 """
 
 from __future__ import annotations
@@ -27,13 +27,13 @@ if str(project_root) not in sys.path:
 
 # Import modules
 from src.utils.config_loader import load_config, Config
-from src.excel.mtcr_reader import read_quality_review
+from src.excel.excel_reader import read_review_sheet
 from src.ai.review_assistant import ReviewAssistant
 from src.utils.sop_indexer import SOPIndexer
 
 
-class MTCRDemoOrchestrator:
-    """Orchestrator for MTCR demo pipeline."""
+class ExcelReviewOrchestrator:
+    """Orchestrator for Excel review demo pipeline."""
 
     def __init__(self, config: Optional[Config] = None):
         """
@@ -63,7 +63,7 @@ class MTCRDemoOrchestrator:
         self.review_assistant = ReviewAssistant(
             lm_studio_url=self.lm_studio_url,
             sop_index_dir="data/embeddings",
-            log_file="logs/mtcr_review_assistant.jsonl",
+            log_file="logs/review_assistant.jsonl",
         )
 
         self.step_logs = []
@@ -87,13 +87,13 @@ class MTCRDemoOrchestrator:
 
     def _map_ai_columns(self, df: pd.DataFrame) -> pd.DataFrame:
         """
-        Map review_assistant column names to mtcr_writer expected names.
+        Map review_assistant column names to excel_writer expected names.
 
         review_assistant uses: AI_reason, AI_confidence, AI_comment_standardized, AI_rationale_short, AI_model_version
-        mtcr_writer expects: AI_ReasonSuggestion, AI_Confidence, AI_CommentStandardized, AI_RationaleShort, AI_ModelVersion
+        excel_writer expects: AI_SuggestedAction, AI_Confidence, AI_CommentStandardized, AI_RationaleShort, AI_ModelVersion
         """
         column_mapping = {
-            "AI_reason": "AI_ReasonSuggestion",
+            "AI_reason": "AI_SuggestedAction",
             "AI_confidence": "AI_Confidence",
             "AI_comment_standardized": "AI_CommentStandardized",
             "AI_rationale_short": "AI_RationaleShort",
@@ -120,7 +120,7 @@ class MTCRDemoOrchestrator:
             Dictionary with summary statistics
         """
         print("=" * 60)
-        print("MTCR Demo Orchestrator - Starting Pipeline")
+        print("Excel Review Demo Orchestrator - Starting Pipeline")
         print("=" * 60)
 
         # STEP 1: Load config
@@ -135,12 +135,12 @@ class MTCRDemoOrchestrator:
             },
         )
 
-        # STEP 2: Load sample from Quality Review
+        # STEP 2: Load sample from Review Sheet
         try:
-            df, profile = read_quality_review(self.config)
+            df, profile = read_review_sheet(self.config)
             self._log_step(
                 2,
-                "Load sample from Quality Review",
+                "Load sample from Review Sheet",
                 f"Loaded {len(df)} rows",
                 {
                     "total_rows": profile.row_count,
@@ -154,7 +154,7 @@ class MTCRDemoOrchestrator:
                 df_sample = df.head(sample_size).copy()
                 self._log_step(
                     2,
-                    "Load sample from Quality Review",
+                    "Load sample from Review Sheet",
                     f"Sampled {sample_size} rows for demo",
                     {},
                 )
@@ -162,7 +162,7 @@ class MTCRDemoOrchestrator:
                 df_sample = df.copy()
                 self._log_step(
                     2,
-                    "Load sample from Quality Review",
+                    "Load sample from Review Sheet",
                     f"Using all {len(df_sample)} rows (less than sample_size)",
                     {},
                 )
@@ -228,7 +228,7 @@ class MTCRDemoOrchestrator:
 
         # STEP 5: Write AI_ columns to demo CSV
         try:
-            output_csv = self.out_dir / "mtcr_ai_demo.csv"
+            output_csv = self.out_dir / "excel_review_demo.csv"
             df_with_ai.to_csv(output_csv, index=False, encoding="utf-8")
             self._log_step(
                 5,
@@ -245,7 +245,7 @@ class MTCRDemoOrchestrator:
 
         # STEP 6: Log each inference
         try:
-            log_file = Path("logs") / "mtcr_demo_orchestrator.jsonl"
+            log_file = Path("logs") / "excel_review_demo_orchestrator.jsonl"
             log_file.parent.mkdir(parents=True, exist_ok=True)
 
             log_entry = {
@@ -306,7 +306,7 @@ class MTCRDemoOrchestrator:
 
 def run_demo(sample_size: int = 10) -> dict:
     """
-    Run the MTCR demo pipeline on a small sample of the Quality Review sheet.
+    Run the Excel review demo pipeline on a small sample of the review sheet.
 
     Args:
         sample_size: Number of rows with non-empty comments to process.
@@ -318,14 +318,14 @@ def run_demo(sample_size: int = 10) -> dict:
             - output_path: str (CSV path)
             - log_path: str or None
     """
-    orchestrator = MTCRDemoOrchestrator()
+    orchestrator = ExcelReviewOrchestrator()
     result = orchestrator.run_demo(sample_size=sample_size)
 
     # Normalize key names to match expected interface
     return {
         "rows_processed": result.get("rows_processed", 0),
         "avg_confidence": result.get("avg_confidence"),
-        "output_path": result.get("output_file", "out/mtcr_ai_demo.csv"),
+        "output_path": result.get("output_file", "out/excel_review_demo.csv"),
         "log_path": result.get("log_file"),
     }
 
@@ -334,13 +334,13 @@ def main():
     """Main entry point for orchestrator."""
     import argparse
 
-    parser = argparse.ArgumentParser(description="MTCR Demo Orchestrator")
+    parser = argparse.ArgumentParser(description="Excel Review Demo Orchestrator")
     parser.add_argument(
         "--n", type=int, default=10, help="Number of sample rows to process"
     )
     args = parser.parse_args()
 
-    orchestrator = MTCRDemoOrchestrator()
+    orchestrator = ExcelReviewOrchestrator()
     result = orchestrator.run_demo(sample_size=args.n)
 
     if "error" in result:

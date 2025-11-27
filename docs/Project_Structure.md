@@ -1,23 +1,23 @@
-# MTCR_Agentic_Automation - Project Structure
+# Agentic Excel Review Template - Project Structure
 
 ## Overview
-This project implements a modular AI automation system for the Monthly Technical Complaints Review (MTCR) process at bioMérieux. The system operates in assistive mode only, ensuring no modification of validated Excel cells or macros.
+This project implements a modular AI automation system for Excel-based review processes. The system operates in assistive mode only, ensuring no modification of validated Excel cells or macros.
 
 ## Directory Structure
 ```
-MTCR_Agentic_Automation/
+Agentic_Excel_Review_Template/
 ├── src/
 │   ├── excel/
-│   │   └── mtcr_reader.py          # M1: Excel reader and sheet profiler
+│   │   └── excel_reader.py        # M1: Excel reader and sheet profiler
 │   ├── ui/
-│   │   └── mtcr_app.py            # M11: Streamlit UI for MTCR Assistant
+│   │   └── excel_review_app.py    # M11: Streamlit UI for Excel Review
 │   └── utils/
 │       ├── config_loader.py        # Configuration management
 │       └── lmstudio_chat.py       # LM Studio integration
 ├── docs/
 │   └── Project_Structure.md        # This file
 ├── data/                           # Input data directory
-│   └── MTCR Data.xlsm             # Validated workbook (read-only)
+│   └── Sample_Review_Workbook.xlsx # Sample workbook (read-only)
 ├── out/                           # Output directory for AI artifacts
 ├── config.json                    # Configuration file
 ├── requirements.txt               # Python dependencies
@@ -27,28 +27,28 @@ MTCR_Agentic_Automation/
 ## Modules
 
 ### Module 1 (M1) - Excel Reader
-- **Purpose**: Safe, read-only Excel reader for MTCR Data.xlsm
+- **Purpose**: Safe, read-only Excel reader for review workbooks
 - **Key Components**:
-  - `src/excel/mtcr_reader.py`: Main reader with header detection and data profiling
+  - `src/excel/excel_reader.py`: Main reader with header detection and data profiling
   - `src/utils/config_loader.py`: Configuration management with env overrides
 - **Outputs**:
   - Structured sheet profile with metadata
-  - CSV preview in `/out/quality_review_preview.csv`
+  - CSV preview in `/out/review_sheet_preview.csv`
 - **Compliance**: Read-only access, no modification of source workbook
 
-### Module 11 (M11) - Streamlit UI for MTCR Assistant
-- **Purpose**: Professional web interface for MTCR Assistant with KPI overview and chat functionality
+### Module 11 (M11) - Streamlit UI for Excel Review
+- **Purpose**: Professional web interface for Excel Review with KPI overview and chat functionality
 - **Key Components**:
-  - `src/ui/mtcr_app.py`: Main Streamlit application
+  - `src/ui/excel_review_app.py`: Main Streamlit application
   - Integration with existing Excel reader and LM Studio chat
 - **Features**:
   - KPI dashboard (row counts, comments, AI suggestions)
   - Interactive chat interface with dataset context
   - Read-only mode with compliance guardrails
-  - Clean, minimal UI inspired by OpenAI's chat interface
+  - Clean, minimal UI
 - **How to Run**:
   ```bash
-  streamlit run src/ui/mtcr_app.py
+  streamlit run src/ui/excel_review_app.py
   ```
 - **Compliance**: Read-only access only, all AI outputs are suggestions, no writes to validated Excel file
 

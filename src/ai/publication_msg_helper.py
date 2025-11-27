@@ -58,7 +58,7 @@ def save_eml(
     save_path: Path,
 ):
     # Minimal RFC 5322 MIME with HTML body + attachments (base64)
-    boundary = "====MTCR_BOUNDARY===="
+    boundary = "====REVIEW_BOUNDARY===="
     lines = []
     lines.append(f"Subject: {subject}")
     if to:
@@ -133,7 +133,7 @@ def create_draft(
     html = _load_html(yyyymm, locale, html_path)
     att_files = _collect_attachments(attachments)
     ts_iso = datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
-    base = f"MTCR_Review_Summary_{yyyymm}_{locale}"
+    base = f"Review_Summary_{yyyymm}_{locale}"
     if platform.system() == "Windows" and not force_eml:
         out = DRAFTS / f"{base}.msg"
         save_msg(subject, html, to, cc, att_files, out)
