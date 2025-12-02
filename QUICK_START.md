@@ -90,6 +90,60 @@ This generates diagrams and visualizations showing the architecture.
 
 ---
 
+## 🌐 **Run the Streamlit UI (NEW!)**
+
+The project now includes a professional web interface for interactive exploration and AI-powered chat!
+
+### **Launch the UI:**
+
+**Windows:**
+```batch
+run_ui.bat
+```
+
+**Mac/Linux:**
+```bash
+chmod +x run_ui.sh  # First time only
+./run_ui.sh
+```
+
+**Or directly:**
+```bash
+streamlit run src/ui/excel_review_app.py
+```
+
+### **UI Features:**
+
+1. **📊 Overview Tab:**
+   - Real-time KPIs (total rows, comments, reviewers)
+   - Interactive data preview
+   - On-demand AI analysis (5-50 rows)
+   - Top AI suggestions visualization
+   - Export to CSV
+
+2. **💬 Chat Tab:**
+   - Ask questions about your data in natural language
+   - Context-aware AI assistant (knows your dataset)
+   - Suggested questions for quick start
+   - Full conversation history
+   - Powered by local LLM (LM Studio)
+
+3. **📖 Presentation Tab:**
+   - Bilingual interface (French/English)
+   - System architecture overview
+   - Project roadmap
+   - Design principles
+   - Technical stack details
+
+### **Requirements for UI:**
+- Streamlit installed (`pip install streamlit` - already in requirements.txt)
+- LM Studio running (for chat and AI analysis features)
+- Properly configured `config.json`
+
+The UI will open automatically in your browser at `http://localhost:8501`
+
+---
+
 ## 📝 **Sample Data Structure**
 
 The included `data/Sample_Review_Workbook.xlsx` contains:
