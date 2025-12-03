@@ -17,4 +17,4 @@ Or use the provided shell scripts:
 """
 
 __version__ = "1.0.0"
-__author__ = "Navid Broumandfar (Service Analytics, CHP, bioMérieux)"
+__author__ = "Navid Broumandfar"

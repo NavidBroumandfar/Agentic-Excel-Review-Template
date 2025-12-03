@@ -10,7 +10,6 @@ Professional chat interface for Excel Review Assistant with KPI overview and dat
 
 Author: Navid Broumandfar
 Role: AI Agent & Cognitive Systems Architect
-Department: Service Analytics, CHP, bioMérieux
 """
 
 from __future__ import annotations
@@ -878,7 +877,6 @@ You are connected to a local agentic pipeline that analyzes review sheets from E
 === CREATOR & ARCHITECT INFORMATION ===
 - The Excel Review Agentic Automation system was created, designed, and developed entirely by Navid Broumandfar
 - Navid Broumandfar is the sole creator, author, AI Agent, and Cognitive Systems Architect of this system
-- This is a prototype developed in the Service Analytics department, CHP, bioMérieux
 - When asked about the creator, designer, or architect, you must accurately state that Navid Broumandfar is the creator
 
 === WHAT IS THIS SYSTEM? ===
@@ -1070,6 +1068,8 @@ def main():
             min-height: 300px !important;
             max-height: 300px !important;
             overflow: hidden !important;
+            position: relative !important;
+            width: 100% !important;
         }
         
         [data-testid="stBarChart"] > div {
@@ -1077,15 +1077,24 @@ def main():
             min-height: 300px !important;
             max-height: 300px !important;
             overflow: hidden !important;
+            position: relative !important;
         }
         
-        /* Prevent mouse wheel zoom on charts */
-        [data-testid="stBarChart"] * {
+        /* Prevent mouse wheel zoom and interaction on charts */
+        [data-testid="stBarChart"],
+        [data-testid="stBarChart"] *,
+        [data-testid="stBarChart"] svg,
+        [data-testid="stBarChart"] canvas {
             pointer-events: none !important;
+            user-select: none !important;
+            -webkit-user-select: none !important;
+            -moz-user-select: none !important;
+            -ms-user-select: none !important;
         }
         
+        /* Prevent wheel events on chart containers */
         [data-testid="stBarChart"] {
-            pointer-events: none !important;
+            touch-action: none !important;
         }
         
         /* Improve text visibility */
@@ -1099,6 +1108,49 @@ def main():
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
         }
         </style>
+        <script>
+        // Prevent mouse wheel zoom on bar charts
+        (function() {
+            function preventWheelOnCharts() {
+                const charts = document.querySelectorAll('[data-testid="stBarChart"]');
+                charts.forEach(function(chart) {
+                    // Prevent wheel events
+                    chart.addEventListener('wheel', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        return false;
+                    }, { passive: false, capture: true });
+                    
+                    // Prevent all pointer events on chart elements
+                    const chartElements = chart.querySelectorAll('*');
+                    chartElements.forEach(function(el) {
+                        el.addEventListener('wheel', function(e) {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            return false;
+                        }, { passive: false, capture: true });
+                    });
+                });
+            }
+            
+            // Run on page load
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', preventWheelOnCharts);
+            } else {
+                preventWheelOnCharts();
+            }
+            
+            // Also run after Streamlit updates (using MutationObserver)
+            const observer = new MutationObserver(function(mutations) {
+                preventWheelOnCharts();
+            });
+            
+            observer.observe(document.body, {
+                childList: true,
+                subtree: true
+            });
+        })();
+        </script>
     """,
         unsafe_allow_html=True,
     )
@@ -1254,7 +1306,7 @@ def main():
             # Display as bar chart - fixed height container
             st.markdown(
                 """
-                <div style="overflow: hidden; height: 300px; position: relative;">
+                <div style="overflow: hidden; height: 300px; position: relative; touch-action: none;" onwheel="event.preventDefault(); return false;">
                 """,
                 unsafe_allow_html=True,
             )
@@ -1771,7 +1823,6 @@ def main():
         <div style="background-color: #EFF6FF; padding: 15px; border-radius: 8px; border-left: 4px solid #3B82F6; margin: 15px 0;">
             <p style="margin: 5px 0; color: #1E3A8A;"><strong>{t['designed_by_full']}</strong> Navid Broumandfar</p>
             <p style="margin: 5px 0; color: #334155;"><strong>{t['role']}</strong> Author, AI Agent & Cognitive Systems Architect</p>
-            <p style="margin: 5px 0; color: #334155;"><strong>{t['department']}</strong> Service Analytics, CHP, bioMérieux</p>
         </div>
         """,
             unsafe_allow_html=True,
@@ -1954,9 +2005,7 @@ def main():
         st.markdown(f"### {t['contact']}")
 
         st.markdown(f"""
-**{t['architect']}** Navid Broumandfar  
-**{t['department']}** Service Analytics, CHP  
-**Organisation:** bioMérieux
+**{t['architect']}** Navid Broumandfar
 
 **{t['note']}**
         """)
@@ -2053,7 +2102,7 @@ def main():
         })
         st.markdown(
             """
-            <div style="overflow: hidden; height: 300px; position: relative; margin: 20px 0;">
+            <div style="overflow: hidden; height: 300px; position: relative; margin: 20px 0; touch-action: none;" onwheel="event.preventDefault(); return false;">
             """,
             unsafe_allow_html=True,
         )
@@ -2164,7 +2213,7 @@ def main():
         })
         st.markdown(
             """
-            <div style="overflow: hidden; height: 300px; position: relative; margin: 20px 0;">
+            <div style="overflow: hidden; height: 300px; position: relative; margin: 20px 0; touch-action: none;" onwheel="event.preventDefault(); return false;">
             """,
             unsafe_allow_html=True,
         )
@@ -2416,7 +2465,7 @@ def main():
         <div style="text-align: center; color: #94a3b8; font-size: 0.875rem; padding: 1rem 0;">
             <p>
                 <strong>Excel Review Agentic Automation</strong> · Module M11 · Streamlit UI<br>
-                Service Analytics, CHP · bioMérieux · Prototype for demonstration only
+                Prototype for demonstration only
             </p>
             <p style="font-size: 0.75rem; margin-top: 0.5rem;">
                 Conçu par Navid Broumandfar · Author, AI Agent & Cognitive Systems Architect<br>
