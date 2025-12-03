@@ -45,9 +45,9 @@ TRANSLATIONS = {
         "language_label": "Language / Langue",
         
         # Tab Names
-        "tab_overview": "📊 Overview",
-        "tab_chat": "💬 Chat with Assistant",
-        "tab_presentation": "📖 Presentation",
+        "tab_overview": "Overview",
+        "tab_chat": "Chat with Assistant",
+        "tab_presentation": "Presentation",
         
         # Overview Tab
         "key_indicators": "📈 Key Indicators",
@@ -229,6 +229,80 @@ Please verify that:
         "status": "Status",
         "completed": "✓ Completed",
         "active": "→ Active",
+        # Pitch Tab
+        "tab_pitch": "Pitch",
+        "pitch_title": "Visual Pitch",
+        "pitch_subtitle": "AI-Assisted Review Automation",
+        "pitch_workflow_today": "How the Process Works Today",
+        "pitch_pain_points": "Current Pain Points",
+        "pitch_ai_automation": "How AI Automation Works",
+        "pitch_before_after": "Before vs After",
+        "pitch_roadmap": "Implementation Roadmap",
+        "pitch_summary": "Summary",
+        "pitch_manual_hours": "Manual Reading",
+        "pitch_admin_hours": "Admin Tasks",
+        "pitch_analysis_hours": "Analysis",
+        "pitch_total_hours": "Total Hours",
+        "pitch_time_saved": "Time Saved",
+        "pitch_annual_savings": "Annual Savings",
+        "pitch_cost_savings": "Cost Savings",
+        "pitch_note": "NOTE: These numbers reflect realistic workload estimates.",
+        "pitch_header_title": "Agentic Excel Review – Visual Pitch",
+        "pitch_header_subtitle": "AI Assists Humans, Doesn't Replace Them",
+        "pitch_workflow_1": "Data Ingestion",
+        "pitch_workflow_2": "Excel Macros & Sampling",
+        "pitch_workflow_3": "Manual Text Review",
+        "pitch_workflow_4": "Reporting & KPIs",
+        "pitch_pain_1": "High manual reading load",
+        "pitch_pain_2": "Repetitive admin tasks",
+        "pitch_pain_3": "Error-prone steps",
+        "pitch_pain_4": "Time wasted on low-value actions",
+        "pitch_pipeline_1": "📥 Excel Reader - Safe read-only ingestion",
+        "pitch_pipeline_2": "📚 RAG Context - Loads SOP/rules context",
+        "pitch_pipeline_3": "🧠 AI Review Assistant - LLM generates suggestions",
+        "pitch_pipeline_4": "💾 Safe Writer - Writes AI_ columns to CSV",
+        "pitch_pipeline_5": "📝 Log Manager - Audit logging & tracking",
+        "pitch_pipeline_6": "🎯 Orchestrator - Full pipeline execution",
+        "pitch_before": "Before",
+        "pitch_after": "After",
+        "pitch_reduction": "Reduction",
+        "pitch_annual_savings_value": "€13,500 per reviewer",
+        "pitch_time_saved_value": "300 hours per year",
+        "pitch_phase_1": "Phase 1: ✅ Completed - Local Prototype (M1-M10)",
+        "pitch_phase_2": "Phase 2: 🔄 Pending - Integrate with internal APIs",
+        "pitch_phase_3": "Phase 3: 📋 Planned - Pilot with process team",
+        "pitch_phase_4": "Phase 4: 🔮 Future - Industrialization",
+        "pitch_benefit_1": "AI supports humans",
+        "pitch_benefit_2": "50% workload reduction",
+        "pitch_benefit_3": "€13,500 annual savings",
+        "pitch_benefit_4": "Better consistency",
+        "pitch_benefit_5": "Full audit trail",
+        "pitch_next_1": "Prototype completed",
+        "pitch_next_2": "Request API access",
+        "pitch_next_3": "Schedule pilot",
+        "pitch_next_4": "Plan industrialization",
+        "pitch_cta": "Questions? Let's discuss!",
+        # Development Value & Agentic AI Section
+        "pitch_tech_value": "Technology & Development Value",
+        "pitch_dev_value_title": "Internal Development Value",
+        "pitch_dev_value_desc": "This prototype was developed internally, leveraging domain expertise and modern AI capabilities without external consulting or IT team resources.",
+        "pitch_dev_cost_saved": "Development Cost Saved",
+        "pitch_dev_cost_estimate": "Estimated equivalent consulting cost",
+        "pitch_dev_cost_note": "Based on industry rates for similar AI automation projects",
+        "pitch_agentic_ai": "Understanding Agentic AI",
+        "pitch_agentic_ai_desc": "This system represents cutting-edge Agentic AI architecture, not just automation. Here's what makes it advanced:",
+        "pitch_agency_title": "Agency",
+        "pitch_agency_desc": "The system makes autonomous decisions within defined boundaries, orchestrating multiple components to achieve goals without constant human intervention.",
+        "pitch_memory_title": "Memory",
+        "pitch_memory_desc": "Persistent memory through JSONL logs and embeddings enables the system to learn from past interactions and maintain context across sessions.",
+        "pitch_orchestration_title": "Orchestration",
+        "pitch_orchestration_desc": "11 modular components work together seamlessly: Excel Reader → RAG Context → AI Assistant → Safe Writer → Log Manager → Publication Agent, all coordinated by the Orchestrator.",
+        "pitch_vision_title": "Vision & Next Steps",
+        "pitch_vision_desc": "This foundation enables expansion to other automation areas: document processing, quality control workflows, compliance monitoring, and more.",
+        "pitch_human_centric": "Human-Centric Design",
+        "pitch_human_centric_desc": "AI assists and augments human expertise—it doesn't replace it. Reviewers maintain full control, with AI providing intelligent suggestions that enhance decision-making.",
+        "pitch_future_investment": "Future Investment",
+        "pitch_future_investment_desc": "To scale this prototype into production and expand to other areas, continued development and maintenance will require dedicated resources and support.",
     },
     "fr": {
         # Common UI
@@ -238,9 +312,9 @@ Please verify that:
         "language_label": "Langue / Language",
         
         # Tab Names
-        "tab_overview": "📊 Vue d'ensemble",
-        "tab_chat": "💬 Chat avec l'assistant",
-        "tab_presentation": "📖 Présentation",
+        "tab_overview": "Vue d'ensemble",
+        "tab_chat": "Chat avec l'assistant",
+        "tab_presentation": "Présentation",
         
         # Overview Tab
         "key_indicators": "📈 Indicateurs clés",
@@ -422,6 +496,80 @@ Veuillez vérifier que:
         "status": "Statut",
         "completed": "✓ Complété",
         "active": "→ Actif",
+        # Pitch Tab
+        "tab_pitch": "Pitch",
+        "pitch_title": "Présentation Visuelle",
+        "pitch_subtitle": "Automatisation IA de la Revue",
+        "pitch_workflow_today": "Comment fonctionne le processus aujourd'hui",
+        "pitch_pain_points": "Points de douleur actuels",
+        "pitch_ai_automation": "Comment fonctionne l'automatisation IA",
+        "pitch_before_after": "Avant vs Après",
+        "pitch_roadmap": "Feuille de route",
+        "pitch_summary": "Résumé",
+        "pitch_manual_hours": "Lecture manuelle",
+        "pitch_admin_hours": "Tâches admin",
+        "pitch_analysis_hours": "Analyse",
+        "pitch_total_hours": "Total Heures",
+        "pitch_time_saved": "Temps économisé",
+        "pitch_annual_savings": "Économies annuelles",
+        "pitch_cost_savings": "Économies de coûts",
+        "pitch_note": "NOTE: Ces chiffres reflètent des estimations réalistes de charge de travail.",
+        "pitch_header_title": "Agentic Excel Review – Présentation Visuelle",
+        "pitch_header_subtitle": "L'IA assiste les humains, ne les remplace pas",
+        "pitch_workflow_1": "Ingestion de données",
+        "pitch_workflow_2": "Macros Excel & Échantillonnage",
+        "pitch_workflow_3": "Revue manuelle de texte",
+        "pitch_workflow_4": "Rapports & KPIs",
+        "pitch_pain_1": "Charge élevée de lecture manuelle",
+        "pitch_pain_2": "Tâches administratives répétitives",
+        "pitch_pain_3": "Étapes sujettes aux erreurs",
+        "pitch_pain_4": "Temps perdu sur des actions à faible valeur",
+        "pitch_pipeline_1": "📥 Excel Reader - Ingestion sécurisée en lecture seule",
+        "pitch_pipeline_2": "📚 RAG Context - Charge le contexte SOP/règles",
+        "pitch_pipeline_3": "🧠 AI Review Assistant - LLM génère des suggestions",
+        "pitch_pipeline_4": "💾 Safe Writer - Écrit les colonnes AI_ en CSV",
+        "pitch_pipeline_5": "📝 Log Manager - Journalisation et suivi d'audit",
+        "pitch_pipeline_6": "🎯 Orchestrator - Exécution complète du pipeline",
+        "pitch_before": "Avant",
+        "pitch_after": "Après",
+        "pitch_reduction": "Réduction",
+        "pitch_annual_savings_value": "€13,500 par reviewer",
+        "pitch_time_saved_value": "300 heures par an",
+        "pitch_phase_1": "Phase 1: ✅ Complétée - Prototype Local (M1-M10)",
+        "pitch_phase_2": "Phase 2: 🔄 En attente - Intégration avec APIs internes",
+        "pitch_phase_3": "Phase 3: 📋 Planifiée - Pilote avec l'équipe processus",
+        "pitch_phase_4": "Phase 4: 🔮 Future - Industrialisation",
+        "pitch_benefit_1": "L'IA soutient les humains",
+        "pitch_benefit_2": "Réduction de 50% de la charge de travail",
+        "pitch_benefit_3": "Économies annuelles de €13,500",
+        "pitch_benefit_4": "Meilleure cohérence",
+        "pitch_benefit_5": "Traçabilité complète",
+        "pitch_next_1": "Prototype complété",
+        "pitch_next_2": "Demander l'accès API",
+        "pitch_next_3": "Planifier le pilote",
+        "pitch_next_4": "Planifier l'industrialisation",
+        "pitch_cta": "Des questions? Discutons-en!",
+        # Development Value & Agentic AI Section
+        "pitch_tech_value": "Valeur Technologique & Développement",
+        "pitch_dev_value_title": "Valeur du Développement Interne",
+        "pitch_dev_value_desc": "Ce prototype a été développé en interne, en exploitant l'expertise métier et les capacités IA modernes sans recours à des consultants externes ni aux ressources des équipes IT.",
+        "pitch_dev_cost_saved": "Coût de Développement Économisé",
+        "pitch_dev_cost_estimate": "Coût équivalent estimé en consulting",
+        "pitch_dev_cost_note": "Basé sur les tarifs du marché pour des projets similaires d'automatisation IA",
+        "pitch_agentic_ai": "Comprendre l'IA Agentique",
+        "pitch_agentic_ai_desc": "Ce système représente une architecture d'IA Agentique de pointe, pas seulement une automatisation. Voici ce qui le rend avancé:",
+        "pitch_agency_title": "Agence",
+        "pitch_agency_desc": "Le système prend des décisions autonomes dans des limites définies, orchestrant plusieurs composants pour atteindre des objectifs sans intervention humaine constante.",
+        "pitch_memory_title": "Mémoire",
+        "pitch_memory_desc": "La mémoire persistante via les logs JSONL et les embeddings permet au système d'apprendre des interactions passées et de maintenir le contexte entre les sessions.",
+        "pitch_orchestration_title": "Orchestration",
+        "pitch_orchestration_desc": "11 composants modulaires travaillent ensemble de manière transparente: Excel Reader → RAG Context → AI Assistant → Safe Writer → Log Manager → Publication Agent, tous coordonnés par l'Orchestrator.",
+        "pitch_vision_title": "Vision & Prochaines Étapes",
+        "pitch_vision_desc": "Cette fondation permet l'expansion vers d'autres domaines d'automatisation: traitement de documents, workflows de contrôle qualité, monitoring de conformité, et plus encore.",
+        "pitch_human_centric": "Design Centré sur l'Humain",
+        "pitch_human_centric_desc": "L'IA assiste et augmente l'expertise humaine—elle ne la remplace pas. Les reviewers conservent le contrôle total, l'IA fournissant des suggestions intelligentes qui améliorent la prise de décision.",
+        "pitch_future_investment": "Investissement Futur",
+        "pitch_future_investment_desc": "Pour transformer ce prototype en production et l'étendre à d'autres domaines, le développement et la maintenance continus nécessiteront des ressources et un support dédiés.",
     },
 }
 
@@ -865,7 +1013,7 @@ def main():
         page_title="Excel Review AI Assistant",
         layout="wide",
         initial_sidebar_state="collapsed",
-        page_icon="🤖",
+        page_icon="",
     )
 
     # Initialize session state for language (DEFAULT: English)
@@ -876,10 +1024,16 @@ def main():
     if "current_tab" not in st.session_state:
         st.session_state.current_tab = 0
 
-    # Custom CSS for clean, minimal design
+    # Custom CSS for clean, minimal design with modern fonts
     st.markdown(
         """
         <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif !important;
+        }
+        
         .main-header {
             text-align: center;
             padding: 1rem 0 0.5rem 0;
@@ -891,11 +1045,13 @@ def main():
             font-weight: 600;
             color: #0f172a;
             margin: 0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
         }
         .subtitle {
             font-size: 1rem;
             color: #64748b;
             margin-top: 0.5rem;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
         }
         .stMetric {
             background-color: #ffffff;
@@ -906,6 +1062,41 @@ def main():
         .language-selector {
             text-align: center;
             margin-bottom: 1rem;
+        }
+        
+        /* Fix bar chart resizing and prevent zoom */
+        [data-testid="stBarChart"] {
+            height: 300px !important;
+            min-height: 300px !important;
+            max-height: 300px !important;
+            overflow: hidden !important;
+        }
+        
+        [data-testid="stBarChart"] > div {
+            height: 300px !important;
+            min-height: 300px !important;
+            max-height: 300px !important;
+            overflow: hidden !important;
+        }
+        
+        /* Prevent mouse wheel zoom on charts */
+        [data-testid="stBarChart"] * {
+            pointer-events: none !important;
+        }
+        
+        [data-testid="stBarChart"] {
+            pointer-events: none !important;
+        }
+        
+        /* Improve text visibility */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+            font-weight: 500 !important;
+            letter-spacing: -0.02em !important;
+        }
+        
+        p, div, span, li {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
         }
         </style>
     """,
@@ -938,7 +1129,7 @@ def main():
     st.markdown(
         f"""
         <div class="main-header">
-            <h1 class="main-title">🤖 {t['app_title']}</h1>
+            <h1 class="main-title">{t['app_title']}</h1>
             <p class="subtitle">{t['app_subtitle']}</p>
             <p style="font-size: 0.875rem; color: #64748b; margin-top: 0.75rem; font-style: italic;">
                 {t['designed_by']}
@@ -972,7 +1163,8 @@ def main():
     tab_labels = [
         t["tab_overview"],
         t["tab_chat"],
-        t["tab_presentation"]
+        t["tab_presentation"],
+        t["tab_pitch"]
     ]
     
     # Use query params to preserve tab selection across language changes
@@ -986,7 +1178,7 @@ def main():
     
     # Create tab selection buttons (workaround for preserving selection)
     st.markdown("---")
-    tab_cols = st.columns(3)
+    tab_cols = st.columns(4)
     for idx, label in enumerate(tab_labels):
         with tab_cols[idx]:
             if st.button(
@@ -1002,15 +1194,17 @@ def main():
     st.markdown("---")
     
     # Display content based on selected tab
-    tab1, tab2, tab3 = st.container(), st.container(), st.container()
+    tab1, tab2, tab3, tab4 = st.container(), st.container(), st.container(), st.container()
     
     # Show only the selected tab content
     if st.session_state.current_tab == 0:
         active_tab = tab1
     elif st.session_state.current_tab == 1:
         active_tab = tab2
-    else:
+    elif st.session_state.current_tab == 2:
         active_tab = tab3
+    else:
+        active_tab = tab4
 
     # ========================================================================
     # TAB 1: Overview
@@ -1018,36 +1212,27 @@ def main():
     if st.session_state.current_tab == 0:
         st.markdown(f"### {t['key_indicators']}")
 
-        # Display KPIs in columns
+        # Display KPIs in columns - styled dark cards
         col1, col2, col3, col4 = st.columns(4)
 
-        with col1:
-            st.metric(
-                label=t["total_rows"],
-                value=f"{kpis['total_rows']:,}",
-                help=t["total_rows_help"],
-            )
+        kpi_data = [
+            (t["total_rows"], f"{kpis['total_rows']:,}", "#3b82f6"),
+            (t["rows_with_comment"], f"{kpis['rows_with_comment']:,}", "#10b981"),
+            (t["distinct_reviewers"], str(kpis["distinct_reviewers"]), "#8b5cf6"),
+            (t["ai_suggestions"], f"{kpis['rows_with_ai_reason']:,}", "#f59e0b"),
+        ]
 
-        with col2:
-            st.metric(
-                label=t["rows_with_comment"],
-                value=f"{kpis['rows_with_comment']:,}",
-                help=t["rows_with_comment_help"],
-            )
-
-        with col3:
-            st.metric(
-                label=t["distinct_reviewers"],
-                value=kpis["distinct_reviewers"],
-                help=t["distinct_reviewers_help"],
-            )
-
-        with col4:
-            st.metric(
-                label=t["ai_suggestions"],
-                value=f"{kpis['rows_with_ai_reason']:,}",
-                help=t["ai_suggestions_help"],
-            )
+        for idx, (label, value, color) in enumerate(kpi_data):
+            with [col1, col2, col3, col4][idx]:
+                st.markdown(
+                    f"""
+                <div style="background: rgba(30, 41, 59, 0.6); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); padding: 24px; border-radius: 16px; margin-bottom: 20px; box-shadow: 0 4px 16px rgba(0,0,0,0.2);">
+                    <div style="color: rgba(255,255,255,0.7); font-size: 13px; font-weight: 400; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;">{label}</div>
+                    <div style="color: {color}; font-size: 32px; font-weight: 600; line-height: 1.2;">{value}</div>
+                </div>
+                """,
+                    unsafe_allow_html=True,
+                )
 
         # AI Columns info
         if kpis["ai_columns_count"] > 0:
@@ -1066,10 +1251,17 @@ def main():
                 list(kpis["top_ai_reasons"].items()), columns=[t["reason"], t["occurrences"]]
             )
 
-            # Display as bar chart
+            # Display as bar chart - fixed height container
+            st.markdown(
+                """
+                <div style="overflow: hidden; height: 300px; position: relative;">
+                """,
+                unsafe_allow_html=True,
+            )
             st.bar_chart(
                 top_reasons_df.set_index(t["reason"]), height=300, use_container_width=True
             )
+            st.markdown("</div>", unsafe_allow_html=True)
 
             # Also show as table
             with st.expander(t["view_details"]):
@@ -1185,39 +1377,38 @@ def main():
             st.markdown("---")
             st.markdown(f"### {t['analysis_results']}")
 
-            # Show summary statistics
+            # Show summary statistics - styled dark cards
             if "AI_ReasonSuggestion" in st.session_state.analyzed_df.columns:
                 col1, col2, col3 = st.columns(3)
 
-                with col1:
-                    st.metric(
-                        t["rows_analyzed_metric"],
-                        len(st.session_state.analyzed_df),
-                    )
+                avg_confidence = (
+                    st.session_state.analyzed_df["AI_Confidence"].mean()
+                    if "AI_Confidence" in st.session_state.analyzed_df.columns
+                    else 0
+                )
+                unique_reasons = (
+                    st.session_state.analyzed_df["AI_ReasonSuggestion"].nunique()
+                    if "AI_ReasonSuggestion" in st.session_state.analyzed_df.columns
+                    else 0
+                )
 
-                with col2:
-                    avg_confidence = (
-                        st.session_state.analyzed_df["AI_Confidence"].mean()
-                        if "AI_Confidence" in st.session_state.analyzed_df.columns
-                        else 0
-                    )
-                    st.metric(
-                        t["average_confidence"],
-                        f"{avg_confidence:.2f}",
-                        help=t["average_confidence_help"],
-                    )
+                analysis_metrics = [
+                    (t["rows_analyzed_metric"], str(len(st.session_state.analyzed_df)), "#3b82f6"),
+                    (t["average_confidence"], f"{avg_confidence:.2f}", "#10b981"),
+                    (t["unique_reasons"], str(unique_reasons), "#8b5cf6"),
+                ]
 
-                with col3:
-                    unique_reasons = (
-                        st.session_state.analyzed_df["AI_ReasonSuggestion"].nunique()
-                        if "AI_ReasonSuggestion" in st.session_state.analyzed_df.columns
-                        else 0
-                    )
-                    st.metric(
-                        t["unique_reasons"],
-                        unique_reasons,
-                        help=t["unique_reasons_help"],
-                    )
+                for idx, (label, value, color) in enumerate(analysis_metrics):
+                    with [col1, col2, col3][idx]:
+                        st.markdown(
+                            f"""
+                        <div style="background: rgba(30, 41, 59, 0.6); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); padding: 24px; border-radius: 16px; margin-bottom: 20px; box-shadow: 0 4px 16px rgba(0,0,0,0.2);">
+                            <div style="color: rgba(255,255,255,0.7); font-size: 13px; font-weight: 400; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;">{label}</div>
+                            <div style="color: {color}; font-size: 32px; font-weight: 600; line-height: 1.2;">{value}</div>
+                        </div>
+                        """,
+                            unsafe_allow_html=True,
+                        )
 
             # Display the analyzed data
             st.markdown(f"#### {t['data_with_ai_columns']}")
@@ -1769,6 +1960,454 @@ def main():
 
 **{t['note']}**
         """)
+
+    # ========================================================================
+    # TAB 4: Pitch
+    # ========================================================================
+    elif st.session_state.current_tab == 3:
+        # Workload estimates
+        manual_before = 30  # hours/month
+        manual_after = 12
+        admin_before = 12   # hours/month
+        admin_after = 5
+        analysis_before = 8  # hours/month (stays same)
+        analysis_after = 8
+        hourly_cost_eur = 45
+
+        # Calculations
+        total_before = 50  # hours/month
+        total_after = 25   # hours/month
+        time_saved_per_month = 25
+        annual_time_saved = 300  # hours
+        annual_cost_saved = 13500  # EUR
+
+        # Section 1: Header Banner - Modern minimalist design
+        st.markdown(
+            f"""
+        <div style="background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0f1419 100%); padding: 60px 40px; border-radius: 20px; color: white; margin-bottom: 40px; text-align: center; border: 1px solid rgba(255,255,255,0.1);">
+            <h1 style="color: #ffffff; margin: 0 0 15px 0; font-size: 48px; font-weight: 300; letter-spacing: -1px;">{t['pitch_header_title']}</h1>
+            <p style="color: rgba(255,255,255,0.7); font-size: 18px; margin: 0; font-weight: 300;">{t['pitch_header_subtitle']}</p>
+        </div>
+        """,
+            unsafe_allow_html=True,
+        )
+
+        # Section 2: Workflow Today - Clean minimal design
+        st.markdown(f"<h2 style='color: #ffffff; font-weight: 300; font-size: 28px; margin-bottom: 30px;'>{t['pitch_workflow_today']}</h2>", unsafe_allow_html=True)
+        workflow_cols = st.columns(4)
+        
+        workflows = [
+            (t["pitch_workflow_1"], "linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%)"),
+            (t["pitch_workflow_2"], "linear-gradient(135deg, #7c3aed 0%, #a855f7 100%)"),
+            (t["pitch_workflow_3"], "linear-gradient(135deg, #dc2626 0%, #ef4444 100%)"),
+            (t["pitch_workflow_4"], "linear-gradient(135deg, #059669 0%, #10b981 100%)"),
+        ]
+        
+        for idx, (text, gradient) in enumerate(workflows):
+            with workflow_cols[idx]:
+                st.markdown(
+                    f"""
+                <div style="background: {gradient}; padding: 30px 20px; border-radius: 16px; color: white; text-align: center; margin-bottom: 10px; min-height: 140px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 8px 32px rgba(0,0,0,0.3);">
+                    <div style="font-size: 32px; margin-bottom: 12px; font-weight: 600; opacity: 0.9;">{idx + 1}</div>
+                    <div style="font-size: 15px; font-weight: 400; line-height: 1.4;">{text}</div>
+                </div>
+                """,
+                    unsafe_allow_html=True,
+                )
+                if idx < 3:
+                    st.markdown(
+                        '<div style="text-align: center; font-size: 20px; color: rgba(255,255,255,0.3); margin: -25px 0; font-weight: 300;">→</div>',
+                        unsafe_allow_html=True,
+                    )
+
+        st.markdown("---")
+
+        # Section 3: Pain Points - Dark glassmorphism cards
+        st.markdown(f"<h2 style='color: #ffffff; font-weight: 300; font-size: 28px; margin-bottom: 30px;'>{t['pitch_pain_points']}</h2>", unsafe_allow_html=True)
+        
+        # Display 4 metrics with modern dark cards
+        pain_cols = st.columns(4)
+        pain_metrics = [
+            (t["pitch_manual_hours"], f"{manual_before}h", "#f59e0b"),
+            (t["pitch_admin_hours"], f"{admin_before}h", "#3b82f6"),
+            (t["pitch_analysis_hours"], f"{analysis_before}h", "#8b5cf6"),
+            (t["pitch_total_hours"], f"{total_before}h/month", "#10b981"),
+        ]
+        
+        for idx, (label, value, color) in enumerate(pain_metrics):
+            with pain_cols[idx]:
+                st.markdown(
+                    f"""
+                <div style="background: rgba(30, 41, 59, 0.6); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); padding: 24px; border-radius: 16px; margin-bottom: 20px; box-shadow: 0 4px 16px rgba(0,0,0,0.2);">
+                    <div style="color: rgba(255,255,255,0.6); font-size: 13px; font-weight: 400; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;">{label}</div>
+                    <div style="color: {color}; font-size: 32px; font-weight: 600; line-height: 1.2;">{value}</div>
+                </div>
+                """,
+                    unsafe_allow_html=True,
+                )
+
+        # Bar chart with dark theme - fixed height container with zoom prevention
+        pain_data = pd.DataFrame({
+            "Category": [t["pitch_manual_hours"], t["pitch_admin_hours"], t["pitch_analysis_hours"]],
+            "Hours": [manual_before, admin_before, analysis_before]
+        })
+        st.markdown(
+            """
+            <div style="overflow: hidden; height: 300px; position: relative; margin: 20px 0;">
+            """,
+            unsafe_allow_html=True,
+        )
+        st.bar_chart(pain_data.set_index("Category"), height=300, use_container_width=True)
+        st.markdown("</div>", unsafe_allow_html=True)
+
+        # List key issues - modern minimal style
+        st.markdown("<br>", unsafe_allow_html=True)
+        pain_points_list = [
+            t['pitch_pain_1'],
+            t['pitch_pain_2'],
+            t['pitch_pain_3'],
+            t['pitch_pain_4'],
+        ]
+        
+        for pain_point in pain_points_list:
+            st.markdown(
+                f"""
+            <div style="background: rgba(245, 158, 11, 0.1); border-left: 3px solid #f59e0b; padding: 16px 20px; border-radius: 8px; margin-bottom: 12px;">
+                <div style="color: rgba(255,255,255,0.9); font-size: 15px; line-height: 1.5;">{pain_point}</div>
+            </div>
+            """,
+                unsafe_allow_html=True,
+            )
+
+        st.markdown("---")
+
+        # Section 4: AI Automation Pipeline - Clean vertical flow
+        st.markdown(f"<h2 style='color: #ffffff; font-weight: 300; font-size: 28px; margin-bottom: 30px;'>{t['pitch_ai_automation']}</h2>", unsafe_allow_html=True)
+        
+        # Remove emojis from pipeline items
+        pipeline_items_clean = [
+            t["pitch_pipeline_1"].replace("📥 ", "").replace(" - ", " • "),
+            t["pitch_pipeline_2"].replace("📚 ", "").replace(" - ", " • "),
+            t["pitch_pipeline_3"].replace("🧠 ", "").replace(" - ", " • "),
+            t["pitch_pipeline_4"].replace("💾 ", "").replace(" - ", " • "),
+            t["pitch_pipeline_5"].replace("📝 ", "").replace(" - ", " • "),
+            t["pitch_pipeline_6"].replace("🎯 ", "").replace(" - ", " • "),
+        ]
+        
+        pipeline_gradients = [
+            "linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(37, 99, 235, 0.25) 100%)",
+            "linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(124, 58, 237, 0.25) 100%)",
+            "linear-gradient(135deg, rgba(236, 72, 153, 0.15) 0%, rgba(219, 39, 119, 0.25) 100%)",
+            "linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(5, 150, 105, 0.25) 100%)",
+            "linear-gradient(135deg, rgba(14, 165, 233, 0.15) 0%, rgba(2, 132, 199, 0.25) 100%)",
+            "linear-gradient(135deg, rgba(245, 158, 11, 0.15) 0%, rgba(217, 119, 6, 0.25) 100%)",
+        ]
+        
+        pipeline_borders = [
+            "rgba(59, 130, 246, 0.4)",
+            "rgba(139, 92, 246, 0.4)",
+            "rgba(236, 72, 153, 0.4)",
+            "rgba(16, 185, 129, 0.4)",
+            "rgba(14, 165, 233, 0.4)",
+            "rgba(245, 158, 11, 0.4)",
+        ]
+        
+        for idx, (item, gradient, border) in enumerate(zip(pipeline_items_clean, pipeline_gradients, pipeline_borders)):
+            st.markdown(
+                f"""
+            <div style="background: {gradient}; border: 1px solid {border}; padding: 24px; border-radius: 12px; color: rgba(255,255,255,0.95); margin: 12px 0; backdrop-filter: blur(10px);">
+                <div style="font-size: 16px; font-weight: 400; line-height: 1.5;">{item}</div>
+            </div>
+            """,
+                unsafe_allow_html=True,
+            )
+            if idx < len(pipeline_items_clean) - 1:
+                st.markdown(
+                    '<div style="text-align: center; font-size: 18px; color: rgba(255,255,255,0.2); margin: -8px 0; font-weight: 300;">↓</div>',
+                    unsafe_allow_html=True,
+                )
+
+        st.markdown("---")
+
+        # Section 5: Before vs After Comparison - Modern metrics
+        st.markdown(f"<h2 style='color: #ffffff; font-weight: 300; font-size: 28px; margin-bottom: 30px;'>{t['pitch_before_after']}</h2>", unsafe_allow_html=True)
+        
+        # Comparison metrics - styled dark cards
+        comp_cols = st.columns(3)
+        comp_metrics = [
+            (t["pitch_before"], f"{total_before}h/month", "rgba(245, 158, 11, 0.2)", "rgba(245, 158, 11, 0.6)", "#f59e0b"),
+            (t["pitch_after"], f"{total_after}h/month", "rgba(16, 185, 129, 0.2)", "rgba(16, 185, 129, 0.6)", "#10b981"),
+            (t["pitch_reduction"], "50%", "rgba(59, 130, 246, 0.2)", "rgba(59, 130, 246, 0.6)", "#3b82f6"),
+        ]
+        
+        for idx, (label, value, bg_color, border_color, text_color) in enumerate(comp_metrics):
+            with comp_cols[idx]:
+                delta_html = ""
+                if idx == 1:  # After metric
+                    delta_html = f'<div style="color: rgba(16, 185, 129, 0.8); font-size: 14px; margin-top: 8px; font-weight: 500;">-{time_saved_per_month}h saved</div>'
+                st.markdown(
+                    f"""
+                <div style="background: {bg_color}; border: 1px solid {border_color}; padding: 28px; border-radius: 16px; margin-bottom: 20px; backdrop-filter: blur(10px);">
+                    <div style="color: rgba(255,255,255,0.6); font-size: 13px; font-weight: 400; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px;">{label}</div>
+                    <div style="color: {text_color}; font-size: 36px; font-weight: 600; line-height: 1.2;">{value}</div>
+                    {delta_html}
+                </div>
+                """,
+                    unsafe_allow_html=True,
+                )
+
+        # Grouped bar chart - fixed height container with zoom prevention
+        comparison_data = pd.DataFrame({
+            "Category": [t["pitch_manual_hours"], t["pitch_admin_hours"], t["pitch_analysis_hours"]],
+            t["pitch_before"]: [manual_before, admin_before, analysis_before],
+            t["pitch_after"]: [manual_after, admin_after, analysis_after]
+        })
+        st.markdown(
+            """
+            <div style="overflow: hidden; height: 300px; position: relative; margin: 20px 0;">
+            """,
+            unsafe_allow_html=True,
+        )
+        st.bar_chart(comparison_data.set_index("Category"), height=300, use_container_width=True)
+        st.markdown("</div>", unsafe_allow_html=True)
+
+        # Highlight box with annual savings - modern design
+        st.markdown(
+            f"""
+        <div style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(5, 150, 105, 0.25) 100%); border: 1px solid rgba(16, 185, 129, 0.4); padding: 32px; border-radius: 16px; color: white; margin: 30px 0; text-align: center; backdrop-filter: blur(10px);">
+            <div style="color: #10b981; font-size: 20px; font-weight: 500; margin-bottom: 12px;">{t['pitch_annual_savings']}</div>
+            <div style="color: rgba(255,255,255,0.95); font-size: 32px; font-weight: 600; margin-bottom: 20px;">{t['pitch_annual_savings_value']}</div>
+            <div style="color: rgba(255,255,255,0.7); font-size: 16px; font-weight: 400;">{t['pitch_time_saved']}: {t['pitch_time_saved_value']}</div>
+        </div>
+        """,
+            unsafe_allow_html=True,
+        )
+
+        st.markdown("---")
+
+        # Section 6: Roadmap - Clean phase cards
+        st.markdown(f"<h2 style='color: #ffffff; font-weight: 300; font-size: 28px; margin-bottom: 30px;'>{t['pitch_roadmap']}</h2>", unsafe_allow_html=True)
+        
+        roadmap_cols = st.columns(4)
+        phases = [
+            t["pitch_phase_1"].replace("✅ ", ""),
+            t["pitch_phase_2"].replace("🔄 ", ""),
+            t["pitch_phase_3"].replace("📋 ", ""),
+            t["pitch_phase_4"].replace("🔮 ", ""),
+        ]
+        
+        phase_styles = [
+            ("rgba(16, 185, 129, 0.15)", "rgba(16, 185, 129, 0.4)", "#10b981"),
+            ("rgba(245, 158, 11, 0.15)", "rgba(245, 158, 11, 0.4)", "#f59e0b"),
+            ("rgba(59, 130, 246, 0.15)", "rgba(59, 130, 246, 0.4)", "#3b82f6"),
+            ("rgba(139, 92, 246, 0.15)", "rgba(139, 92, 246, 0.4)", "#8b5cf6"),
+        ]
+        
+        for idx, (phase, (bg_color, border_color, accent_color)) in enumerate(zip(phases, phase_styles)):
+            with roadmap_cols[idx]:
+                st.markdown(
+                    f"""
+                <div style="background: {bg_color}; border: 1px solid {border_color}; padding: 28px; border-radius: 16px; color: rgba(255,255,255,0.95); text-align: center; min-height: 180px; backdrop-filter: blur(10px);">
+                    <div style="color: {accent_color}; font-size: 14px; font-weight: 600; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.5px;">Phase {idx + 1}</div>
+                    <div style="font-size: 16px; line-height: 1.7; font-weight: 400; color: rgba(255,255,255,0.9);">{phase}</div>
+                </div>
+                """,
+                    unsafe_allow_html=True,
+                )
+
+        st.markdown("---")
+
+        # Section 6.5: Technology & Development Value
+        st.markdown(f"<h2 style='color: #ffffff; font-weight: 300; font-size: 28px; margin-bottom: 30px;'>{t['pitch_tech_value']}</h2>", unsafe_allow_html=True)
+        
+        # Development Value Card
+        dev_value_cols = st.columns([2, 1])
+        with dev_value_cols[0]:
+            st.markdown(
+                f"""
+            <div style="background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.4); padding: 32px; border-radius: 16px; backdrop-filter: blur(10px); margin-bottom: 20px;">
+                <h3 style="color: #3b82f6; font-size: 22px; font-weight: 500; margin-bottom: 16px;">{t['pitch_dev_value_title']}</h3>
+                <p style="color: rgba(255,255,255,0.85); font-size: 16px; line-height: 1.7; margin-bottom: 20px;">{t['pitch_dev_value_desc']}</p>
+                <div style="background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.4); padding: 20px; border-radius: 12px; margin-top: 20px;">
+                    <div style="color: rgba(255,255,255,0.7); font-size: 14px; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;">{t['pitch_dev_cost_saved']}</div>
+                    <div style="color: #10b981; font-size: 36px; font-weight: 600; margin-bottom: 8px;">€45,000 - €75,000</div>
+                    <div style="color: rgba(255,255,255,0.6); font-size: 13px;">{t['pitch_dev_cost_estimate']}</div>
+                    <div style="color: rgba(255,255,255,0.5); font-size: 12px; margin-top: 12px; font-style: italic;">{t['pitch_dev_cost_note']}</div>
+                </div>
+            </div>
+            """,
+                unsafe_allow_html=True,
+            )
+        
+        with dev_value_cols[1]:
+            st.markdown(
+                f"""
+            <div style="background: rgba(139, 92, 246, 0.1); border: 1px solid rgba(139, 92, 246, 0.4); padding: 32px; border-radius: 16px; backdrop-filter: blur(10px); height: 100%;">
+                <h3 style="color: #8b5cf6; font-size: 20px; font-weight: 500; margin-bottom: 16px;">Key Capabilities</h3>
+                <ul style="color: rgba(255,255,255,0.85); font-size: 15px; line-height: 2; list-style: none; padding: 0;">
+                    <li style="margin-bottom: 12px;"><span style="color: #8b5cf6; margin-right: 10px;">•</span>Full-stack AI development</li>
+                    <li style="margin-bottom: 12px;"><span style="color: #8b5cf6; margin-right: 10px;">•</span>RAG & LLM integration</li>
+                    <li style="margin-bottom: 12px;"><span style="color: #8b5cf6; margin-right: 10px;">•</span>Agentic architecture</li>
+                    <li style="margin-bottom: 12px;"><span style="color: #8b5cf6; margin-right: 10px;">•</span>Production-ready code</li>
+                    <li style="margin-bottom: 12px;"><span style="color: #8b5cf6; margin-right: 10px;">•</span>Domain expertise</li>
+                </ul>
+            </div>
+            """,
+                unsafe_allow_html=True,
+            )
+
+        st.markdown("<br>", unsafe_allow_html=True)
+
+        # Agentic AI Explanation - More persuasive, founder-style
+        st.markdown(
+            f"""
+        <div style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(139, 92, 246, 0.15) 100%); border: 1px solid rgba(59, 130, 246, 0.3); padding: 50px 40px; border-radius: 20px; backdrop-filter: blur(10px); margin: 40px 0;">
+            <h3 style="color: rgba(255,255,255,0.98); font-size: 32px; font-weight: 500; margin-bottom: 24px; text-align: center; letter-spacing: -0.5px;">{t['pitch_agentic_ai']}</h3>
+            <p style="color: rgba(255,255,255,0.9); font-size: 19px; line-height: 1.9; text-align: center; margin-bottom: 0; max-width: 900px; margin-left: auto; margin-right: auto; font-weight: 400;">{t['pitch_agentic_ai_desc']}</p>
+        </div>
+        """,
+            unsafe_allow_html=True,
+        )
+
+        # Three concept cards
+        concept_cols = st.columns(3)
+        concepts = [
+            (t["pitch_agency_title"], t["pitch_agency_desc"], "rgba(59, 130, 246, 0.15)", "rgba(59, 130, 246, 0.4)", "#3b82f6"),
+            (t["pitch_memory_title"], t["pitch_memory_desc"], "rgba(139, 92, 246, 0.15)", "rgba(139, 92, 246, 0.4)", "#8b5cf6"),
+            (t["pitch_orchestration_title"], t["pitch_orchestration_desc"], "rgba(16, 185, 129, 0.15)", "rgba(16, 185, 129, 0.4)", "#10b981"),
+        ]
+        
+        for idx, (title, desc, bg_color, border_color, accent_color) in enumerate(concepts):
+            with concept_cols[idx]:
+                st.markdown(
+                    f"""
+                <div style="background: {bg_color}; border: 1px solid {border_color}; padding: 32px; border-radius: 16px; backdrop-filter: blur(10px); min-height: 300px;">
+                    <h4 style="color: {accent_color}; font-size: 24px; font-weight: 600; margin-bottom: 20px; letter-spacing: -0.3px;">{title}</h4>
+                    <p style="color: rgba(255,255,255,0.9); font-size: 17px; line-height: 1.8; font-weight: 400;">{desc}</p>
+                </div>
+                """,
+                    unsafe_allow_html=True,
+                )
+
+        st.markdown("<br>", unsafe_allow_html=True)
+
+        # Vision & Human-Centric sections
+        vision_cols = st.columns(2)
+        with vision_cols[0]:
+            st.markdown(
+                f"""
+            <div style="background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.4); padding: 32px; border-radius: 16px; backdrop-filter: blur(10px);">
+                <h3 style="color: #f59e0b; font-size: 22px; font-weight: 500; margin-bottom: 16px;">{t['pitch_vision_title']}</h3>
+                <p style="color: rgba(255,255,255,0.85); font-size: 16px; line-height: 1.7;">{t['pitch_vision_desc']}</p>
+            </div>
+            """,
+                unsafe_allow_html=True,
+            )
+        
+        with vision_cols[1]:
+            st.markdown(
+                f"""
+            <div style="background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.4); padding: 32px; border-radius: 16px; backdrop-filter: blur(10px);">
+                <h3 style="color: #10b981; font-size: 22px; font-weight: 500; margin-bottom: 16px;">{t['pitch_human_centric']}</h3>
+                <p style="color: rgba(255,255,255,0.85); font-size: 16px; line-height: 1.7;">{t['pitch_human_centric_desc']}</p>
+            </div>
+            """,
+                unsafe_allow_html=True,
+            )
+
+        # Future Investment - subtle but clear
+        st.markdown("<br>", unsafe_allow_html=True)
+        st.markdown(
+            f"""
+        <div style="background: rgba(59, 130, 246, 0.08); border-left: 3px solid rgba(59, 130, 246, 0.5); padding: 24px; border-radius: 12px; margin: 30px 0;">
+            <h4 style="color: rgba(255,255,255,0.9); font-size: 18px; font-weight: 500; margin-bottom: 12px;">{t['pitch_future_investment']}</h4>
+            <p style="color: rgba(255,255,255,0.75); font-size: 15px; line-height: 1.7; margin: 0;">{t['pitch_future_investment_desc']}</p>
+        </div>
+        """,
+            unsafe_allow_html=True,
+        )
+
+        st.markdown("---")
+
+        # Section 7: Summary - Modern two-column layout
+        st.markdown(f"<h2 style='color: #ffffff; font-weight: 300; font-size: 28px; margin-bottom: 30px;'>{t['pitch_summary']}</h2>", unsafe_allow_html=True)
+        
+        summary_cols = st.columns(2)
+        
+        with summary_cols[0]:
+            st.markdown("<h3 style='color: rgba(255,255,255,0.9); font-weight: 400; font-size: 20px; margin-bottom: 20px;'>Key Benefits</h3>", unsafe_allow_html=True)
+            benefits = [
+                t['pitch_benefit_1'],
+                t['pitch_benefit_2'],
+                t['pitch_benefit_3'],
+                t['pitch_benefit_4'],
+                t['pitch_benefit_5'],
+            ]
+            st.markdown(
+                f"""
+            <div style="background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); padding: 24px; border-radius: 16px; backdrop-filter: blur(10px);">
+                <ul style="color: rgba(255,255,255,0.9); line-height: 2.2; list-style: none; padding: 0; margin: 0;">
+                    {''.join([f'<li style="margin-bottom: 12px;"><span style="color: #10b981; margin-right: 12px; font-weight: 600;">•</span><strong>{benefit}</strong></li>' for benefit in benefits])}
+                </ul>
+            </div>
+            """,
+                unsafe_allow_html=True,
+            )
+        
+        with summary_cols[1]:
+            st.markdown("<h3 style='color: rgba(255,255,255,0.9); font-weight: 400; font-size: 20px; margin-bottom: 20px;'>Next Steps</h3>", unsafe_allow_html=True)
+            next_steps = [
+                t['pitch_next_1'],
+                t['pitch_next_2'],
+                t['pitch_next_3'],
+                t['pitch_next_4'],
+            ]
+            st.markdown(
+                f"""
+            <div style="background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); padding: 24px; border-radius: 16px; backdrop-filter: blur(10px);">
+                <ul style="color: rgba(255,255,255,0.9); line-height: 2.2; list-style: none; padding: 0; margin: 0;">
+                    {''.join([f'<li style="margin-bottom: 12px;"><span style="color: #3b82f6; margin-right: 12px; font-weight: 600;">→</span><strong>{step}</strong></li>' for step in next_steps])}
+                </ul>
+            </div>
+            """,
+                unsafe_allow_html=True,
+            )
+
+        # Final metrics row - modern dark cards
+        st.markdown("<br>", unsafe_allow_html=True)
+        final_metrics_cols = st.columns(5)
+        final_metrics_data = [
+            (t["pitch_before"], f"{total_before}h", "rgba(245, 158, 11, 0.15)", "rgba(245, 158, 11, 0.4)", "#f59e0b"),
+            (t["pitch_after"], f"{total_after}h", "rgba(16, 185, 129, 0.15)", "rgba(16, 185, 129, 0.4)", "#10b981"),
+            (t["pitch_time_saved"], f"{time_saved_per_month}h/mo", "rgba(59, 130, 246, 0.15)", "rgba(59, 130, 246, 0.4)", "#3b82f6"),
+            (t["pitch_time_saved"], f"{annual_time_saved}h/yr", "rgba(139, 92, 246, 0.15)", "rgba(139, 92, 246, 0.4)", "#8b5cf6"),
+            (t["pitch_cost_savings"], f"€{annual_cost_saved:,}", "rgba(16, 185, 129, 0.15)", "rgba(16, 185, 129, 0.4)", "#10b981"),
+        ]
+        
+        for idx, (label, value, bg_color, border_color, text_color) in enumerate(final_metrics_data):
+            with final_metrics_cols[idx]:
+                st.markdown(
+                    f"""
+                <div style="background: {bg_color}; border: 1px solid {border_color}; padding: 20px; border-radius: 12px; backdrop-filter: blur(10px);">
+                    <div style="color: rgba(255,255,255,0.6); font-size: 11px; font-weight: 400; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;">{label}</div>
+                    <div style="color: {text_color}; font-size: 24px; font-weight: 600; line-height: 1.2;">{value}</div>
+                </div>
+                """,
+                    unsafe_allow_html=True,
+                )
+
+        # Call-to-action banner - minimal modern design
+        st.markdown(
+            f"""
+        <div style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(139, 92, 246, 0.15) 100%); border: 1px solid rgba(255,255,255,0.1); padding: 40px; border-radius: 20px; color: white; margin: 40px 0; text-align: center; backdrop-filter: blur(10px);">
+            <h2 style="color: rgba(255,255,255,0.95); margin: 0; font-size: 32px; font-weight: 300; letter-spacing: -0.5px;">{t['pitch_cta']}</h2>
+        </div>
+        """,
+            unsafe_allow_html=True,
+        )
+
+        # Note
+        st.caption(t["pitch_note"])
 
     # Footer
     st.markdown("---")
